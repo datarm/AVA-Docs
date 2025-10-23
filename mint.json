@@ -1,0 +1,238 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "AVA by DataRM",
+  "logo": {
+    "dark": "/logos/Logo AVA - Grey White.png",
+    "light": "/logos/Logo AVA White Purp.png",
+    "href": "https://datarm.com"
+  },
+  "favicon": "/logos/Logo AVA Purp White No Words.png",
+  "colors": {
+    "primary": "#431968",
+    "light": "#7916dd",
+    "dark": "#431968",
+    "background": {
+      "dark": "#0f0f0f"
+    },
+    "anchors": {
+      "from": "#431968",
+      "to": "#ad2a97"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Sign In",
+      "url": "https://app.datarm.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://datarm.com/demo"
+  },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    },
+    {
+      "name": "SDK",
+      "url": "sdk"
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.gg/datarm"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://datarm.com/blog"
+    },
+    {
+      "name": "Support",
+      "icon": "life-ring",
+      "url": "https://datarm.com/support"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Essentials",
+      "pages": [
+        "essentials/what-is-ava",
+        "essentials/how-it-works",
+        "essentials/key-features",
+        "essentials/use-cases"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/installation",
+        "getting-started/authentication",
+        "getting-started/first-query",
+        "getting-started/connecting-data-sources",
+        "getting-started/user-permissions"
+      ]
+    },
+    {
+      "group": "Data Governance",
+      "pages": [
+        "guides/data-governance/overview",
+        "guides/data-governance/access-controls",
+        "guides/data-governance/compliance-tracking",
+        "guides/data-governance/audit-logs"
+      ]
+    },
+    {
+      "group": "Risk Management",
+      "pages": [
+        "guides/risk-management/overview",
+        "guides/risk-management/risk-scoring",
+        "guides/risk-management/alert-configuration",
+        "guides/risk-management/reporting"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "guides/integrations/salesforce",
+        "guides/integrations/snowflake",
+        "guides/integrations/databricks",
+        "guides/integrations/custom-connectors"
+      ]
+    },
+    {
+      "group": "AI Capabilities",
+      "pages": [
+        "guides/ai-capabilities/intelligent-search",
+        "guides/ai-capabilities/automated-classification",
+        "guides/ai-capabilities/anomaly-detection"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/rate-limits"
+      ]
+    },
+    {
+      "group": "Endpoints",
+      "pages": [
+        "api-reference/endpoints/data-sources",
+        "api-reference/endpoints/policies",
+        "api-reference/endpoints/users",
+        "api-reference/endpoints/reports",
+        "api-reference/endpoints/webhooks"
+      ]
+    },
+    {
+      "group": "SDK",
+      "pages": [
+        "sdk/overview",
+        "sdk/python",
+        "sdk/javascript",
+        "sdk/java",
+        "sdk/examples"
+      ]
+    },
+    {
+      "group": "Deployment",
+      "pages": [
+        "deployment/architecture",
+        "deployment/self-hosted",
+        "deployment/cloud-deployment",
+        "deployment/security",
+        "deployment/sso-setup",
+        "deployment/scalability"
+      ]
+    },
+    {
+      "group": "Administration",
+      "pages": [
+        "administration/user-management",
+        "administration/org-settings",
+        "administration/billing",
+        "administration/monitoring",
+        "administration/troubleshooting"
+      ]
+    },
+    {
+      "group": "Compliance",
+      "pages": [
+        "compliance/gdpr",
+        "compliance/ccpa",
+        "compliance/soc2",
+        "compliance/hipaa"
+      ]
+    },
+    {
+      "group": "Support",
+      "pages": [
+        "support/faq",
+        "support/contact",
+        "support/status"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/About AVA 2.9.0",
+        "changelog/About AVA 2.8.0",
+        "changelog/About AVA 2.7.1",
+        "changelog/About AVA 2.7.0",
+        "changelog/About AVA 2.6.3",
+        "changelog/About AVA 2.6.0",
+        "changelog/About AVA 2.5.0",
+        "changelog/About AVA 2.4.1",
+        "changelog/About AVA 2.4.0",
+        "changelog/About AVA 2.3.2",
+        "changelog/About AVA 2.3.0",
+        "changelog/About AVA 2.2.1",
+        "changelog/About AVA 2.2.0",
+        "changelog/About AVA 2.1.1",
+        "changelog/About AVA 2.1.0",
+        "changelog/About AVA 2.0.3",
+        "changelog/About AVA 2.0.2",
+        "changelog/About AVA 2.0.1",
+        "changelog/About AVA 2.0.0",
+        "changelog/About AVA 1.10.1",
+        "changelog/About AVA 1.10.0",
+        "changelog/About AVA 1.9.1",
+        "changelog/About AVA 1.9.0",
+        "changelog/About AVA 1.8.0",
+        "changelog/About AVA 1.7.0",
+        "changelog/About AVA 1.3.7",
+        "changelog/About AVA 1.3.6"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/datarm",
+    "linkedin": "https://linkedin.com/company/datarm"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-XXXXXXXXXX"
+    }
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
+  }
+}

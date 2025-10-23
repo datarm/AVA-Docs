@@ -1,0 +1,49 @@
+---
+title: AVA 2.8.0
+description: Release notes for AVA version 2.8.0
+---
+
+# Release Notes for AVA Update 2.8.0
+
+Welcome to AVA 2.8.0—this release focuses on enhanced AI capabilities, improved user experience, and powerful new integrations to make your workflows even more efficient!
+
+---
+
+### **Highlights**
+
+- **Next-Generation AI Models:** GPT-5 support is here! Access the latest OpenAI models including GPT-5, GPT-5-mini, GPT-5-nano, and GPT-5-chat for even more powerful AI conversations and task completion. (Some admin configuration required.)
+- **Enhanced Knowledge Search:** Smarter agentic knowledge search that only asks follow-up questions when needed (confidence score below 9/10) and always prioritizes your knowledge corpus results over web search results.
+- **GitHub Integration:** Connect with `@GitHub` to manage repositories, issues, pull requests, and more directly from AVA. Perfect for development teams looking to streamline their workflow.
+- **Microsoft To-Do Integration:** `@Microsoft 365 Apps` now includes comprehensive Microsoft Tasks/To-Do management—create lists, schedule items, mark importance, and organize your personal productivity.
+- **Global Address List Enhancement:** Improved contact discovery in `@Microsoft 365 Apps` with unified contact search that combines personal contacts, organization search, and directory lookup for GAL-like functionality.
+- **@ Mentions in Prompt Library:** Users can now select @ mentions to include in their saved prompts. Selecting a prompt with @ mentions from the prompt library immediately enables those Connected Data sources in the chat box.
+- **Large File Handling:** Previously AVA could only handle files up to 1MB of raw text in each chat message. She can now handle much larger files (i.e., multiple megabytes).
+
+---
+
+### **User Experience Improvements**
+
+- **Clearer UI When Adding Files to Tasks:** Improved clickability and clearer interface when adding files to tasks—no more confusion about which elements are interactive.
+- **Smart Loading States:** Removed redundant loading spinners during @ mention calls while keeping helpful status updates and metadata accordions visible.
+- **Better Copy/Paste Experience:** Clean copying of chat responses and task outputs without unwanted status information cluttering your clipboard.
+- **Auto-Selected Mentions:** `@Web` and `@Microsoft 365 Apps` are now automatically enabled in new chats (customizable in Settings).
+- **Working Cancel Button:** The cancel button now properly stops streaming responses for both regular chats and @ mention calls.
+
+---
+
+### **Infrastructure & Performance**
+
+- **Advanced Authentication Framework:** New database-driven MCP configuration system enables dynamic loading of connected data sources and authentication providers, making it easier to add future integrations.
+- **Improved Metadata Tracking:** Enhanced metadata collection for agent calls in chat conversations, providing better usage insights and debugging capabilities.
+
+---
+
+### **New Connected Data Sources**
+
+- **GitHub Enterprise:** Full support for multiple organization access with repository management, issue tracking, and pull request workflows.
+- **Enhanced Microsoft Tasks:** Complete Microsoft To-Do integration with list management, scheduling, and organization features.
+- **Dynamic Contact Discovery:** Improved Microsoft 365 contact access combining multiple data sources for comprehensive organization directory functionality.
+
+---
+
+Your feedback continues to drive our development—keep the insights coming! Stay tuned for more exciting features in the pipeline. 🚀

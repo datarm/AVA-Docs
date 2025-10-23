@@ -1,0 +1,45 @@
+---
+title: AVA 2.9.0
+description: Release notes for AVA version 2.9.0
+---
+
+# Release Notes for AVA Update 2.9.0
+
+Welcome to AVA 2.9.0—this release focuses on enhanced stability, improved knowledge search capabilities, and powerful new integrations to streamline your workflows!
+
+---
+
+### **Highlights**
+
+- **Next-Generation LLM Infrastructure:** Complete migration from LiteLLM to our Unified LLM Interface (ULI) for more reliable AI responses and better performance across all components.
+- **Enhanced Claude Model Access:** Improved Claude model availability and reliability through expanded provider integrations.
+- **Multi-Corpus Knowledge Search:** Query across multiple knowledge bases simultaneously in a single search for comprehensive results.
+- **Application Insights Telemetry:** Full monitoring integration across all AVA components eliminates "send me a screenshot" support requests with centralized logging.
+- **Microsoft 365 Shared Mailboxes:** Enhanced `@Microsoft 365 Apps` integration now supports accessing and managing shared mailbox email items for streamlined team collaboration. (Support for shared inbox calendar items will be available soon)
+
+---
+
+### **User Experience Improvements**
+
+- **Enhanced Data Source Management:** Edit document descriptions directly in the UI to improve search accuracy for uploaded files and complex documents.
+- **Reliable Local Storage:** Fixed application crashes from localStorage quota errors with automatic cleanup and safe storage handling.
+- **Corpus Management:** Delete unwanted knowledge corpora with proper owner permissions and automatic mention list updates.
+- **Eliminated Console Errors:** Removed 403 errors during SharePoint access validation by moving validation logic to the backend.
+- **Streamlined Search Interface:** Cleaned up redundant search parameters for better performance and clarity.
+
+---
+
+### **Infrastructure & Performance**
+
+- **Production Health Monitoring:** Comprehensive health checks across login, data fetching, chat, and task operations with automated alerting.
+- **Enhanced Database Performance:** Optimized Knowledge Search with database indexing and query improvements for faster response times.
+
+---
+
+### **Under the Hood Improvements**
+
+- **Enhanced System Stability:** Comprehensive backend optimizations and security improvements ensure more reliable performance across all features.
+
+---
+
+Your feedback continues to drive our development—keep the insights coming! This release represents a significant step forward in reliability and performance. Stay tuned for more exciting features in the pipeline. 🚀
