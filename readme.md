@@ -74,9 +74,20 @@ mintlify build
 
 ## Deployment
 
-The documentation is automatically deployed when changes are pushed to the main branch.
+The documentation is automatically deployed via Mintlify when changes are pushed to the main branch.
 
-**Live Site**: https://docs.datarm.com
+**Live Site**: https://docs.datarm.ai
+
+### Mintlify Deployment
+
+This repository is connected to Mintlify for automatic documentation deployment:
+
+1. **GitHub Integration**: Connected to `datarm/AVA-Docs` repository
+2. **Source Directory**: `/ava-docs` subdirectory
+3. **Custom Domain**: docs.datarm.ai
+4. **Auto-Deploy**: Pushes to `main` branch trigger automatic rebuilds
+
+**First Deployment**: Initial Mintlify deployment will be to docs.datarm.ai upon connecting the GitHub repository to the Mintlify dashboard.
 
 ## Contributing
 
