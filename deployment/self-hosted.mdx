@@ -1,0 +1,72 @@
+---
+title: 'Self-Hosted Deployment'
+description: 'Deploy AVA in your own infrastructure'
+---
+
+## Deployment Options
+
+<CardGroup cols={3}>
+  <Card title="Kubernetes" icon="dharmachakra">
+    Recommended for production
+  </Card>
+  <Card title="Docker Compose" icon="docker">
+    Quick start and testing
+  </Card>
+  <Card title="VMs" icon="server">
+    Traditional deployment
+  </Card>
+</CardGroup>
+
+## Kubernetes Deployment
+
+```bash
+# Add Helm repository
+helm repo add datarm https://charts.datarm.com
+helm repo update
+
+# Install AVA
+helm install ava datarm/ava \
+  --namespace ava \
+  --create-namespace \
+  --set domain=ava.your-domain.com \
+  --set postgresql.auth.password=YOUR_PASSWORD
+```
+
+## Docker Compose
+
+```yaml
+version: '3.8'
+services:
+  ava:
+    image: datarm/ava:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/ava
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=ava
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="SSO Setup" icon="right-to-bracket" href="/deployment/sso-setup">
+    Configure single sign-on
+  </Card>
+  <Card title="Security" icon="shield" href="/deployment/security">
+    Secure your deployment
+  </Card>
+</CardGroup>

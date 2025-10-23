@@ -1,0 +1,90 @@
+---
+title: 'Reports API'
+description: 'Generate and retrieve reports via API'
+---
+
+## Endpoints
+
+### List Reports
+
+```http
+GET /api/v1/reports
+```
+
+### Generate Report
+
+```http
+POST /api/v1/reports
+```
+
+```bash
+curl -X POST https://app.datarm.com/api/v1/reports \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "risk_summary",
+    "period": "monthly",
+    "format": "pdf",
+    "filters": {
+      "risk_level": ["high", "critical"]
+    }
+  }'
+```
+
+**Response:**
+```json
+{
+  "data": {
+    "id": "rpt_abc123",
+    "status": "generating",
+    "estimated_completion": "2024-10-23T14:35:00Z"
+  }
+}
+```
+
+### Get Report Status
+
+```http
+GET /api/v1/reports/{id}
+```
+
+### Download Report
+
+```http
+GET /api/v1/reports/{id}/download
+```
+
+```bash
+curl -X GET https://app.datarm.com/api/v1/reports/rpt_abc123/download \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -o report.pdf
+```
+
+### Schedule Report
+
+```http
+POST /api/v1/reports/schedules
+```
+
+```bash
+curl -X POST https://app.datarm.com/api/v1/reports/schedules \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "name": "Weekly Risk Report",
+    "type": "risk_summary",
+    "frequency": "weekly",
+    "day": "monday",
+    "recipients": ["team@company.com"]
+  }'
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Webhooks API" icon="webhook" href="/api-reference/endpoints/webhooks">
+    Set up webhook notifications
+  </Card>
+  <Card title="Python SDK" icon="python" href="/sdk/python">
+    Use the Python SDK
+  </Card>
+</CardGroup>

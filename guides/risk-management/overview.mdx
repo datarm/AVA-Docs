@@ -1,0 +1,201 @@
+---
+title: 'Risk Management Overview'
+description: 'Identify, assess, and mitigate data risks with AVA'
+---
+
+## Overview
+
+AVA's AI-powered risk management engine continuously monitors your data environment, identifies potential risks, and provides actionable recommendations for mitigation. Stay ahead of security threats and compliance violations with proactive risk management.
+
+<CardGroup cols={2}>
+  <Card title="Risk Scoring" icon="gauge-high">
+    AI-driven risk assessment for all data assets
+  </Card>
+  <Card title="Real-time Alerts" icon="bell">
+    Immediate notifications for critical risks
+  </Card>
+  <Card title="Automated Detection" icon="robot">
+    Continuous monitoring for anomalies
+  </Card>
+  <Card title="Risk Reports" icon="file-chart-column">
+    Comprehensive risk dashboards and reports
+  </Card>
+</CardGroup>
+
+## Risk Categories
+
+### Data Security Risks
+
+- **Unencrypted Sensitive Data**: PII/PHI without encryption
+- **Overly Permissive Access**: Too many users with access
+- **Public Exposure**: Data accessible without authentication
+- **Weak Authentication**: Resources without MFA
+- **Stale Credentials**: Unused service accounts with active access
+
+### Compliance Risks
+
+- **Policy Violations**: Data not meeting governance policies
+- **Retention Non-compliance**: Data kept beyond retention period
+- **Missing Consents**: PII without proper consent records
+- **Unclassified Data**: Sensitive data without classifications
+- **Audit Gaps**: Missing audit trails for sensitive access
+
+### Operational Risks
+
+- **Shadow IT**: Unmanaged data sources
+- **Data Quality Issues**: Incomplete or inaccurate data
+- **Orphaned Data**: Data without clear ownership
+- **Broken Lineage**: Unknown data dependencies
+- **Performance Bottlenecks**: Systems under stress
+
+## Risk Scoring
+
+AVA calculates risk scores (0-100) based on multiple factors:
+
+```python
+from ava import Client
+
+client = Client(api_key="YOUR_API_KEY")
+
+# Get risk score for data asset
+asset = client.data_catalog.get("salesforce.contacts")
+print(f"Risk Score: {asset.risk_score}")
+print(f"Risk Level: {asset.risk_level}")  # low, medium, high, critical
+
+# View risk factors
+for factor in asset.risk_factors:
+    print(f"  {factor.category}: {factor.description} (impact: {factor.impact})")
+```
+
+### Risk Score Components
+
+<Tabs>
+  <Tab title="Sensitivity Score (40%)">
+    Based on data classification:
+    - PII, PHI, Financial: High impact
+    - Internal, Confidential: Medium impact
+    - Public: Low impact
+  </Tab>
+
+  <Tab title="Access Risk (30%)">
+    Based on access patterns:
+    - Number of users with access
+    - Privileged access count
+    - External access
+    - Recent access anomalies
+  </Tab>
+
+  <Tab title="Compliance Score (20%)">
+    Based on policy compliance:
+    - Active policy violations
+    - Missing controls
+    - Unaddressed findings
+  </Tab>
+
+  <Tab title="Security Posture (10%)">
+    Based on security controls:
+    - Encryption status
+    - Authentication strength
+    - Network exposure
+    - Vulnerability status
+  </Tab>
+</Tabs>
+
+## Risk Dashboard
+
+View organizational risk posture:
+
+```bash
+# Open risk dashboard
+ava risk dashboard
+
+# View high-risk assets
+ava risk list --level critical,high --limit 50
+
+# Risk by category
+ava risk summary --group-by category
+
+# Trending risks
+ava risk trends --period 30d
+```
+
+## Automated Risk Detection
+
+Configure automated risk detection rules:
+
+```yaml
+risk_detection_rules:
+  - name: Unencrypted PII Detection
+    trigger:
+      classification: [PII, PII_EMAIL, PII_SSN]
+      encryption: false
+    severity: critical
+    auto_remediate: enable_encryption
+    alert: security-team@company.com
+
+  - name: Excessive Access
+    trigger:
+      user_count: "> 100"
+      classification: SENSITIVE
+    severity: high
+    action: request_access_review
+    notify: data-owner
+
+  - name: Stale Data Detection
+    trigger:
+      last_accessed: "> 365 days"
+      classification: [PII, PHI]
+    severity: medium
+    action: tag_for_review
+    suggest: archive_or_delete
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Monitor Continuously" icon="rotate">
+    Enable real-time risk monitoring
+  </Card>
+  <Card title="Prioritize by Impact" icon="ranking-star">
+    Focus on critical and high-risk items first
+  </Card>
+  <Card title="Automate Remediation" icon="robot">
+    Enable auto-fix for low-risk items
+  </Card>
+  <Card title="Regular Reviews" icon="calendar-check">
+    Weekly review of risk dashboard
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Risk Scoring"
+    icon="gauge-high"
+    href="/guides/risk-management/risk-scoring"
+  >
+    Deep dive into risk scoring methodology
+  </Card>
+  <Card
+    title="Alert Configuration"
+    icon="bell"
+    href="/guides/risk-management/alert-configuration"
+  >
+    Set up automated risk alerts
+  </Card>
+  <Card
+    title="Risk Reporting"
+    icon="file-chart-column"
+    href="/guides/risk-management/reporting"
+  >
+    Generate comprehensive risk reports
+  </Card>
+  <Card
+    title="Data Governance"
+    icon="shield-check"
+    href="/guides/data-governance/overview"
+  >
+    Implement governance policies
+  </Card>
+</CardGroup>

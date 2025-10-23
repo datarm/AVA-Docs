@@ -1,0 +1,67 @@
+---
+title: 'Troubleshooting'
+description: 'Common issues and solutions'
+---
+
+## Common Issues
+
+<AccordionGroup>
+  <Accordion title="Connection timeout to data source">
+    **Solutions:**
+    - Verify network connectivity
+    - Check firewall rules
+    - Ensure correct credentials
+    - Test from AVA server: `telnet host port`
+  </Accordion>
+
+  <Accordion title="Slow query performance">
+    **Solutions:**
+    - Check database indexes
+    - Optimize query filters
+    - Use pagination
+    - Enable caching
+  </Accordion>
+
+  <Accordion title="Authentication failures">
+    **Solutions:**
+    - Verify SSO configuration
+    - Check API key validity
+    - Ensure user has proper roles
+    - Review audit logs
+  </Accordion>
+
+  <Accordion title="High memory usage">
+    **Solutions:**
+    - Increase allocated memory
+    - Check for memory leaks
+    - Optimize scan settings
+    - Review background jobs
+  </Accordion>
+</AccordionGroup>
+
+## Diagnostic Commands
+
+```bash
+# Check system health
+ava health check --verbose
+
+# View logs
+ava logs tail --service api --lines 100
+
+# Test connectivity
+ava test-connection --source salesforce
+
+# Debug API call
+ava api debug --endpoint /data-sources --verbose
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Support" icon="headset" href="/support/contact">
+    Contact support team
+  </Card>
+  <Card title="FAQ" icon="circle-question" href="/support/faq">
+    Frequently asked questions
+  </Card>
+</CardGroup>

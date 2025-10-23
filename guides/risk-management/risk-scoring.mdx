@@ -1,0 +1,60 @@
+---
+title: 'Risk Scoring'
+description: 'Understanding and customizing AVA risk scoring methodology'
+---
+
+## Risk Scoring Methodology
+
+AVA uses machine learning and rule-based algorithms to calculate risk scores for every data asset. Scores range from 0 (no risk) to 100 (critical risk).
+
+## Score Calculation
+
+```python
+# View detailed risk score breakdown
+asset = client.data_catalog.get("database.table")
+
+risk_breakdown = {
+    "overall_score": asset.risk_score,
+    "sensitivity": asset.risk_components.sensitivity_score,
+    "access": asset.risk_components.access_score,
+    "compliance": asset.risk_components.compliance_score,
+    "security": asset.risk_components.security_score
+}
+```
+
+## Customizing Risk Weights
+
+```bash
+# Adjust risk scoring weights
+ava risk configure-weights \
+  --sensitivity 0.40 \
+  --access 0.30 \
+  --compliance 0.20 \
+  --security 0.10
+```
+
+## Risk Levels
+
+- **Critical (90-100)**: Immediate action required
+- **High (70-89)**: Address within 24 hours
+- **Medium (40-69)**: Address within 7 days
+- **Low (0-39)**: Monitor and address as needed
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Alert Configuration"
+    icon="bell"
+    href="/guides/risk-management/alert-configuration"
+  >
+    Set up risk alerts
+  </Card>
+  <Card
+    title="Risk Reporting"
+    icon="chart-line"
+    href="/guides/risk-management/reporting"
+  >
+    Generate risk reports
+  </Card>
+</CardGroup>

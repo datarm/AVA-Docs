@@ -1,0 +1,186 @@
+---
+title: 'SDK Examples'
+description: 'Code examples and tutorials for AVA SDKs'
+---
+
+## Common Use Cases
+
+### Automated Data Discovery
+
+<Tabs>
+  <Tab title="Python">
+    ```python
+    from ava import Client
+    import schedule
+    import time
+
+    client = Client(api_key="YOUR_API_KEY")
+
+    def run_daily_scans():
+        sources = client.data_sources.list()
+        for source in sources:
+            print(f"Scanning {source.name}...")
+            scan = client.data_sources.scan(source.id, profile="standard")
+            print(f"Scan initiated: {scan.id}")
+
+    # Schedule daily scans at 2 AM
+    schedule.every().day.at("02:00").do(run_daily_scans)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
+    ```
+  </Tab>
+
+  <Tab title="JavaScript">
+    ```javascript
+    import { AVAClient } from '@datarm/ava-sdk';
+    import cron from 'node-cron';
+
+    const client = new AVAClient({ apiKey: process.env.AVA_API_KEY });
+
+    // Run daily scans at 2 AM
+    cron.schedule('0 2 * * *', async () => {
+      const sources = await client.dataSources.list();
+
+      for (const source of sources) {
+        console.log(`Scanning ${source.name}...`);
+        const scan = await client.dataSources.scan(source.id, { profile: 'standard' });
+        console.log(`Scan initiated: ${scan.id}`);
+      }
+    });
+    ```
+  </Tab>
+</Tabs>
+
+### Risk Monitoring Dashboard
+
+```python
+from ava import Client
+import pandas as pd
+import plotly.express as fig
+
+client = Client(api_key="YOUR_API_KEY")
+
+# Get risk metrics
+high_risk = client.risk.list(level=["high", "critical"])
+
+# Create DataFrame
+data = [{
+    'asset': asset.name,
+    'score': asset.risk_score,
+    'classification': asset.classification[0] if asset.classification else 'Unknown'
+} for asset in high_risk]
+
+df = pd.DataFrame(data)
+
+# Create visualization
+fig = px.bar(df, x='asset', y='score', color='classification',
+             title='High Risk Assets')
+fig.show()
+```
+
+### Automated Compliance Reporting
+
+```python
+from ava import Client
+from datetime import datetime
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+
+client = Client(api_key="YOUR_API_KEY")
+
+def send_compliance_report():
+    # Generate compliance report
+    report = client.reports.generate(
+        type="compliance_summary",
+        frameworks=["GDPR", "CCPA"],
+        format="pdf"
+    )
+
+    # Wait for report generation
+    while report.status == "generating":
+        time.sleep(5)
+        report = client.reports.get(report.id)
+
+    # Download report
+    report_data = client.reports.download(report.id)
+
+    # Email report
+    msg = MIMEMultipart()
+    msg['From'] = "ava@company.com"
+    msg['To'] = "compliance-team@company.com"
+    msg['Subject'] = f"Compliance Report - {datetime.now().strftime('%Y-%m-%d')}"
+
+    body = "Please find attached the monthly compliance report."
+    msg.attach(MIMEText(body, 'plain'))
+
+    attachment = MIMEBase('application', 'octet-stream')
+    attachment.set_payload(report_data)
+    encoders.encode_base64(attachment)
+    attachment.add_header('Content-Disposition', f"attachment; filename=compliance-report.pdf")
+    msg.attach(attachment)
+
+    # Send email
+    server = smtplib.SMTP('smtp.company.com', 587)
+    server.starttls()
+    server.send_message(msg)
+    server.quit()
+
+# Run monthly
+send_compliance_report()
+```
+
+### Data Catalog Search Tool
+
+```javascript
+import { AVAClient } from '@datarm/ava-sdk';
+import readline from 'readline';
+
+const client = new AVAClient({ apiKey: process.env.AVA_API_KEY });
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+async function searchCatalog() {
+  rl.question('Enter search query: ', async (query) => {
+    const results = await client.query(query);
+
+    console.log(`\nFound ${results.length} results:\n`);
+
+    results.forEach((asset, index) => {
+      console.log(`${index + 1}. ${asset.name}`);
+      console.log(`   Source: ${asset.source}`);
+      console.log(`   Classification: ${asset.classification.join(', ')}`);
+      console.log(`   Risk Score: ${asset.riskScore}`);
+      console.log('');
+    });
+
+    searchCatalog();
+  });
+}
+
+searchCatalog();
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Python SDK" icon="python" href="/sdk/python">
+    Full Python SDK documentation
+  </Card>
+  <Card title="JavaScript SDK" icon="js" href="/sdk/javascript">
+    Full JavaScript SDK documentation
+  </Card>
+  <Card title="API Reference" icon="code" href="/api-reference/introduction">
+    Complete API reference
+  </Card>
+  <Card title="Data Governance" icon="shield-check" href="/guides/data-governance/overview">
+    Implement governance with SDKs
+  </Card>
+</CardGroup>

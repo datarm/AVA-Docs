@@ -1,0 +1,642 @@
+---
+title: 'User Permissions'
+description: 'Configure role-based access control and manage user permissions in AVA'
+---
+
+## Overview
+
+AVA uses a sophisticated role-based access control (RBAC) system to ensure users have appropriate access to data governance features and data assets. This guide covers user management, roles, permissions, and best practices for access control.
+
+<Info>
+  AVA follows the principle of least privilege - users are granted only the minimum permissions necessary to perform their job functions.
+</Info>
+
+## Default Roles
+
+AVA comes with predefined roles for common use cases:
+
+<CardGroup cols={2}>
+  <Card title="Administrator" icon="user-shield">
+    Full system access and configuration
+  </Card>
+  <Card title="Data Governance Officer" icon="scale-balanced">
+    Manage policies, classifications, and governance workflows
+  </Card>
+  <Card title="Compliance Officer" icon="clipboard-check">
+    View compliance status, generate reports, manage audits
+  </Card>
+  <Card title="Data Steward" icon="user-check">
+    Manage data catalog, approve access requests, classify data
+  </Card>
+  <Card title="Security Analyst" icon="shield-halved">
+    Monitor risks, investigate incidents, view audit logs
+  </Card>
+  <Card title="Data Analyst" icon="chart-line">
+    Query data catalog, view metadata, access reports
+  </Card>
+  <Card title="Viewer" icon="eye">
+    Read-only access to assigned resources
+  </Card>
+  <Card title="Service Account" icon="robot">
+    API access for automated workflows
+  </Card>
+</CardGroup>
+
+## Role Permissions
+
+### Administrator
+
+Full access to all AVA features:
+
+```yaml
+permissions:
+  system:
+    - manage_users
+    - manage_roles
+    - configure_system
+    - manage_integrations
+    - view_audit_logs
+  data:
+    - view_all_data_sources
+    - manage_data_sources
+    - classify_data
+    - manage_policies
+  governance:
+    - create_policies
+    - approve_exceptions
+    - manage_workflows
+  compliance:
+    - view_compliance_status
+    - generate_reports
+    - manage_frameworks
+```
+
+### Data Governance Officer
+
+Focused on governance operations:
+
+```yaml
+permissions:
+  data:
+    - view_all_data_sources
+    - classify_data
+    - manage_policies
+    - approve_access_requests
+  governance:
+    - create_policies
+    - manage_classifications
+    - define_retention_rules
+    - approve_exceptions
+  compliance:
+    - view_compliance_status
+    - generate_reports
+  users:
+    - view_user_access
+```
+
+### Compliance Officer
+
+Audit and compliance focus:
+
+```yaml
+permissions:
+  compliance:
+    - view_compliance_status
+    - generate_compliance_reports
+    - view_audit_trails
+    - manage_frameworks
+    - export_evidence
+  data:
+    - view_all_data_sources
+    - view_classifications
+  governance:
+    - view_policies
+    - view_violations
+```
+
+### Data Steward
+
+Day-to-day data management:
+
+```yaml
+permissions:
+  data:
+    - view_assigned_data_sources
+    - classify_data
+    - manage_metadata
+    - curate_catalog
+  governance:
+    - suggest_policies
+    - approve_access_requests
+    - manage_data_quality
+  users:
+    - view_user_access_in_domain
+```
+
+## User Management
+
+### Create Users
+
+<Tabs>
+  <Tab title="Via Dashboard">
+    <Steps>
+      <Step title="Navigate to Users">
+        Go to **Settings** > **Users** > **Add User**
+      </Step>
+      <Step title="Enter Details">
+        - Email address
+        - First and last name
+        - Department
+        - Manager
+      </Step>
+      <Step title="Assign Roles">
+        Select one or more roles for the user
+      </Step>
+      <Step title="Set Permissions">
+        Configure additional permissions or restrictions
+      </Step>
+      <Step title="Send Invitation">
+        User receives email with setup instructions
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Via CLI">
+    ```bash
+    # Create single user
+    ava users create \
+      --email john.doe@company.com \
+      --name "John Doe" \
+      --role data-governance-officer \
+      --department "Data Management" \
+      --send-invite
+
+    # Bulk import users
+    ava users import --file users.csv
+
+    # CSV format:
+    # email,name,role,department
+    # jane@company.com,Jane Smith,data-steward,Finance
+    # bob@company.com,Bob Johnson,compliance-officer,Legal
+    ```
+  </Tab>
+
+  <Tab title="Via API">
+    ```bash
+    curl -X POST https://ava.your-domain.com/api/v1/users \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "email": "john.doe@company.com",
+        "name": "John Doe",
+        "roles": ["data-governance-officer"],
+        "department": "Data Management",
+        "send_invite": true
+      }'
+    ```
+  </Tab>
+</Tabs>
+
+### Manage User Roles
+
+```bash
+# Assign role to user
+ava users assign-role \
+  --email john.doe@company.com \
+  --role compliance-officer
+
+# Remove role from user
+ava users remove-role \
+  --email john.doe@company.com \
+  --role data-steward
+
+# Update user's primary role
+ava users update john.doe@company.com \
+  --primary-role administrator
+```
+
+### Deactivate Users
+
+```bash
+# Deactivate user (preserves data)
+ava users deactivate john.doe@company.com
+
+# Reactivate user
+ava users activate john.doe@company.com
+
+# Delete user (removes all data)
+ava users delete john.doe@company.com --confirm
+```
+
+## Custom Roles
+
+Create custom roles tailored to your organization:
+
+<Steps>
+  <Step title="Define Role">
+    ```bash
+    ava roles create \
+      --name "Marketing Data Analyst" \
+      --description "Access to marketing data only"
+    ```
+  </Step>
+
+  <Step title="Assign Permissions">
+    ```bash
+    ava roles add-permission "Marketing Data Analyst" \
+      --permission "data:view_marketing_sources" \
+      --permission "data:query_marketing_data" \
+      --permission "reports:create" \
+      --permission "reports:view_own"
+    ```
+  </Step>
+
+  <Step title="Set Resource Constraints">
+    ```bash
+    ava roles set-constraints "Marketing Data Analyst" \
+      --data-sources "salesforce_marketing,google_analytics" \
+      --tags "marketing,campaign" \
+      --max-query-results 10000
+    ```
+  </Step>
+
+  <Step title="Assign to Users">
+    ```bash
+    ava users assign-role \
+      --email marketing-user@company.com \
+      --role "Marketing Data Analyst"
+    ```
+  </Step>
+</Steps>
+
+### Permission Categories
+
+<Tabs>
+  <Tab title="System Permissions">
+    ```yaml
+    system:
+      - manage_users         # Create, edit, delete users
+      - manage_roles         # Create, edit, delete roles
+      - configure_system     # Modify system settings
+      - manage_integrations  # Add, edit, remove data sources
+      - view_audit_logs      # Access audit trails
+      - manage_api_keys      # Create and revoke API keys
+    ```
+  </Tab>
+
+  <Tab title="Data Permissions">
+    ```yaml
+    data:
+      - view_all_sources        # See all data sources
+      - view_assigned_sources   # See only assigned sources
+      - manage_sources          # Add, edit, delete sources
+      - classify_data           # Assign classifications
+      - view_sensitive_data     # Access PII, PHI, etc.
+      - query_data              # Execute queries
+      - export_data             # Download data
+      - modify_metadata         # Edit descriptions, tags
+    ```
+  </Tab>
+
+  <Tab title="Governance Permissions">
+    ```yaml
+    governance:
+      - create_policies         # Create governance policies
+      - edit_policies           # Modify existing policies
+      - delete_policies         # Remove policies
+      - approve_exceptions      # Approve policy exceptions
+      - manage_workflows        # Configure workflows
+      - manage_classifications  # Define data classifications
+      - define_retention        # Set retention policies
+    ```
+  </Tab>
+
+  <Tab title="Compliance Permissions">
+    ```yaml
+    compliance:
+      - view_compliance_status  # View compliance dashboards
+      - generate_reports        # Create compliance reports
+      - manage_frameworks       # Configure compliance frameworks
+      - view_violations         # See policy violations
+      - export_evidence         # Export audit evidence
+      - manage_controls         # Configure compliance controls
+    ```
+  </Tab>
+</Tabs>
+
+## Data-Level Security
+
+### Row-Level Security
+
+Restrict data access based on user attributes:
+
+```bash
+# Create row-level security policy
+ava security create-rls-policy \
+  --name "Regional Data Access" \
+  --data-source salesforce \
+  --table Account \
+  --filter "Region = {{user.region}}" \
+  --roles "data-analyst,data-steward"
+
+# Example: Users only see accounts in their region
+```
+
+### Column-Level Security
+
+Mask or hide sensitive columns:
+
+```bash
+# Hide sensitive columns
+ava security hide-columns \
+  --data-source salesforce \
+  --table Contact \
+  --columns "SSN,CreditCardNumber" \
+  --except-roles "administrator,compliance-officer"
+
+# Mask columns (show partial data)
+ava security mask-columns \
+  --data-source salesforce \
+  --table Contact \
+  --column "Email" \
+  --mask-type "email" \
+  --roles "data-analyst"
+```
+
+### Attribute-Based Access Control (ABAC)
+
+Define access based on attributes:
+
+```python
+# Python SDK example
+from ava import Client
+
+client = Client(api_key="YOUR_API_KEY")
+
+# Create ABAC policy
+policy = client.security.create_abac_policy(
+    name="Healthcare Data Access",
+    rules=[
+        {
+            "resource": {"classification": "PHI"},
+            "subject": {"department": "Healthcare"},
+            "action": ["read", "query"],
+            "conditions": [
+                "user.certified == true",
+                "user.training_date > date('2024-01-01')"
+            ]
+        }
+    ]
+)
+```
+
+## Access Requests
+
+Enable self-service access requests:
+
+### Configure Access Request Workflow
+
+```bash
+ava workflows configure access-request \
+  --approvers "data-governance-team@company.com" \
+  --auto-approve-duration 7d \
+  --require-justification \
+  --notify-owner
+```
+
+### Request Access (User Perspective)
+
+<Steps>
+  <Step title="Find Resource">
+    User browses data catalog and finds needed resource
+  </Step>
+  <Step title="Request Access">
+    Clicks "Request Access" and fills out form:
+    - Justification
+    - Duration needed
+    - Access level required
+  </Step>
+  <Step title="Approval Process">
+    Request routes to appropriate approver(s)
+  </Step>
+  <Step title="Access Granted">
+    User receives notification when approved
+  </Step>
+</Steps>
+
+### Approve Access Requests
+
+```bash
+# List pending requests
+ava access-requests list --status pending
+
+# Approve request
+ava access-requests approve req_12345 \
+  --duration 30d \
+  --comment "Approved for project X"
+
+# Deny request
+ava access-requests deny req_12345 \
+  --reason "Insufficient justification"
+```
+
+## Groups and Teams
+
+Organize users into groups for easier management:
+
+### Create Groups
+
+```bash
+# Create group
+ava groups create \
+  --name "Data Governance Team" \
+  --description "Primary data governance team" \
+  --email "data-governance@company.com"
+
+# Add members
+ava groups add-members "Data Governance Team" \
+  --users "john@company.com,jane@company.com,bob@company.com"
+
+# Assign role to entire group
+ava groups assign-role "Data Governance Team" \
+  --role data-governance-officer
+```
+
+### Group-Based Permissions
+
+```bash
+# Grant group access to data source
+ava access grant \
+  --group "Data Governance Team" \
+  --resource "snowflake_prod" \
+  --permission "read,query"
+
+# Set as data owner group
+ava data-sources set-owner snowflake_prod \
+  --group "Data Governance Team"
+```
+
+## Service Accounts
+
+Create service accounts for automation:
+
+```bash
+# Create service account
+ava service-accounts create \
+  --name "ETL Pipeline" \
+  --description "Automated ETL process" \
+  --email "etl-service@company.com"
+
+# Generate API key
+ava service-accounts create-key "ETL Pipeline" \
+  --expires-in 90d \
+  --scopes "data:read,data:query"
+
+# Assign minimal permissions
+ava service-accounts assign-permissions "ETL Pipeline" \
+  --permissions "data:query_source:snowflake_prod" \
+  --permissions "data:read_catalog"
+```
+
+<Warning>
+  Service account credentials should be stored securely and rotated regularly.
+</Warning>
+
+## Permission Auditing
+
+### Monitor User Activity
+
+```bash
+# View user's recent activity
+ava audit user-activity john.doe@company.com \
+  --days 30
+
+# See what data a user has accessed
+ava audit data-access \
+  --user john.doe@company.com \
+  --include-queries
+
+# Check permission changes
+ava audit permission-changes \
+  --days 7
+```
+
+### Access Reviews
+
+Periodic review of user permissions:
+
+```bash
+# Generate access review report
+ava access-review generate \
+  --department "Marketing" \
+  --output access-review-2024-10.pdf
+
+# Export user permissions
+ava users export-permissions \
+  --format csv \
+  --output user-permissions.csv
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Principle of Least Privilege" icon="lock">
+    Grant users minimum permissions needed for their role
+  </Card>
+  <Card title="Regular Access Reviews" icon="calendar-check">
+    Review user permissions quarterly
+  </Card>
+  <Card title="Role-Based Assignment" icon="users-gear">
+    Use roles instead of individual permissions
+  </Card>
+  <Card title="Separation of Duties" icon="users-between-lines">
+    Ensure critical functions require multiple approvals
+  </Card>
+  <Card title="Just-In-Time Access" icon="clock">
+    Grant temporary access for specific tasks
+  </Card>
+  <Card title="Audit Everything" icon="clipboard-list">
+    Enable comprehensive audit logging
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="User cannot access resource">
+    **Check:**
+    1. User has appropriate role
+    2. Resource is included in role's scope
+    3. No conflicting deny policies
+    ```bash
+    ava access check \
+      --user john@company.com \
+      --resource salesforce_prod \
+      --action read
+    ```
+  </Accordion>
+
+  <Accordion title="Permission changes not taking effect">
+    **Solutions:**
+    1. User may need to log out and back in
+    2. Clear session cache
+    3. Check for conflicting policies
+    ```bash
+    ava users refresh-permissions john@company.com
+    ```
+  </Accordion>
+
+  <Accordion title="Cannot create custom role">
+    **Verify:**
+    1. You have `manage_roles` permission
+    2. Role name is unique
+    3. Permissions are valid
+    ```bash
+    ava roles validate --config role-definition.yaml
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Security Considerations
+
+<Info>
+  **Security Tips:**
+  - Enable MFA for all users, especially admins
+  - Regularly review and revoke unused API keys
+  - Monitor for privilege escalation attempts
+  - Use time-limited access grants when possible
+  - Maintain audit logs for compliance
+</Info>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Data Governance"
+    icon="shield-check"
+    href="/guides/data-governance/overview"
+  >
+    Implement governance policies
+  </Card>
+  <Card
+    title="Audit Logs"
+    icon="clipboard-list"
+    href="/guides/data-governance/audit-logs"
+  >
+    Monitor and audit user activities
+  </Card>
+  <Card
+    title="Access Controls"
+    icon="key"
+    href="/guides/data-governance/access-controls"
+  >
+    Advanced access control configuration
+  </Card>
+  <Card
+    title="SSO Setup"
+    icon="right-to-bracket"
+    href="/deployment/sso-setup"
+  >
+    Configure single sign-on
+  </Card>
+</CardGroup>

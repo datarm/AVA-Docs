@@ -1,0 +1,64 @@
+---
+title: 'Policies API'
+description: 'Create and manage governance policies via API'
+---
+
+## Endpoints
+
+### List Policies
+
+```http
+GET /api/v1/policies
+```
+
+### Create Policy
+
+```http
+POST /api/v1/policies
+```
+
+```bash
+curl -X POST https://app.datarm.com/api/v1/policies \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "PII Protection Policy",
+    "type": "access_control",
+    "scope": {
+      "classifications": ["PII", "PII_EMAIL"]
+    },
+    "rules": [{
+      "type": "require_encryption",
+      "enabled": true
+    }]
+  }'
+```
+
+### Update Policy
+
+```http
+PATCH /api/v1/policies/{id}
+```
+
+### Delete Policy
+
+```http
+DELETE /api/v1/policies/{id}
+```
+
+### Apply Policy
+
+```http
+POST /api/v1/policies/{id}/apply
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Users API" icon="users" href="/api-reference/endpoints/users">
+    Manage users and roles
+  </Card>
+  <Card title="Reports API" icon="chart-bar" href="/api-reference/endpoints/reports">
+    Generate reports
+  </Card>
+</CardGroup>

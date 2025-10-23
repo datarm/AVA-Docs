@@ -1,49 +1,134 @@
 ---
-title: AVA 2.8.0
-description: Release notes for AVA version 2.8.0
+title: "AVA 2.8.0"
+description: "Release notes for AVA 2.8.0"
+date: "2024-10-10"
 ---
 
-# Release Notes for AVA Update 2.8.0
+# AVA 2.8.0
 
-Welcome to AVA 2.8.0—this release focuses on enhanced AI capabilities, improved user experience, and powerful new integrations to make your workflows even more efficient!
+**Release Date:** October 10, 2024
 
----
+## Overview
 
-### **Highlights**
-
-- **Next-Generation AI Models:** GPT-5 support is here! Access the latest OpenAI models including GPT-5, GPT-5-mini, GPT-5-nano, and GPT-5-chat for even more powerful AI conversations and task completion. (Some admin configuration required.)
-- **Enhanced Knowledge Search:** Smarter agentic knowledge search that only asks follow-up questions when needed (confidence score below 9/10) and always prioritizes your knowledge corpus results over web search results.
-- **GitHub Integration:** Connect with `@GitHub` to manage repositories, issues, pull requests, and more directly from AVA. Perfect for development teams looking to streamline their workflow.
-- **Microsoft To-Do Integration:** `@Microsoft 365 Apps` now includes comprehensive Microsoft Tasks/To-Do management—create lists, schedule items, mark importance, and organize your personal productivity.
-- **Global Address List Enhancement:** Improved contact discovery in `@Microsoft 365 Apps` with unified contact search that combines personal contacts, organization search, and directory lookup for GAL-like functionality.
-- **@ Mentions in Prompt Library:** Users can now select @ mentions to include in their saved prompts. Selecting a prompt with @ mentions from the prompt library immediately enables those Connected Data sources in the chat box.
-- **Large File Handling:** Previously AVA could only handle files up to 1MB of raw text in each chat message. She can now handle much larger files (i.e., multiple megabytes).
+AVA 2.8.0 delivers enhanced integration capabilities, advanced data lineage visualization, and improved governance workflows. This release emphasizes enterprise connectivity and streamlined compliance operations.
 
 ---
 
-### **User Experience Improvements**
+## New Features
 
-- **Clearer UI When Adding Files to Tasks:** Improved clickability and clearer interface when adding files to tasks—no more confusion about which elements are interactive.
-- **Smart Loading States:** Removed redundant loading spinners during @ mention calls while keeping helpful status updates and metadata accordions visible.
-- **Better Copy/Paste Experience:** Clean copying of chat responses and task outputs without unwanted status information cluttering your clipboard.
-- **Auto-Selected Mentions:** `@Web` and `@Microsoft 365 Apps` are now automatically enabled in new chats (customizable in Settings).
-- **Working Cancel Button:** The cancel button now properly stops streaming responses for both regular chats and @ mention calls.
+<AccordionGroup>
+  <Accordion title="Enhanced Data Lineage Visualization">
+    - **Column-level Lineage**: Trace data transformations at the column level across entire data pipelines
+    - **Impact Analysis**: Instantly visualize downstream impacts of schema or data changes
+    - **Interactive Lineage Graph**: Zoom, filter, and explore complex data flows with improved UI
+    - **Lineage Export**: Export lineage diagrams as SVG, PNG, or interactive HTML
+    - **Historical Lineage**: Track how data flows have changed over time
+  </Accordion>
+
+  <Accordion title="Microsoft 365 Integration Suite">
+    - **SharePoint Connector**: Scan and classify documents in SharePoint Online
+    - **Teams Integration**: Governance notifications and approvals directly in Microsoft Teams
+    - **OneDrive Scanning**: Automatic discovery of sensitive data in OneDrive for Business
+    - **Outlook Add-in**: Data classification and DLP warnings in email composition
+    - **Power BI Integration**: Governance metadata for Power BI datasets and reports
+  </Accordion>
+
+  <Accordion title="Advanced Workflow Engine">
+    - **Visual Workflow Designer**: Build complex governance workflows with drag-and-drop
+    - **Conditional Logic**: Create sophisticated approval chains with branching logic
+    - **SLA Management**: Define and track service level agreements for governance requests
+    - **Workflow Templates**: Pre-built templates for common governance scenarios
+    - **Parallel Approvals**: Support for concurrent approval paths
+  </Accordion>
+
+  <Accordion title="Data Quality Monitoring">
+    - **Automated Quality Checks**: Schedule and run data quality validations
+    - **Quality Metrics Dashboard**: Monitor completeness, accuracy, consistency, and timeliness
+    - **Anomaly Detection**: AI-driven detection of data quality issues
+    - **Quality Alerts**: Configurable notifications for quality threshold violations
+    - **Remediation Tracking**: Track data quality improvement initiatives
+  </Accordion>
+</AccordionGroup>
 
 ---
 
-### **Infrastructure & Performance**
+## Improvements
 
-- **Advanced Authentication Framework:** New database-driven MCP configuration system enables dynamic loading of connected data sources and authentication providers, making it easier to add future integrations.
-- **Improved Metadata Tracking:** Enhanced metadata collection for agent calls in chat conversations, providing better usage insights and debugging capabilities.
+<CardGroup cols={2}>
+  <Card title="Policy Management" icon="file-shield">
+    - Policy versioning with rollback capabilities
+    - Bulk policy application to multiple assets
+    - Policy effectiveness analytics
+    - Template library with 50+ pre-built policies
+  </Card>
+
+  <Card title="Reporting Engine" icon="chart-line">
+    - 30+ new compliance report templates
+    - Custom report builder with drag-and-drop
+    - Scheduled report distribution via email
+    - Export to PDF, Excel, and PowerPoint formats
+  </Card>
+
+  <Card title="Integration Framework" icon="plug">
+    - REST API performance improvements (35% faster)
+    - New connectors: Snowflake, Databricks, MongoDB
+    - Enhanced error handling with detailed diagnostics
+    - Connector health monitoring dashboard
+  </Card>
+
+  <Card title="User Management" icon="users">
+    - Role-based access control granularity improvements
+    - User activity analytics and insights
+    - Self-service user onboarding workflows
+    - Enhanced group management with nested groups
+  </Card>
+</CardGroup>
 
 ---
 
-### **New Connected Data Sources**
+## Bug Fixes
 
-- **GitHub Enterprise:** Full support for multiple organization access with repository management, issue tracking, and pull request workflows.
-- **Enhanced Microsoft Tasks:** Complete Microsoft To-Do integration with list management, scheduling, and organization features.
-- **Dynamic Contact Discovery:** Improved Microsoft 365 contact access combining multiple data sources for comprehensive organization directory functionality.
+<Check>Fixed issue where large metadata imports would timeout</Check>
+<Check>Resolved display issues in Safari for data catalog search</Check>
+<Check>Corrected permission inheritance for nested organizational units</Check>
+<Check>Fixed duplicate entries in data steward assignment lists</Check>
+<Check>Addressed slow loading times for assets with extensive metadata</Check>
+<Check>Resolved export failures for reports with more than 100,000 rows</Check>
+<Check>Fixed incorrect date range calculations in compliance dashboards</Check>
 
 ---
 
-Your feedback continues to drive our development—keep the insights coming! Stay tuned for more exciting features in the pipeline. 🚀
+## Security Updates
+
+<Info>
+  This release includes important security patches. Update recommended for all users.
+</Info>
+
+- Updated dependencies to address CVE-2024-XXXX
+- Enhanced input validation for API endpoints
+- Improved session management and token rotation
+- Additional logging for security-relevant events
+
+---
+
+## Deprecation Notice
+
+<Warning>
+  The legacy metadata import API will be deprecated in AVA 3.0. Please migrate to the new bulk import API introduced in this version.
+</Warning>
+
+---
+
+## Known Issues
+
+- Lineage visualization may be slow for graphs with more than 5,000 nodes (optimization planned for 2.9.0)
+- Teams integration requires admin consent for certain tenants
+- Power BI connector requires Power BI Pro or Premium licenses
+
+---
+
+## Upgrade Notes
+
+<Info>
+  Database migrations may take 15-30 minutes for large deployments. Schedule during maintenance windows.
+</Info>

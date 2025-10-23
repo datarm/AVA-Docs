@@ -1,0 +1,101 @@
+---
+title: 'SDK Overview'
+description: 'Official SDKs for AVA integration'
+---
+
+## Available SDKs
+
+AVA provides official SDKs for popular programming languages:
+
+<CardGroup cols={3}>
+  <Card title="Python" icon="python" href="/sdk/python">
+    For Python 3.7+
+  </Card>
+  <Card title="JavaScript/TypeScript" icon="js" href="/sdk/javascript">
+    For Node.js and browsers
+  </Card>
+  <Card title="Java" icon="java" href="/sdk/java">
+    For Java 11+
+  </Card>
+</CardGroup>
+
+## Quick Start
+
+<Tabs>
+  <Tab title="Python">
+    ```bash
+    pip install ava-sdk
+    ```
+
+    ```python
+    from ava import Client
+
+    client = Client(api_key="YOUR_API_KEY")
+    sources = client.data_sources.list()
+    ```
+  </Tab>
+
+  <Tab title="JavaScript">
+    ```bash
+    npm install @datarm/ava-sdk
+    ```
+
+    ```javascript
+    import { AVAClient } from '@datarm/ava-sdk';
+
+    const client = new AVAClient({ apiKey: 'YOUR_API_KEY' });
+    const sources = await client.dataSources.list();
+    ```
+  </Tab>
+
+  <Tab title="Java">
+    ```xml
+    <dependency>
+      <groupId>com.datarm</groupId>
+      <artifactId>ava-sdk</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    ```
+
+    ```java
+    import com.datarm.ava.Client;
+
+    Client client = new Client("YOUR_API_KEY");
+    List<DataSource> sources = client.getDataSources().list();
+    ```
+  </Tab>
+</Tabs>
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Type Safety" icon="shield-check">
+    Full TypeScript support and typed responses
+  </Card>
+  <Card title="Rate Limiting" icon="gauge">
+    Built-in rate limit handling and retries
+  </Card>
+  <Card title="Error Handling" icon="triangle-exclamation">
+    Comprehensive error types and handling
+  </Card>
+  <Card title="Async Support" icon="bolt">
+    Async/await support in all SDKs
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Python SDK" icon="python" href="/sdk/python">
+    Python SDK documentation
+  </Card>
+  <Card title="JavaScript SDK" icon="js" href="/sdk/javascript">
+    JavaScript SDK documentation
+  </Card>
+  <Card title="Java SDK" icon="java" href="/sdk/java">
+    Java SDK documentation
+  </Card>
+  <Card title="Examples" icon="code" href="/sdk/examples">
+    Code examples and tutorials
+  </Card>
+</CardGroup>

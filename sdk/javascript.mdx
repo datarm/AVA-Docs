@@ -1,0 +1,130 @@
+---
+title: 'JavaScript SDK'
+description: 'AVA SDK for JavaScript and TypeScript'
+---
+
+## Installation
+
+```bash
+npm install @datarm/ava-sdk
+# or
+yarn add @datarm/ava-sdk
+# or
+pnpm add @datarm/ava-sdk
+```
+
+## Quick Start
+
+```javascript
+import { AVAClient } from '@datarm/ava-sdk';
+
+// Initialize client
+const client = new AVAClient({ apiKey: 'YOUR_API_KEY' });
+
+// List data sources
+const sources = await client.dataSources.list();
+sources.forEach(source => {
+  console.log(`${source.name}: ${source.status}`);
+});
+
+// Query data catalog
+const results = await client.query('Find all PII in Salesforce');
+results.forEach(asset => {
+  console.log(`${asset.name} - Risk Score: ${asset.riskScore}`);
+});
+```
+
+## TypeScript Support
+
+```typescript
+import { AVAClient, DataSource, Policy } from '@datarm/ava-sdk';
+
+const client = new AVAClient({ apiKey: process.env.AVA_API_KEY! });
+
+// Full type safety
+const source: DataSource = await client.dataSources.get('ds_123');
+const policies: Policy[] = await client.policies.list();
+```
+
+## Data Sources
+
+```javascript
+// Create data source
+const source = await client.dataSources.create({
+  name: 'Production Snowflake',
+  type: 'snowflake',
+  config: {
+    account: 'your-account.snowflakecomputing.com',
+    warehouse: 'COMPUTE_WH',
+    database: 'PROD_DB'
+  },
+  credentials: {
+    username: 'ava_service',
+    password: 'encrypted_password'
+  }
+});
+
+// Trigger scan
+const scan = await client.dataSources.scan(source.id, { profile: 'standard' });
+
+// Monitor scan progress
+const status = await client.dataSources.getScanStatus(scan.id);
+console.log(`Status: ${status.status}, Progress: ${status.progress}%`);
+```
+
+## Policies
+
+```javascript
+// Create policy
+const policy = await client.policies.create({
+  name: 'PII Protection Policy',
+  type: 'access_control',
+  scope: {
+    classifications: ['PII', 'PII_EMAIL']
+  },
+  rules: [
+    { type: 'require_encryption', enabled: true },
+    { type: 'require_mfa', enabled: true }
+  ]
+});
+
+// Apply policy
+await client.policies.apply(policy.id);
+
+// List violations
+const violations = await client.policies.violations({
+  policyId: policy.id,
+  severity: ['high', 'critical']
+});
+```
+
+## Error Handling
+
+```javascript
+import { AVAClient, AVAError, RateLimitError, NotFoundError } from '@datarm/ava-sdk';
+
+const client = new AVAClient({ apiKey: 'YOUR_API_KEY' });
+
+try {
+  const source = await client.dataSources.get('ds_123');
+} catch (error) {
+  if (error instanceof NotFoundError) {
+    console.error('Data source not found');
+  } else if (error instanceof RateLimitError) {
+    console.error(`Rate limit exceeded. Retry after ${error.retryAfter} seconds`);
+  } else if (error instanceof AVAError) {
+    console.error(`API error: ${error.message}`);
+  }
+}
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Java SDK" icon="java" href="/sdk/java">
+    Java SDK documentation
+  </Card>
+  <Card title="Examples" icon="code" href="/sdk/examples">
+    More code examples
+  </Card>
+</CardGroup>

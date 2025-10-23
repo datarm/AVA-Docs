@@ -1,0 +1,148 @@
+---
+title: 'Risk Reporting'
+description: 'Generate and customize risk reports'
+---
+
+## Overview
+
+AVA provides comprehensive risk reporting capabilities for executives, auditors, and security teams.
+
+## Report Types
+
+<CardGroup cols={2}>
+  <Card title="Executive Summary" icon="presentation">
+    High-level risk overview for leadership
+  </Card>
+  <Card title="Detailed Risk Report" icon="file-lines">
+    Comprehensive risk analysis
+  </Card>
+  <Card title="Trend Analysis" icon="chart-line">
+    Risk trends over time
+  </Card>
+  <Card title="Remediation Report" icon="check-to-slot">
+    Status of risk remediation efforts
+  </Card>
+</CardGroup>
+
+## Generate Reports
+
+<Tabs>
+  <Tab title="CLI">
+    ```bash
+    # Executive risk summary
+    ava reports risk-summary \
+      --period monthly \
+      --format pdf \
+      --output exec-risk-report.pdf
+
+    # Detailed risk report
+    ava reports risk-detailed \
+      --include-recommendations \
+      --format excel \
+      --output detailed-risks.xlsx
+
+    # Trend analysis
+    ava reports risk-trends \
+      --period 90d \
+      --chart-type line \
+      --output risk-trends.png
+    ```
+  </Tab>
+
+  <Tab title="API">
+    ```python
+    from ava import Client
+
+    client = Client(api_key="YOUR_API_KEY")
+
+    # Generate executive summary
+    report = client.reports.generate_risk_summary(
+        period="monthly",
+        include_charts=True,
+        format="pdf"
+    )
+
+    report.save("risk-summary.pdf")
+
+    # Schedule recurring reports
+    client.reports.schedule(
+        name="Weekly Risk Report",
+        type="risk_summary",
+        frequency="weekly",
+        recipients=["executives@company.com"],
+        delivery_day="monday"
+    )
+    ```
+  </Tab>
+</Tabs>
+
+## Report Components
+
+### Risk Dashboard Metrics
+
+- Total assets scanned
+- High-risk assets count
+- Critical violations
+- Remediation rate
+- Risk score trends
+
+### Risk by Category
+
+- Data security risks
+- Compliance risks
+- Access risks
+- Data quality risks
+
+### Top Risks
+
+List of highest-risk data assets with:
+- Asset name and location
+- Risk score and level
+- Contributing factors
+- Recommended actions
+
+## Automated Reporting
+
+```bash
+# Schedule monthly executive report
+ava reports schedule \
+  --name "Monthly Executive Risk Report" \
+  --type risk-summary \
+  --frequency monthly \
+  --day 1 \
+  --recipients "executives@company.com" \
+  --format pdf
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Risk Scoring"
+    icon="gauge-high"
+    href="/guides/risk-management/risk-scoring"
+  >
+    Understand risk scoring methodology
+  </Card>
+  <Card
+    title="Compliance Tracking"
+    icon="clipboard-check"
+    href="/guides/data-governance/compliance-tracking"
+  >
+    Monitor compliance status
+  </Card>
+  <Card
+    title="Alert Configuration"
+    icon="bell"
+    href="/guides/risk-management/alert-configuration"
+  >
+    Set up risk alerts
+  </Card>
+  <Card
+    title="API Reference"
+    icon="code"
+    href="/api-reference/introduction"
+  >
+    Explore reporting APIs
+  </Card>
+</CardGroup>

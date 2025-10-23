@@ -1,0 +1,118 @@
+---
+title: 'Automated Classification'
+description: 'AI-powered automatic data classification'
+---
+
+## Overview
+
+AVA uses machine learning to automatically classify data, identifying sensitive information like PII, PHI, financial data, and custom classifications.
+
+## Built-in Classifications
+
+AVA detects:
+- **PII**: Names, emails, phone numbers, SSN
+- **PHI**: Medical records, diagnoses, prescriptions
+- **Financial**: Credit cards, bank accounts, tax IDs
+- **Credentials**: API keys, passwords, tokens
+- **Intellectual Property**: Patents, trade secrets
+
+## Classification Process
+
+<Steps>
+  <Step title="Data Scanning">
+    AVA scans columns and fields in connected sources
+  </Step>
+  <Step title="Pattern Matching">
+    Applies regex patterns and ML models
+  </Step>
+  <Step title="Context Analysis">
+    Analyzes column names and data context
+  </Step>
+  <Step title="Confidence Scoring">
+    Assigns confidence scores to classifications
+  </Step>
+  <Step title="Validation">
+    Optional manual review and validation
+  </Step>
+</Steps>
+
+## Custom Classifications
+
+Create organization-specific classifications:
+
+```bash
+# Create custom classification
+ava classifications create \
+  --name "Customer Loyalty Data" \
+  --patterns "loyalty_id,rewards_points,tier_level" \
+  --sensitivity high \
+  --regex "LOY-[0-9]{8}"
+```
+
+## Training Custom Models
+
+<Tabs>
+  <Tab title="Python">
+    ```python
+    # Train custom classifier
+    model = client.ml.train_classifier(
+        name="Contract Documents",
+        training_data=[
+            {"text": "...", "label": "contract"},
+            {"text": "...", "label": "invoice"}
+        ],
+        model_type="transformer"
+    )
+
+    # Apply to data sources
+    client.classifications.apply_model(
+        model_id=model.id,
+        sources=["sharepoint"]
+    )
+    ```
+  </Tab>
+
+  <Tab title="CLI">
+    ```bash
+    # Train from labeled data
+    ava ml train-classifier \
+      --name "Contract Classifier" \
+      --training-data contracts-labeled.csv \
+      --validation-split 0.2
+
+    # Apply classifier
+    ava classifications apply-model \
+      --model contract-classifier \
+      --source sharepoint
+    ```
+  </Tab>
+</Tabs>
+
+## Classification Rules
+
+Define rules for automatic classification:
+
+```yaml
+classification_rules:
+  - name: Email Detection
+    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+    classification: PII_EMAIL
+    confidence: 0.95
+
+  - name: SSN Detection
+    pattern: "^\\d{3}-\\d{2}-\\d{4}$"
+    classification: PII_SSN
+    confidence: 0.99
+    require_validation: true
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Anomaly Detection" icon="chart-line" href="/guides/ai-capabilities/anomaly-detection">
+    Detect unusual access patterns
+  </Card>
+  <Card title="Data Governance" icon="shield-check" href="/guides/data-governance/overview">
+    Apply governance policies
+  </Card>
+</CardGroup>

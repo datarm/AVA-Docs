@@ -4,7 +4,20 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nRemove non-English language directories and add new documentation files\n\nRemoved all non-English translation directories (es_ES, fr_FR, it_IT, ja_JP, ko_KR, pl_PL, pt_BR, ru_RU, zh_CN) as part of repository cleanup.\n\nAdded new files for AVA documentation planning:\n- ava-docs-structure: Documentation structure analysis\n- mint-json-approach.md: Documentation approach notes\n- test.ps1: PowerShell test script\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
-      "Bash(git remote set-url:*)"
+      "Bash(git remote set-url:*)",
+      "Bash(git commit:*)",
+      "Bash(tree:*)",
+      "Bash(az account:*)",
+      "Bash(az storage container:*)",
+      "Bash(az storage account:*)",
+      "Bash(az storage blob list:*)",
+      "Bash(python convert_changelog.py:*)",
+      "Bash(if [ -d \"changelog\" ])",
+      "Bash(then echo \"Directory exists\")",
+      "Bash(else mkdir changelog)",
+      "Bash(fi)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []

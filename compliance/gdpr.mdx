@@ -1,0 +1,75 @@
+---
+title: 'GDPR Compliance'
+description: 'Meet GDPR requirements with AVA'
+---
+
+## Overview
+
+AVA helps organizations comply with the General Data Protection Regulation (GDPR) through automated data discovery, classification, and governance.
+
+## Key GDPR Requirements
+
+<CardGroup cols={2}>
+  <Card title="Data Minimization" icon="minimize">
+    Collect only necessary data
+  </Card>
+  <Card title="Right to Access" icon="eye">
+    Provide data subject access
+  </Card>
+  <Card title="Right to Erasure" icon="trash">
+    Delete data upon request
+  </Card>
+  <Card title="Data Portability" icon="file-export">
+    Export data in machine-readable format
+  </Card>
+</CardGroup>
+
+## AVA GDPR Features
+
+### Data Discovery
+Automatically identify personal data across all systems.
+
+### Data Subject Requests (DSAR)
+```bash
+# Process access request
+ava dsar create \
+  --type access \
+  --subject-email "john@example.com" \
+  --export-format json
+
+# Process erasure request
+ava dsar create \
+  --type erasure \
+  --subject-email "john@example.com" \
+  --verify-deletion
+```
+
+### Consent Management
+Track and manage consent records for data processing.
+
+### Audit Trails
+Complete audit logs for all data access and processing activities.
+
+## Compliance Dashboard
+
+View GDPR compliance status:
+```bash
+ava compliance status --framework gdpr
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="CCPA" icon="landmark" href="/compliance/ccpa">
+    California privacy compliance
+  </Card>
+  <Card title="SOC2" icon="file-certificate" href="/compliance/soc2">
+    SOC 2 certification
+  </Card>
+  <Card title="Compliance Tracking" icon="clipboard-check" href="/guides/data-governance/compliance-tracking">
+    Monitor compliance
+  </Card>
+  <Card title="Audit Logs" icon="list" href="/guides/data-governance/audit-logs">
+    Complete audit trails
+  </Card>
+</CardGroup>

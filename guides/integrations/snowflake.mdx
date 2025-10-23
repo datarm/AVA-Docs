@@ -1,0 +1,81 @@
+---
+title: 'Snowflake Integration'
+description: 'Connect and govern your Snowflake data warehouse with AVA'
+---
+
+## Overview
+
+Integrate AVA with Snowflake to govern your cloud data warehouse with automated discovery, classification, and access controls.
+
+## Authentication Methods
+
+<Tabs>
+  <Tab title="Key Pair Auth (Recommended)">
+    ```bash
+    # Generate key pair
+    openssl genrsa -out snowflake_key.pem 2048
+    openssl rsa -in snowflake_key.pem -pubout -out snowflake_key.pub
+
+    # Upload to Snowflake
+    ALTER USER ava_service SET RSA_PUBLIC_KEY='<public_key>';
+
+    # Connect AVA
+    ava connect snowflake \
+      --account "your-account.snowflakecomputing.com" \
+      --user "ava_service" \
+      --private-key-path /path/to/snowflake_key.pem \
+      --warehouse "COMPUTE_WH"
+    ```
+  </Tab>
+
+  <Tab title="Password Auth">
+    ```bash
+    ava connect snowflake \
+      --account "your-account.snowflakecomputing.com" \
+      --user "ava_service" \
+      --password "YOUR_PASSWORD" \
+      --warehouse "COMPUTE_WH"
+    ```
+  </Tab>
+</Tabs>
+
+## Required Permissions
+
+```sql
+-- Create role for AVA
+CREATE ROLE AVA_ROLE;
+GRANT USAGE ON WAREHOUSE COMPUTE_WH TO ROLE AVA_ROLE;
+GRANT USAGE ON DATABASE PROD_DB TO ROLE AVA_ROLE;
+GRANT USAGE ON ALL SCHEMAS IN DATABASE PROD_DB TO ROLE AVA_ROLE;
+GRANT SELECT ON ALL TABLES IN DATABASE PROD_DB TO ROLE AVA_ROLE;
+GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE TO ROLE AVA_ROLE;
+GRANT ROLE AVA_ROLE TO USER ava_service;
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Schema Discovery" icon="sitemap">
+    Automatic database and table discovery
+  </Card>
+  <Card title="Query Monitoring" icon="magnifying-glass">
+    Track all queries and data access
+  </Card>
+  <Card title="Data Classification" icon="tags">
+    AI-powered sensitive data detection
+  </Card>
+  <Card title="Performance Insights" icon="gauge">
+    Query performance and optimization
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Databricks" icon="database" href="/guides/integrations/databricks">
+    Connect Databricks lakehouse
+  </Card>
+  <Card title="Custom Connectors" icon="plug" href="/guides/integrations/custom-connectors">
+    Build custom integrations
+  </Card>
+</CardGroup>

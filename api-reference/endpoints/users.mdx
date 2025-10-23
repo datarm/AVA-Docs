@@ -1,0 +1,65 @@
+---
+title: 'Users API'
+description: 'Manage users, roles, and permissions via API'
+---
+
+## Endpoints
+
+### List Users
+
+```http
+GET /api/v1/users
+```
+
+### Create User
+
+```http
+POST /api/v1/users
+```
+
+```bash
+curl -X POST https://app.datarm.com/api/v1/users \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john@company.com",
+    "name": "John Doe",
+    "roles": ["data-analyst"],
+    "send_invite": true
+  }'
+```
+
+### Get User
+
+```http
+GET /api/v1/users/{id}
+```
+
+### Update User
+
+```http
+PATCH /api/v1/users/{id}
+```
+
+### Assign Role
+
+```http
+POST /api/v1/users/{id}/roles
+```
+
+### Remove Role
+
+```http
+DELETE /api/v1/users/{id}/roles/{role_id}
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Reports API" icon="chart-bar" href="/api-reference/endpoints/reports">
+    Generate and retrieve reports
+  </Card>
+  <Card title="Webhooks API" icon="webhook" href="/api-reference/endpoints/webhooks">
+    Configure webhooks
+  </Card>
+</CardGroup>

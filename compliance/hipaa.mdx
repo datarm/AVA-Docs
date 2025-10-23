@@ -1,0 +1,75 @@
+---
+title: 'HIPAA Compliance'
+description: 'Protect PHI and meet HIPAA requirements'
+---
+
+## Overview
+
+AVA helps healthcare organizations comply with HIPAA by securing Protected Health Information (PHI) through automated discovery, encryption, and access controls.
+
+## HIPAA Safeguards
+
+<CardGroup cols={3}>
+  <Card title="Administrative" icon="users-gear">
+    Policies and procedures
+  </Card>
+  <Card title="Physical" icon="building-lock">
+    Facility access controls
+  </Card>
+  <Card title="Technical" icon="shield-halved">
+    Access controls and encryption
+  </Card>
+</CardGroup>
+
+## PHI Protection
+
+### Automatic PHI Detection
+AVA automatically identifies and classifies PHI:
+- Patient names and IDs
+- Medical record numbers
+- Health plan numbers
+- Diagnoses and treatments
+- Biometric data
+
+### Encryption
+```bash
+# Enable encryption for PHI
+ava compliance configure-hipaa \
+  --encrypt-phi true \
+  --encryption-algorithm aes-256 \
+  --key-rotation 90d
+```
+
+### Access Controls
+- Role-based access to PHI
+- Minimum necessary access
+- Emergency access procedures
+- Automatic session timeout
+
+### Audit Logging
+Complete audit trails for all PHI access:
+```bash
+# View PHI access logs
+ava audit phi-access \
+  --days 30 \
+  --export hipaa-audit-log.pdf
+```
+
+## Breach Notification
+
+Automated breach detection and notification workflow:
+1. Detect unauthorized PHI access
+2. Assess breach severity
+3. Notify affected parties
+4. Report to HHS if required
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Compliance Tracking" icon="clipboard-check" href="/guides/data-governance/compliance-tracking">
+    Monitor HIPAA compliance
+  </Card>
+  <Card title="Audit Logs" icon="list" href="/guides/data-governance/audit-logs">
+    PHI access audit trails
+  </Card>
+</CardGroup>

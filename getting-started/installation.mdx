@@ -1,0 +1,469 @@
+---
+title: 'Installation'
+description: 'Install and set up AVA in your environment'
+---
+
+## Installation Options
+
+AVA offers flexible deployment options to meet your organization's needs:
+
+<CardGroup cols={2}>
+  <Card title="Cloud (SaaS)" icon="cloud">
+    Fastest way to get started - no installation required
+  </Card>
+  <Card title="Self-Hosted" icon="server">
+    Deploy AVA in your own infrastructure for maximum control
+  </Card>
+</CardGroup>
+
+## Cloud Installation
+
+### Sign Up for AVA Cloud
+
+<Steps>
+  <Step title="Create Account">
+    Visit [app.datarm.com](https://app.datarm.com) and sign up with your work email
+  </Step>
+  <Step title="Verify Email">
+    Check your inbox for a verification email and click the confirmation link
+  </Step>
+  <Step title="Set Up Organization">
+    Enter your organization details and configure initial settings
+  </Step>
+  <Step title="Invite Team Members">
+    Add team members and assign appropriate roles
+  </Step>
+</Steps>
+
+<Check>
+  Your AVA Cloud instance is now ready! No additional installation required.
+</Check>
+
+## Self-Hosted Installation
+
+### System Requirements
+
+Before installing AVA, ensure your environment meets these requirements:
+
+<Tabs>
+  <Tab title="Production">
+    **Minimum Requirements:**
+    - **CPU**: 8 cores
+    - **RAM**: 32 GB
+    - **Storage**: 500 GB SSD
+    - **OS**: Ubuntu 20.04 LTS or RHEL 8+
+    - **Database**: PostgreSQL 14+ or MySQL 8+
+    - **Container Runtime**: Docker 20.10+ or Kubernetes 1.24+
+
+    **Recommended for Enterprise:**
+    - **CPU**: 16+ cores
+    - **RAM**: 64+ GB
+    - **Storage**: 1 TB+ SSD (NVMe preferred)
+    - **Database**: PostgreSQL 15+ (managed service recommended)
+    - **Container Orchestration**: Kubernetes 1.26+
+  </Tab>
+  <Tab title="Development">
+    **Minimum Requirements:**
+    - **CPU**: 4 cores
+    - **RAM**: 16 GB
+    - **Storage**: 100 GB SSD
+    - **OS**: Ubuntu 20.04+, macOS 12+, or Windows 10+ with WSL2
+    - **Database**: PostgreSQL 14+ or MySQL 8+
+    - **Container Runtime**: Docker Desktop 4.0+
+  </Tab>
+</Tabs>
+
+### Installation Methods
+
+<Tabs>
+  <Tab title="Docker Compose">
+    The quickest way to deploy AVA for testing or small deployments:
+
+    ```bash
+    # Download AVA
+    curl -fsSL https://get.datarm.com/ava/docker-compose.yml -o docker-compose.yml
+
+    # Set environment variables
+    cat > .env << EOF
+    AVA_VERSION=latest
+    POSTGRES_PASSWORD=your_secure_password
+    AVA_SECRET_KEY=your_secret_key_here
+    AVA_DOMAIN=your-domain.com
+    EOF
+
+    # Start AVA
+    docker-compose up -d
+
+    # Check status
+    docker-compose ps
+    ```
+
+    <Info>
+      AVA will be available at `http://localhost:8080` after a few minutes.
+    </Info>
+  </Tab>
+
+  <Tab title="Kubernetes">
+    For production deployments using Kubernetes:
+
+    ```bash
+    # Add AVA Helm repository
+    helm repo add datarm https://charts.datarm.com
+    helm repo update
+
+    # Create namespace
+    kubectl create namespace ava
+
+    # Create values file
+    cat > values.yaml << EOF
+    global:
+      domain: ava.your-domain.com
+
+    postgresql:
+      enabled: true
+      auth:
+        password: your_secure_password
+
+    ingress:
+      enabled: true
+      className: nginx
+      tls:
+        enabled: true
+
+    resources:
+      limits:
+        cpu: 4000m
+        memory: 8Gi
+      requests:
+        cpu: 2000m
+        memory: 4Gi
+    EOF
+
+    # Install AVA
+    helm install ava datarm/ava \
+      --namespace ava \
+      --values values.yaml
+
+    # Monitor deployment
+    kubectl get pods -n ava -w
+    ```
+
+    <Check>
+      Wait for all pods to reach `Running` status before proceeding.
+    </Check>
+  </Tab>
+
+  <Tab title="VM/Bare Metal">
+    For traditional server deployments:
+
+    ```bash
+    # Install dependencies
+    sudo apt update
+    sudo apt install -y postgresql-14 redis-server nginx
+
+    # Download AVA installer
+    curl -fsSL https://get.datarm.com/ava/install.sh -o install.sh
+    chmod +x install.sh
+
+    # Run installer
+    sudo ./install.sh
+
+    # Follow interactive prompts to configure:
+    # - Database connection
+    # - Domain name
+    # - SSL certificates
+    # - Admin credentials
+    ```
+
+    The installer will guide you through the setup process.
+  </Tab>
+</Tabs>
+
+### Post-Installation Configuration
+
+After installation, complete these essential configuration steps:
+
+<Steps>
+  <Step title="Access Admin Panel">
+    Navigate to your AVA instance (e.g., `https://ava.your-domain.com`)
+  </Step>
+  <Step title="Complete Setup Wizard">
+    Follow the first-time setup wizard to configure:
+    - Organization settings
+    - Email server (SMTP)
+    - Authentication method (SSO/LDAP/Local)
+    - License key (for enterprise features)
+  </Step>
+  <Step title="Create Admin User">
+    Set up the primary administrator account with a strong password
+  </Step>
+  <Step title="Configure SSL">
+    Ensure HTTPS is properly configured with valid SSL certificates
+  </Step>
+</Steps>
+
+## CLI Installation
+
+Install the AVA command-line interface for local development and automation:
+
+<Tabs>
+  <Tab title="macOS">
+    ```bash
+    # Using Homebrew
+    brew tap datarm/ava
+    brew install ava-cli
+
+    # Or using direct download
+    curl -fsSL https://get.datarm.com/ava/cli/macos -o ava
+    chmod +x ava
+    sudo mv ava /usr/local/bin/
+    ```
+  </Tab>
+
+  <Tab title="Linux">
+    ```bash
+    # Using package manager (Ubuntu/Debian)
+    curl -fsSL https://get.datarm.com/ava/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/datarm.gpg
+    echo "deb [signed-by=/usr/share/keyrings/datarm.gpg] https://apt.datarm.com stable main" | sudo tee /etc/apt/sources.list.d/datarm.list
+    sudo apt update
+    sudo apt install ava-cli
+
+    # Or using direct download
+    curl -fsSL https://get.datarm.com/ava/cli/linux -o ava
+    chmod +x ava
+    sudo mv ava /usr/local/bin/
+    ```
+  </Tab>
+
+  <Tab title="Windows">
+    ```powershell
+    # Using Chocolatey
+    choco install ava-cli
+
+    # Or using Scoop
+    scoop bucket add datarm https://github.com/datarm/scoop-bucket
+    scoop install ava-cli
+
+    # Or download installer
+    # Visit https://get.datarm.com/ava/cli/windows
+    # Run the MSI installer
+    ```
+  </Tab>
+</Tabs>
+
+### Verify CLI Installation
+
+```bash
+# Check version
+ava --version
+
+# Login to your instance
+ava login --url https://ava.your-domain.com
+
+# Test connection
+ava status
+```
+
+<Check>
+  If you see your instance details, the CLI is properly configured!
+</Check>
+
+## SDK Installation
+
+Install SDKs for your preferred programming language:
+
+<Tabs>
+  <Tab title="Python">
+    ```bash
+    # Using pip
+    pip install ava-sdk
+
+    # Using poetry
+    poetry add ava-sdk
+
+    # Using pipenv
+    pipenv install ava-sdk
+    ```
+
+    Verify installation:
+    ```python
+    from ava import Client
+    print(Client.version())
+    ```
+  </Tab>
+
+  <Tab title="JavaScript/Node.js">
+    ```bash
+    # Using npm
+    npm install @datarm/ava-sdk
+
+    # Using yarn
+    yarn add @datarm/ava-sdk
+
+    # Using pnpm
+    pnpm add @datarm/ava-sdk
+    ```
+
+    Verify installation:
+    ```javascript
+    import { AVAClient } from '@datarm/ava-sdk';
+    console.log(AVAClient.version());
+    ```
+  </Tab>
+
+  <Tab title="Java">
+    **Maven:**
+    ```xml
+    <dependency>
+      <groupId>com.datarm</groupId>
+      <artifactId>ava-sdk</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    ```
+
+    **Gradle:**
+    ```gradle
+    implementation 'com.datarm:ava-sdk:1.0.0'
+    ```
+
+    Verify installation:
+    ```java
+    import com.datarm.ava.Client;
+    System.out.println(Client.getVersion());
+    ```
+  </Tab>
+</Tabs>
+
+## Verification
+
+### Health Check
+
+Verify your AVA installation is working correctly:
+
+```bash
+# Using CLI
+ava health check
+
+# Using API
+curl -X GET https://ava.your-domain.com/api/health
+```
+
+Expected response:
+```json
+{
+  "status": "healthy",
+  "version": "2.0.0",
+  "components": {
+    "database": "healthy",
+    "cache": "healthy",
+    "workers": "healthy"
+  },
+  "uptime": "5d 12h 34m"
+}
+```
+
+### Test Data Source Connection
+
+Test connectivity to verify networking is configured correctly:
+
+```bash
+# Test connection to a sample data source
+ava test-connection \
+  --type postgres \
+  --host your-db-host \
+  --port 5432 \
+  --database testdb
+```
+
+<Check>
+  If the connection test succeeds, your AVA installation is ready for production use!
+</Check>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Installation fails with dependency errors">
+    **Solution:**
+    ```bash
+    # Clear package cache
+    docker system prune -a  # For Docker installations
+
+    # Or reinstall with clean slate
+    ./install.sh --clean
+    ```
+  </Accordion>
+
+  <Accordion title="Cannot access web interface">
+    **Check these items:**
+    1. Verify firewall rules allow traffic on port 80/443
+    2. Check nginx/ingress logs: `docker logs ava-nginx`
+    3. Ensure DNS is properly configured
+    4. Verify SSL certificates are valid
+  </Accordion>
+
+  <Accordion title="Database connection errors">
+    **Solution:**
+    ```bash
+    # Check database is running
+    docker ps | grep postgres
+
+    # Test database connectivity
+    psql -h localhost -U ava -d ava
+
+    # Check database logs
+    docker logs ava-postgres
+    ```
+  </Accordion>
+
+  <Accordion title="Performance issues">
+    **Optimization steps:**
+    1. Increase allocated resources (CPU/RAM)
+    2. Enable connection pooling
+    3. Configure Redis for caching
+    4. Review slow query logs
+
+    See [Scalability Guide](/deployment/scalability) for detailed optimization.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Authentication Setup"
+    icon="key"
+    href="/getting-started/authentication"
+  >
+    Configure SSO, LDAP, or local authentication
+  </Card>
+  <Card
+    title="Connect Data Sources"
+    icon="database"
+    href="/getting-started/connecting-data-sources"
+  >
+    Integrate with Salesforce, Snowflake, and more
+  </Card>
+  <Card
+    title="User Permissions"
+    icon="users"
+    href="/getting-started/user-permissions"
+  >
+    Set up role-based access control
+  </Card>
+  <Card
+    title="Deployment Guide"
+    icon="rocket"
+    href="/deployment/architecture"
+  >
+    Learn about production deployment best practices
+  </Card>
+</CardGroup>
+
+## Additional Resources
+
+<Card title="Need help with installation?" icon="life-ring">
+  Our support team is ready to assist:
+  - **Email**: support@datarm.com
+  - **Chat**: Available in your dashboard
+  - **Enterprise Support**: 24/7 phone support for enterprise customers
+</Card>

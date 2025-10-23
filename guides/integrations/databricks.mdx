@@ -1,0 +1,69 @@
+---
+title: 'Databricks Integration'
+description: 'Connect and govern your Databricks lakehouse with AVA'
+---
+
+## Overview
+
+Integrate AVA with Databricks to provide comprehensive governance for your lakehouse data platform.
+
+## Setup
+
+<Steps>
+  <Step title="Generate Access Token">
+    In Databricks, go to **User Settings** > **Access Tokens** > **Generate New Token**
+  </Step>
+  <Step title="Connect in AVA">
+    ```bash
+    ava connect databricks \
+      --name "Production Databricks" \
+      --workspace-url "https://your-workspace.cloud.databricks.com" \
+      --token "YOUR_ACCESS_TOKEN" \
+      --catalog "main"
+    ```
+  </Step>
+  <Step title="Verify Connection">
+    ```bash
+    ava connections test databricks
+    ```
+  </Step>
+</Steps>
+
+## Unity Catalog Integration
+
+AVA integrates with Unity Catalog for enhanced governance:
+
+```bash
+ava connect databricks \
+  --unity-catalog enabled \
+  --metastore-id "your-metastore-id" \
+  --sync-lineage true
+```
+
+## Features
+
+<CardGroup cols={2}>
+  <Card title="Delta Lake Support" icon="table">
+    Full support for Delta Lake tables
+  </Card>
+  <Card title="Lineage Tracking" icon="diagram-project">
+    End-to-end data lineage visualization
+  </Card>
+  <Card title="Notebook Governance" icon="book">
+    Track notebook access and execution
+  </Card>
+  <Card title="Cluster Monitoring" icon="server">
+    Monitor cluster usage and costs
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="AI Capabilities" icon="brain" href="/guides/ai-capabilities/intelligent-search">
+    Explore AI-powered features
+  </Card>
+  <Card title="Data Lineage" icon="diagram-project" href="/guides/data-governance/overview">
+    Track data lineage
+  </Card>
+</CardGroup>

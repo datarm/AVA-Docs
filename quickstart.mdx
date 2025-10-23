@@ -1,0 +1,202 @@
+---
+title: 'Quickstart Guide'
+description: 'Get started with AVA in under 5 minutes'
+---
+
+## Welcome to AVA!
+
+This quickstart guide will help you set up AVA and perform your first data governance operation in just a few minutes.
+
+<Info>
+  **Prerequisites:** You'll need admin access to your AVA instance and API credentials. If you don't have these yet, [contact our team](https://datarm.com/demo).
+</Info>
+
+## Step 1: Access Your AVA Instance
+
+Sign in to your AVA dashboard:
+
+```bash
+https://app.datarm.com
+```
+
+Or if you're using a self-hosted instance:
+
+```bash
+https://your-domain.com/ava
+```
+
+<Check>
+  Once logged in, you should see the AVA dashboard with an overview of your data governance status.
+</Check>
+
+## Step 2: Configure Authentication
+
+Generate your API credentials to interact with AVA programmatically:
+
+<Steps>
+  <Step title="Navigate to Settings">
+    Click on **Settings** > **API Keys** in the left sidebar
+  </Step>
+  <Step title="Create New API Key">
+    Click **Generate New Key** and give it a descriptive name
+  </Step>
+  <Step title="Save Your Credentials">
+    Copy and securely store your API key - you won't be able to see it again!
+  </Step>
+</Steps>
+
+<Warning>
+  Keep your API keys secure! Never commit them to version control or share them publicly.
+</Warning>
+
+## Step 3: Connect Your First Data Source
+
+Let's connect a data source to start governing your data:
+
+<Tabs>
+  <Tab title="Salesforce">
+    ```bash
+    # Using the AVA CLI
+    ava connect salesforce \
+      --instance-url https://your-instance.salesforce.com \
+      --client-id YOUR_CLIENT_ID \
+      --client-secret YOUR_CLIENT_SECRET
+    ```
+  </Tab>
+  <Tab title="Snowflake">
+    ```bash
+    # Using the AVA CLI
+    ava connect snowflake \
+      --account YOUR_ACCOUNT \
+      --username YOUR_USERNAME \
+      --password YOUR_PASSWORD \
+      --warehouse YOUR_WAREHOUSE
+    ```
+  </Tab>
+  <Tab title="Databricks">
+    ```bash
+    # Using the AVA CLI
+    ava connect databricks \
+      --workspace-url https://your-workspace.databricks.com \
+      --token YOUR_ACCESS_TOKEN
+    ```
+  </Tab>
+  <Tab title="API">
+    ```bash
+    curl -X POST https://app.datarm.com/api/v1/data-sources \
+      -H "Authorization: Bearer YOUR_API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "type": "salesforce",
+        "name": "Production Salesforce",
+        "config": {
+          "instance_url": "https://your-instance.salesforce.com",
+          "client_id": "YOUR_CLIENT_ID",
+          "client_secret": "YOUR_CLIENT_SECRET"
+        }
+      }'
+    ```
+  </Tab>
+</Tabs>
+
+## Step 4: Run Your First Data Scan
+
+Once connected, initiate a data discovery scan:
+
+<CodeGroup>
+```bash CLI
+ava scan start --source salesforce --profile full
+```
+
+```python Python
+from ava import Client
+
+client = Client(api_key="YOUR_API_KEY")
+scan = client.scans.create(
+    source="salesforce",
+    profile="full"
+)
+print(f"Scan initiated: {scan.id}")
+```
+
+```javascript JavaScript
+import { AVAClient } from '@datarm/ava-sdk';
+
+const client = new AVAClient({ apiKey: 'YOUR_API_KEY' });
+const scan = await client.scans.create({
+  source: 'salesforce',
+  profile: 'full'
+});
+console.log(`Scan initiated: ${scan.id}`);
+```
+</CodeGroup>
+
+<Info>
+  The initial scan may take a few minutes depending on the size of your data source.
+</Info>
+
+## Step 5: View Your Results
+
+Navigate to the **Data Catalog** section to see discovered assets:
+
+```bash
+# Using CLI to view results
+ava catalog list --source salesforce
+```
+
+You'll see:
+- **Discovered Assets**: All data objects found in your source
+- **Classifications**: Automatic data type classifications (PII, PHI, etc.)
+- **Risk Scores**: AI-powered risk assessments for each asset
+- **Access Patterns**: Who has access to what data
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Set Up Access Controls"
+    icon="lock"
+    href="/guides/data-governance/access-controls"
+  >
+    Configure role-based access controls for your data
+  </Card>
+  <Card
+    title="Enable Compliance Tracking"
+    icon="clipboard-check"
+    href="/guides/data-governance/compliance-tracking"
+  >
+    Set up automated compliance monitoring
+  </Card>
+  <Card
+    title="Configure Risk Alerts"
+    icon="bell"
+    href="/guides/risk-management/alert-configuration"
+  >
+    Get notified about potential data risks
+  </Card>
+  <Card
+    title="Explore the API"
+    icon="code"
+    href="/api-reference/introduction"
+  >
+    Build custom integrations with the AVA API
+  </Card>
+</CardGroup>
+
+## Get Help
+
+<Card title="Need assistance?" icon="life-ring">
+  Our support team is here to help! Reach out via:
+  - **Email**: support@datarm.com
+  - **Chat**: Available in your AVA dashboard
+  - **Community**: Join our [Discord community](https://discord.gg/datarm)
+</Card>
+
+## What's Next?
+
+Now that you've completed the quickstart, dive deeper into AVA's capabilities:
+
+- [Understand how AVA works](/essentials/how-it-works)
+- [Learn about key features](/essentials/key-features)
+- [Explore use cases](/essentials/use-cases)
+- [Set up user permissions](/getting-started/user-permissions)

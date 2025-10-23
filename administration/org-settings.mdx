@@ -1,0 +1,53 @@
+---
+title: 'Organization Settings'
+description: 'Configure organization-wide settings'
+---
+
+## General Settings
+
+<Steps>
+  <Step title="Organization Profile">
+    Set organization name, logo, and contact information
+  </Step>
+  <Step title="Regional Settings">
+    Configure timezone, language, and regional preferences
+  </Step>
+  <Step title="Email Configuration">
+    Set up SMTP for email notifications
+  </Step>
+  <Step title="Branding">
+    Customize logo and colors
+  </Step>
+</Steps>
+
+## Configuration
+
+```yaml
+organization:
+  name: "Your Company Name"
+  domain: "your-domain.com"
+  timezone: "America/New_York"
+  language: "en-US"
+
+  email:
+    smtp_host: "smtp.company.com"
+    smtp_port: 587
+    from_address: "ava@company.com"
+    use_tls: true
+
+  branding:
+    primary_color: "#431968"
+    secondary_color: "#ad2a97"
+    logo_url: "/images/company-logo.png"
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Billing" icon="credit-card" href="/administration/billing">
+    Manage billing and subscriptions
+  </Card>
+  <Card title="Monitoring" icon="chart-line" href="/administration/monitoring">
+    Monitor system health
+  </Card>
+</CardGroup>

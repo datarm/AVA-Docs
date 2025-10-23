@@ -1,0 +1,597 @@
+---
+title: 'Compliance Tracking'
+description: 'Monitor and maintain compliance with regulatory frameworks'
+---
+
+## Overview
+
+AVA automates compliance monitoring across major regulatory frameworks including GDPR, CCPA, SOC2, and HIPAA. Track compliance status in real-time, generate audit reports, and receive alerts on policy violations.
+
+<CardGroup cols={2}>
+  <Card title="GDPR" icon="scale-balanced">
+    European data protection regulation
+  </Card>
+  <Card title="CCPA" icon="landmark">
+    California consumer privacy act
+  </Card>
+  <Card title="SOC2" icon="file-certificate">
+    Security and availability controls
+  </Card>
+  <Card title="HIPAA" icon="hospital">
+    Healthcare data protection
+  </Card>
+</CardGroup>
+
+## Supported Frameworks
+
+### Configure Compliance Frameworks
+
+<Tabs>
+  <Tab title="GDPR">
+    ```bash
+    ava compliance enable gdpr \
+      --scope "all-sources" \
+      --data-protection-officer "dpo@company.com" \
+      --retention-defaults "7-years" \
+      --right-to-erasure enabled \
+      --consent-tracking enabled
+    ```
+
+    **Key Requirements:**
+    - Data minimization
+    - Purpose limitation
+    - Storage limitation
+    - Right to access
+    - Right to erasure
+    - Data portability
+    - Consent management
+  </Tab>
+
+  <Tab title="CCPA">
+    ```bash
+    ava compliance enable ccpa \
+      --scope "sources-with-california-residents" \
+      --categories "personal-info,financial,biometric" \
+      --opt-out-mechanism enabled \
+      --disclosure-tracking enabled
+    ```
+
+    **Key Requirements:**
+    - Right to know
+    - Right to delete
+    - Right to opt-out of sale
+    - Non-discrimination
+    - Privacy notice
+  </Tab>
+
+  <Tab title="SOC2">
+    ```bash
+    ava compliance enable soc2 \
+      --trust-principles "security,availability,confidentiality" \
+      --control-objectives all \
+      --evidence-collection automated \
+      --continuous-monitoring enabled
+    ```
+
+    **Trust Principles:**
+    - Security
+    - Availability
+    - Processing integrity
+    - Confidentiality
+    - Privacy
+  </Tab>
+
+  <Tab title="HIPAA">
+    ```bash
+    ava compliance enable hipaa \
+      --scope "sources-with-phi" \
+      --encryption-required true \
+      --access-controls strict \
+      --audit-logging comprehensive \
+      --breach-notification enabled
+    ```
+
+    **Key Requirements:**
+    - Administrative safeguards
+    - Physical safeguards
+    - Technical safeguards
+    - Breach notification
+  </Tab>
+</Tabs>
+
+## Compliance Monitoring
+
+### Real-Time Compliance Dashboard
+
+```bash
+# View compliance status
+ava compliance status --all-frameworks
+
+# Framework-specific status
+ava compliance status --framework gdpr
+```
+
+Expected output:
+```json
+{
+  "framework": "GDPR",
+  "overall_score": 94,
+  "status": "compliant",
+  "last_assessed": "2024-10-23T10:00:00Z",
+  "controls": {
+    "total": 85,
+    "passed": 80,
+    "failed": 3,
+    "not_applicable": 2
+  },
+  "violations": {
+    "critical": 0,
+    "high": 3,
+    "medium": 5,
+    "low": 12
+  },
+  "action_items": 8
+}
+```
+
+### Automated Compliance Checks
+
+<Steps>
+  <Step title="Schedule Continuous Monitoring">
+    ```bash
+    ava compliance monitor \
+      --framework gdpr \
+      --frequency continuous \
+      --alert-on-violations \
+      --auto-remediate low-risk
+    ```
+  </Step>
+
+  <Step title="Configure Control Tests">
+    ```yaml
+    compliance_tests:
+      - control_id: GDPR-001
+        name: Data Encryption at Rest
+        test: |
+          check all databases have encryption enabled
+        severity: critical
+        auto_remediate: true
+
+      - control_id: GDPR-002
+        name: Access Logging
+        test: |
+          verify all PII access is logged
+        severity: high
+        alert_threshold: 95%
+    ```
+  </Step>
+
+  <Step title="Review Results">
+    ```bash
+    ava compliance test-results \
+      --framework gdpr \
+      --show-failures \
+      --export report.pdf
+    ```
+  </Step>
+</Steps>
+
+## Compliance Policies
+
+### Create Compliance Policies
+
+<Tabs>
+  <Tab title="Data Retention">
+    ```python
+    from ava import Client
+
+    client = Client(api_key="YOUR_API_KEY")
+
+    # GDPR retention policy
+    policy = client.policies.create_retention(
+        name="GDPR Data Retention",
+        framework="GDPR",
+        rules=[
+            {
+                "classification": "PII",
+                "retention_period": "7 years",
+                "after_period": "anonymize",
+                "legal_hold_support": True
+            },
+            {
+                "classification": "MARKETING",
+                "retention_period": "2 years",
+                "after_period": "delete",
+                "require_consent": True
+            }
+        ]
+    )
+    ```
+  </Tab>
+
+  <Tab title="Access Controls">
+    ```yaml
+    compliance_policy:
+      name: HIPAA Access Controls
+      framework: HIPAA
+      controls:
+        - id: HIPAA-AC-1
+          requirement: Role-based access
+          implementation:
+            type: rbac
+            roles_allowed: ["healthcare-provider", "admin"]
+            require_mfa: true
+
+        - id: HIPAA-AC-2
+          requirement: Minimum necessary access
+          implementation:
+            type: column_masking
+            sensitive_columns: ["SSN", "diagnosis"]
+            mask_for_roles: ["billing", "scheduling"]
+    ```
+  </Tab>
+
+  <Tab title="Encryption">
+    ```bash
+    # SOC2 encryption policy
+    ava policies create-encryption \
+      --framework soc2 \
+      --scope "all-sensitive-data" \
+      --at-rest aes-256 \
+      --in-transit tls-1.3 \
+      --key-rotation 90d
+    ```
+  </Tab>
+</Tabs>
+
+## Compliance Reporting
+
+### Generate Compliance Reports
+
+<Tabs>
+  <Tab title="Executive Summary">
+    ```bash
+    ava reports compliance-summary \
+      --frameworks "gdpr,ccpa,soc2" \
+      --period quarterly \
+      --audience executive \
+      --format pdf \
+      --output Q4-2024-Compliance-Summary.pdf
+    ```
+  </Tab>
+
+  <Tab title="Detailed Audit Report">
+    ```bash
+    ava reports compliance-audit \
+      --framework gdpr \
+      --include-evidence \
+      --include-remediation-plans \
+      --format docx \
+      --output GDPR-Audit-2024.docx
+    ```
+  </Tab>
+
+  <Tab title="Control Testing Results">
+    ```python
+    # Generate control testing report
+    report = client.reports.generate_control_testing(
+        framework="SOC2",
+        period="2024-Q4",
+        include_screenshots=True,
+        include_logs=True,
+        attestation_required=True
+    )
+
+    report.export("SOC2-Control-Testing-Q4-2024.pdf")
+    ```
+  </Tab>
+
+  <Tab title="Violation Report">
+    ```bash
+    ava reports compliance-violations \
+      --framework all \
+      --severity "high,critical" \
+      --status open \
+      --include-remediation-status \
+      --output violations-report.xlsx
+    ```
+  </Tab>
+</Tabs>
+
+### Automated Report Delivery
+
+```bash
+# Schedule monthly compliance reports
+ava reports schedule \
+  --name "Monthly Compliance Report" \
+  --type compliance-summary \
+  --frameworks "gdpr,ccpa" \
+  --frequency monthly \
+  --recipients "compliance-team@company.com,ceo@company.com" \
+  --day-of-month 5
+```
+
+## Evidence Collection
+
+### Automated Evidence Gathering
+
+```yaml
+evidence_collection:
+  framework: SOC2
+  controls:
+    - control: CC6.1
+      name: Logical Access Controls
+      evidence_types:
+        - access_logs
+        - role_assignments
+        - mfa_enforcement_logs
+      collection_frequency: daily
+      retention_period: 7 years
+
+    - control: CC7.2
+      name: Encryption
+      evidence_types:
+        - encryption_status_reports
+        - key_rotation_logs
+        - tls_certificates
+      collection_frequency: weekly
+      retention_period: 7 years
+```
+
+### Evidence Management
+
+```bash
+# Collect evidence for specific control
+ava evidence collect \
+  --framework soc2 \
+  --control CC6.1 \
+  --period 2024-10-01:2024-10-31 \
+  --output evidence-package.zip
+
+# List collected evidence
+ava evidence list --framework soc2
+
+# Export for auditors
+ava evidence export-for-audit \
+  --framework soc2 \
+  --auditor "external-auditor@firm.com" \
+  --secure-link \
+  --expires-in 30d
+```
+
+## Data Subject Rights
+
+### Right to Access (GDPR Article 15, CCPA)
+
+```bash
+# Process data subject access request
+ava dsar create \
+  --type access \
+  --subject-email "john.doe@example.com" \
+  --framework gdpr \
+  --search-all-sources \
+  --include-metadata
+
+# Track DSAR status
+ava dsar status req_12345
+
+# Export DSAR results
+ava dsar export req_12345 \
+  --format json \
+  --deliver-to "john.doe@example.com"
+```
+
+### Right to Erasure (GDPR Article 17)
+
+```bash
+# Process deletion request
+ava dsar create \
+  --type deletion \
+  --subject-email "john.doe@example.com" \
+  --framework gdpr \
+  --scope "all-sources" \
+  --verify-backups \
+  --generate-certificate
+
+# Monitor deletion progress
+ava dsar deletion-status req_12346
+
+# Generate proof of deletion
+ava dsar deletion-certificate req_12346
+```
+
+### Right to Data Portability (GDPR Article 20)
+
+```python
+# Process portability request
+dsar = client.dsar.create_portability_request(
+    subject_email="john.doe@example.com",
+    scope="all-personal-data",
+    format="machine-readable",
+    include_metadata=True
+)
+
+# Generate portable data package
+package = client.dsar.generate_portable_data(
+    request_id=dsar.id,
+    format="json",
+    include_schema=True
+)
+```
+
+## Breach Management
+
+### Breach Detection
+
+```bash
+# Configure breach detection
+ava compliance configure-breach-detection \
+  --enable-anomaly-detection \
+  --alert-on-bulk-export \
+  --alert-on-unusual-access \
+  --threshold-rules breach-config.yaml
+```
+
+### Breach Notification
+
+```yaml
+breach_notification:
+  framework: GDPR
+  notification_timeline: 72 hours
+
+  notification_rules:
+    - trigger: confirmed_breach
+      severity: critical
+      notify_immediately:
+        - data-protection-officer
+        - legal-team
+        - ciso
+
+    - trigger: potential_breach
+      severity: high
+      investigate_within: 24 hours
+      escalate_if_confirmed: true
+
+  regulatory_notification:
+    authority: supervisory_authority
+    template: gdpr_breach_notification
+    include_evidence: true
+    track_submission: true
+```
+
+## Compliance Automation
+
+### Automated Remediation
+
+<Tabs>
+  <Tab title="Auto-Encryption">
+    ```bash
+    ava compliance auto-remediate \
+      --violation "unencrypted-sensitive-data" \
+      --action "enable-encryption" \
+      --framework hipaa \
+      --approve-automatically
+    ```
+  </Tab>
+
+  <Tab title="Access Revocation">
+    ```yaml
+    auto_remediation:
+      - violation: excessive_permissions
+        framework: SOC2
+        action: revoke_excess_permissions
+        approval_required: false
+        notify: security-team
+
+      - violation: stale_access
+        framework: GDPR
+        condition: no_access_90_days
+        action: disable_account
+        notify: user, manager
+    ```
+  </Tab>
+
+  <Tab title="Policy Enforcement">
+    ```python
+    # Auto-remediate policy violations
+    client.compliance.configure_auto_remediation(
+        framework="GDPR",
+        rules=[
+            {
+                "violation": "missing_consent",
+                "action": "block_data_processing",
+                "severity": "high"
+            },
+            {
+                "violation": "retention_exceeded",
+                "action": "anonymize_data",
+                "severity": "medium"
+            }
+        ]
+    )
+    ```
+  </Tab>
+</Tabs>
+
+## Compliance Metrics
+
+### Key Performance Indicators
+
+<CardGroup cols={2}>
+  <Card title="Compliance Score" icon="gauge-high">
+    Overall compliance percentage across all frameworks
+  </Card>
+  <Card title="Time to Remediate" icon="clock">
+    Average time to resolve compliance violations
+  </Card>
+  <Card title="Control Effectiveness" icon="shield-check">
+    Percentage of controls passing automated tests
+  </Card>
+  <Card title="DSAR Response Time" icon="timer">
+    Average time to respond to data subject requests
+  </Card>
+</CardGroup>
+
+```bash
+# View compliance metrics
+ava metrics compliance \
+  --frameworks all \
+  --period 90d \
+  --show-trends
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Continuous Monitoring" icon="rotate">
+    Monitor compliance status continuously, not just during audits
+  </Card>
+  <Card title="Automate Evidence" icon="robot">
+    Automate evidence collection for consistent documentation
+  </Card>
+  <Card title="Regular Testing" icon="vial">
+    Test controls regularly to ensure effectiveness
+  </Card>
+  <Card title="Clear Documentation" icon="book">
+    Maintain clear documentation of policies and procedures
+  </Card>
+  <Card title="Train Staff" icon="graduation-cap">
+    Regular compliance training for all employees
+  </Card>
+  <Card title="Incident Response" icon="bell">
+    Have clear breach notification procedures
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Audit Logs"
+    icon="list-check"
+    href="/guides/data-governance/audit-logs"
+  >
+    Comprehensive audit trail management
+  </Card>
+  <Card
+    title="GDPR Compliance"
+    icon="scale-balanced"
+    href="/compliance/gdpr"
+  >
+    Detailed GDPR compliance guide
+  </Card>
+  <Card
+    title="SOC2 Compliance"
+    icon="file-certificate"
+    href="/compliance/soc2"
+  >
+    SOC2 certification requirements
+  </Card>
+  <Card
+    title="Risk Management"
+    icon="triangle-exclamation"
+    href="/guides/risk-management/overview"
+  >
+    Identify and mitigate compliance risks
+  </Card>
+</CardGroup>
