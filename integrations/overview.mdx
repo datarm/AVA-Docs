@@ -1,0 +1,60 @@
+---
+title: 'Integrations Overview'
+description: 'Connecting AVA to your enterprise applications'
+---
+
+# Integrations Overview
+
+AVA uses the Model Context Protocol (MCP) to connect with your enterprise applications. Each integration runs as a dedicated Container App in your Azure tenant, using your existing SSO configuration.
+
+<Info>
+  **Note**: Some integration guides are still under development. Check back soon for detailed setup instructions.
+</Info>
+
+## Available Integrations
+
+<CardGroup cols={3}>
+  <Card title="Microsoft 365" icon="microsoft" href="/integrations/microsoft-365">
+    Calendar, Mail, Files, Teams, To Do
+  </Card>
+  <Card title="Salesforce" icon="salesforce" href="/integrations/salesforce">
+    CRM data and business processes
+  </Card>
+  <Card title="Jira" icon="jira" href="/integrations/jira">
+    Project management and issues
+  </Card>
+  <Card title="GitHub" icon="github" href="/integrations/github">
+    Code repositories and pull requests
+  </Card>
+  <Card title="NetSuite" icon="database" href="/integrations/netsuite">
+    ERP and business records
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/integrations/troubleshooting">
+    Common connection issues
+  </Card>
+</CardGroup>
+
+## How MCP Integrations Work
+
+<Steps>
+  <Step title="MCP Server Deployment">
+    Each integration runs as a Container App in your Azure tenant
+  </Step>
+  <Step title="SSO Configuration">
+    Uses your existing SSO setup for each application (Salesforce OAuth, Jira OAuth, etc.)
+  </Step>
+  <Step title="Delegated Permissions">
+    Operates with user permissions—no elevated access
+  </Step>
+  <Step title="@ Mention Access">
+    Users access data via simple @ mentions in conversations
+  </Step>
+</Steps>
+
+## Technical Details
+
+Learn more about MCP server architecture in our [Deployment Architecture](/deployment/architecture#mcp-server-layer) documentation.
+
+---
+
+*Last Updated: January 2025*

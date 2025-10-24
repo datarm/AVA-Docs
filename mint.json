@@ -26,13 +26,25 @@
   },
   "tabs": [
     {
+      "name": "User Guide",
+      "url": "user-guide"
+    },
+    {
+      "name": "Admin Guide",
+      "url": "admin-guide"
+    },
+    {
+      "name": "Integrations",
+      "url": "integrations"
+    },
+    {
       "name": "Changelog",
       "url": "changelog"
     }
   ],
   "anchors": [
     {
-      "name": "Website",
+      "name": "AVA by DataRM",
       "icon": "globe",
       "url": "https://datarm.ai"
     }
@@ -64,10 +76,63 @@
       ]
     },
     {
+      "group": "User Guide",
+      "pages": [
+        "user-guide/overview",
+        "user-guide/first-time-user",
+        "user-guide/using-ava-chat",
+        "user-guide/creating-tasks",
+        "user-guide/searching-knowledge",
+        "user-guide/keyboard-shortcuts"
+      ]
+    },
+    {
+      "group": "Admin Guide",
+      "pages": [
+        "admin-guide/overview",
+        "admin-guide/deployment-checklist",
+        "admin-guide/entra-id-setup",
+        "admin-guide/mcp-servers",
+        "admin-guide/user-provisioning",
+        "admin-guide/monitoring"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/overview",
+        "integrations/microsoft-365",
+        "integrations/salesforce",
+        "integrations/jira",
+        "integrations/github",
+        "integrations/netsuite",
+        "integrations/troubleshooting"
+      ]
+    },
+    {
+      "group": "Adoption & Training",
+      "pages": [
+        "adoption/overview",
+        "adoption/rollout-strategy",
+        "adoption/training-resources",
+        "adoption/measuring-success",
+        "adoption/champion-program"
+      ]
+    },
+    {
       "group": "Deployment",
       "pages": [
         "deployment/architecture",
         "deployment/security"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "resources/overview",
+        "resources/videos",
+        "resources/templates",
+        "resources/glossary"
       ]
     },
     {
@@ -117,6 +182,9 @@
     "ga4": {
       "measurementId": "G-XXXXXXXXXX"
     }
+  },
+  "search": {
+    "prompt": "Search AVA documentation..."
   },
   "feedback": {
     "thumbsRating": true,
