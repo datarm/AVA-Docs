@@ -1,0 +1,132 @@
+{
+  "generated": "2025-10-24T14:15:36.824Z",
+  "total": 14,
+  "logos": [
+    {
+      "name": "atlassian",
+      "displayName": "Atlassian",
+      "filename": "atlassian.svg",
+      "path": "./logos/brands/atlassian.svg",
+      "format": "svg",
+      "size": 393,
+      "sizeKB": 0.38
+    },
+    {
+      "name": "azure",
+      "displayName": "Azure",
+      "filename": "azure.svg",
+      "path": "./logos/brands/azure.svg",
+      "format": "svg",
+      "size": 26558,
+      "sizeKB": 25.94
+    },
+    {
+      "name": "dropbox",
+      "displayName": "Dropbox",
+      "filename": "dropbox.svg",
+      "path": "./logos/brands/dropbox.svg",
+      "format": "svg",
+      "size": 351,
+      "sizeKB": 0.34
+    },
+    {
+      "name": "github",
+      "displayName": "Github",
+      "filename": "github.png",
+      "path": "./logos/brands/github.png",
+      "format": "png",
+      "size": 7249,
+      "sizeKB": 7.08
+    },
+    {
+      "name": "google-workspace",
+      "displayName": "Google Workspace",
+      "filename": "google-workspace.svg",
+      "path": "./logos/brands/google-workspace.svg",
+      "format": "svg",
+      "size": 472,
+      "sizeKB": 0.46
+    },
+    {
+      "name": "jira",
+      "displayName": "Jira",
+      "filename": "jira.svg",
+      "path": "./logos/brands/jira.svg",
+      "format": "svg",
+      "size": 493,
+      "sizeKB": 0.48
+    },
+    {
+      "name": "manifest",
+      "displayName": "Manifest",
+      "filename": "manifest.json",
+      "path": "./logos/brands/manifest.json",
+      "format": "json",
+      "size": 1983,
+      "sizeKB": 1.94
+    },
+    {
+      "name": "microsoft-365",
+      "displayName": "Microsoft 365",
+      "filename": "microsoft-365.svg",
+      "path": "./logos/brands/microsoft-365.svg",
+      "format": "svg",
+      "size": 119,
+      "sizeKB": 0.12
+    },
+    {
+      "name": "microsoft-teams",
+      "displayName": "Microsoft Teams",
+      "filename": "microsoft-teams.svg",
+      "path": "./logos/brands/microsoft-teams.svg",
+      "format": "svg",
+      "size": 1850,
+      "sizeKB": 1.81
+    },
+    {
+      "name": "netsuite",
+      "displayName": "Netsuite",
+      "filename": "netsuite.svg",
+      "path": "./logos/brands/netsuite.svg",
+      "format": "svg",
+      "size": 14,
+      "sizeKB": 0.01
+    },
+    {
+      "name": "oracle",
+      "displayName": "Oracle",
+      "filename": "oracle.svg",
+      "path": "./logos/brands/oracle.svg",
+      "format": "svg",
+      "size": 271,
+      "sizeKB": 0.26
+    },
+    {
+      "name": "salesforce",
+      "displayName": "Salesforce",
+      "filename": "salesforce.svg",
+      "path": "./logos/brands/salesforce.svg",
+      "format": "svg",
+      "size": 559,
+      "sizeKB": 0.55
+    },
+    {
+      "name": "slack",
+      "displayName": "Slack",
+      "filename": "slack.svg",
+      "path": "./logos/brands/slack.svg",
+      "format": "svg",
+      "size": 1138,
+      "sizeKB": 1.11
+    },
+    {
+      "name": "zoom",
+      "displayName": "Zoom",
+      "filename": "zoom.svg",
+      "path": "./logos/brands/zoom.svg",
+      "format": "svg",
+      "size": 852,
+      "sizeKB": 0.83
+    }
+  ]
+}

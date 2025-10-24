@@ -13,24 +13,45 @@ AVA uses the Model Context Protocol (MCP) to connect with your enterprise applic
 
 ## Available Integrations
 
-<CardGroup cols={3}>
-  <Card title="Microsoft 365" icon="microsoft" href="/integrations/microsoft-365">
-    Calendar, Mail, Files, Teams, To Do
-  </Card>
-  <Card title="Salesforce" icon="salesforce" href="/integrations/salesforce">
-    CRM data and business processes
-  </Card>
-  <Card title="Jira" icon="jira" href="/integrations/jira">
-    Project management and issues
-  </Card>
-  <Card title="GitHub" icon="github" href="/integrations/github">
-    Code repositories and pull requests
-  </Card>
-  <Card title="NetSuite" icon="database" href="/integrations/netsuite">
-    ERP and business records
-  </Card>
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', margin: '2rem 0', textAlign: 'center'}}>
+  <div>
+    <a href="/integrations/microsoft-365">
+      <img src="/logos/brands/microsoft-365.svg" alt="Microsoft 365" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Microsoft 365</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/salesforce">
+      <img src="/logos/brands/salesforce.svg" alt="Salesforce" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Salesforce</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/jira">
+      <img src="/logos/brands/jira.svg" alt="Jira" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Jira</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/github">
+      <img src="/logos/brands/github.png" alt="GitHub" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>GitHub</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/netsuite">
+      <img src="/logos/brands/netsuite.png" alt="NetSuite" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>NetSuite</div>
+    </a>
+  </div>
+</div>
+
+<CardGroup cols={2}>
   <Card title="Troubleshooting" icon="wrench" href="/integrations/troubleshooting">
-    Common connection issues
+    Common connection issues and solutions
+  </Card>
+  <Card title="Request Integration" icon="plus" href="/support/contact">
+    Need another integration? Contact us
   </Card>
 </CardGroup>
 
