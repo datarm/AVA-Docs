@@ -5,198 +5,435 @@ description: 'Get started with AVA in under 5 minutes'
 
 ## Welcome to AVA!
 
-This quickstart guide will help you set up AVA and perform your first data governance operation in just a few minutes.
+This quickstart guide will walk you through your first AVA experience—from signing in to having your first conversation with connected data. You'll be productive in minutes.
 
 <Info>
-  **Prerequisites:** You'll need admin access to your AVA instance and API credentials. If you don't have these yet, [contact our team](https://datarm.com/demo).
+  **Prerequisites:** You need a Microsoft work account with access to AVA. If you don't have access yet, [contact your IT administrator](mailto:avasupport@datarm.ai) or [request a demo](https://datarm.com/demo).
 </Info>
 
-## Step 1: Access Your AVA Instance
+## Step 1: Sign In
 
-Sign in to your AVA dashboard:
+AVA uses your Microsoft work account (same credentials you use for Office 365):
 
-```bash
-https://app.datarm.com
-```
-
-Or if you're using a self-hosted instance:
-
-```bash
-https://your-domain.com/ava
-```
+1. Navigate to your AVA URL (provided by your administrator)
+2. Click **"Sign in with Microsoft"**
+3. Enter your work email and password
+4. Complete multi-factor authentication if prompted
+5. Grant AVA delegated permissions when asked
 
 <Check>
-  Once logged in, you should see the AVA dashboard with an overview of your data governance status.
+  Once signed in, you'll see AVA's three-panel interface: Session History (left), Chat Area (center), and Workspace (right).
 </Check>
 
-## Step 2: Configure Authentication
+<Tip>
+  **First time?** AVA may show you a quick tour of the interface. We recommend taking it!
+</Tip>
 
-Generate your API credentials to interact with AVA programmatically:
+## Step 2: Your First Chat
 
-<Steps>
-  <Step title="Navigate to Settings">
-    Click on **Settings** > **API Keys** in the left sidebar
-  </Step>
-  <Step title="Create New API Key">
-    Click **Generate New Key** and give it a descriptive name
-  </Step>
-  <Step title="Save Your Credentials">
-    Copy and securely store your API key - you won't be able to see it again!
-  </Step>
-</Steps>
+Let's start with a simple conversation to get familiar with AVA.
 
-<Warning>
-  Keep your API keys secure! Never commit them to version control or share them publicly.
-</Warning>
-
-## Step 3: Connect Your First Data Source
-
-Let's connect a data source to start governing your data:
+### Try These Examples
 
 <Tabs>
-  <Tab title="Salesforce">
-    ```bash
-    # Using the AVA CLI
-    ava connect salesforce \
-      --instance-url https://your-instance.salesforce.com \
-      --client-id YOUR_CLIENT_ID \
-      --client-secret YOUR_CLIENT_SECRET
+  <Tab title="Check Your Calendar">
+    **Type in chat**:
     ```
+    @Calendar what meetings do I have today?
+    ```
+
+    **What AVA does**:
+    - Connects to your Microsoft Calendar
+    - Retrieves your meetings
+    - Displays them in an organized list
+
+    **You'll see**: All your meetings with times, attendees, and locations
+
+    **Try follow-up**: "Send me details on the 2pm meeting"
   </Tab>
-  <Tab title="Snowflake">
-    ```bash
-    # Using the AVA CLI
-    ava connect snowflake \
-      --account YOUR_ACCOUNT \
-      --username YOUR_USERNAME \
-      --password YOUR_PASSWORD \
-      --warehouse YOUR_WAREHOUSE
+
+  <Tab title="Search Your Email">
+    **Type in chat**:
     ```
+    @Mail show me unread emails from this week
+    ```
+
+    **What AVA does**:
+    - Queries your Outlook inbox
+    - Filters to unread emails from last 7 days
+    - Summarizes the messages
+
+    **You'll see**: List of unread emails with senders, subjects, and snippets
+
+    **Try follow-up**: "Summarize the most important ones"
   </Tab>
-  <Tab title="Databricks">
-    ```bash
-    # Using the AVA CLI
-    ava connect databricks \
-      --workspace-url https://your-workspace.databricks.com \
-      --token YOUR_ACCESS_TOKEN
+
+  <Tab title="Find a File">
+    **Type in chat**:
     ```
+    @Files find my Q4 budget spreadsheet
+    ```
+
+    **What AVA does**:
+    - Searches your OneDrive and SharePoint
+    - Finds files matching "Q4 budget"
+    - Returns relevant files
+
+    **You'll see**: Matching files with locations and modified dates
+
+    **Try follow-up**: "Open it in the workspace"
   </Tab>
-  <Tab title="API">
-    ```bash
-    curl -X POST https://app.datarm.com/api/v1/data-sources \
-      -H "Authorization: Bearer YOUR_API_KEY" \
-      -H "Content-Type: application/json" \
-      -d '{
-        "type": "salesforce",
-        "name": "Production Salesforce",
-        "config": {
-          "instance_url": "https://your-instance.salesforce.com",
-          "client_id": "YOUR_CLIENT_ID",
-          "client_secret": "YOUR_CLIENT_SECRET"
-        }
-      }'
+
+  <Tab title="Query Business Data">
+    **If your organization has Salesforce connected**:
     ```
+    @Salesforce show me my open opportunities
+    ```
+
+    **What AVA does**:
+    - Queries Salesforce with your permissions
+    - Retrieves opportunities assigned to you
+    - Formats the results
+
+    **You'll see**: Your opportunities with stages, values, and close dates
+
+    **Try follow-up**: "Which ones are closing this month?"
   </Tab>
 </Tabs>
 
-## Step 4: Run Your First Data Scan
+### Understanding @ Mentions
 
-Once connected, initiate a data discovery scan:
+The `@` symbol is how you access connected data sources:
 
-<CodeGroup>
-```bash CLI
-ava scan start --source salesforce --profile full
-```
+- **@Calendar** - Your Microsoft Calendar
+- **@Mail** - Your Outlook email
+- **@Files** - OneDrive and SharePoint documents
+- **@Teams** - Teams messages and meetings
+- **@Salesforce** - CRM data (if configured)
+- **@Jira** - Issues and projects (if configured)
+- **@GitHub** - Repositories and code (if configured)
 
-```python Python
-from ava import Client
+<Tip>
+  Start typing `@` and AVA will show you all available data sources!
+</Tip>
 
-client = Client(api_key="YOUR_API_KEY")
-scan = client.scans.create(
-    source="salesforce",
-    profile="full"
-)
-print(f"Scan initiated: {scan.id}")
-```
+## Step 3: Try the Workspace
 
-```javascript JavaScript
-import { AVAClient } from '@datarm/ava-sdk';
+The Workspace panel on the right has three tabs. Let's explore them:
 
-const client = new AVAClient({ apiKey: 'YOUR_API_KEY' });
-const scan = await client.scans.create({
-  source: 'salesforce',
-  profile: 'full'
-});
-console.log(`Scan initiated: ${scan.id}`);
-```
-</CodeGroup>
+### Search Tab
+
+1. Click **"Search"** tab in workspace
+2. Select **"Microsoft Files"**
+3. Search for a document (try "meeting notes")
+4. Click a file to preview it
+5. Click **"Add to Conversation"** button
+
+Now ask AVA: **"Summarize the key points from this document"**
+
+<Check>
+  AVA reads the document and provides a summary!
+</Check>
+
+### Notes Tab
+
+1. Click **"Notes"** tab
+2. Type some notes:
+   ```
+   # My First AVA Session
+
+   Today I learned:
+   - How to use @ mentions
+   - How to search for files
+   - How to add files to conversations
+   ```
+3. Use the formatting toolbar to style your notes
+4. Notes are automatically saved
+
+<Tip>
+  You can export notes to PowerPoint! Try adding more content and clicking **"Export to PowerPoint"**
+</Tip>
+
+### File Viewer Tab
+
+1. Ask AVA: **"@Files find the employee handbook"**
+2. When AVA returns results, click a file
+3. File opens in **File Viewer** tab
+4. Toggle between **View** and **Edit** modes
+5. Make changes if needed (saves automatically to SharePoint)
+
+## Step 4: Create Your First Task
+
+Tasks are perfect for multi-step workflows. Let's create a simple one:
+
+<Steps>
+  <Step title="Open Tasks">
+    Click **"Tasks"** in the main navigation
+  </Step>
+
+  <Step title="New Task">
+    Click **"New Task"** button
+  </Step>
+
+  <Step title="Name Your Task">
+    Enter: "Meeting Summary and Follow-Up"
+  </Step>
+
+  <Step title="Add Steps">
+    Create three steps:
+
+    **Step 1: Get Meeting Info**
+    ```
+    @Calendar show details of my last team meeting
+    ```
+
+    **Step 2: Summarize**
+    ```
+    Create a bullet-point summary of key discussion points
+    and decisions from the meeting
+    ```
+
+    **Step 3: Generate Follow-Up**
+    ```
+    Draft a follow-up email to send to attendees with:
+    - Summary of key decisions
+    - Action items
+    - Next meeting date
+    ```
+  </Step>
+
+  <Step title="Run Task">
+    Click **"Run Task"** and watch AVA execute each step sequentially!
+  </Step>
+</Steps>
+
+<Check>
+  After the task completes, you'll have a meeting summary and a drafted follow-up email!
+</Check>
+
+<Tip>
+  Save successful tasks as templates by clicking **"Save as Template"** after completion
+</Tip>
+
+## Step 5: Try Knowledge Search
+
+If your organization has set up Knowledge Search corpora, try this:
+
+<Steps>
+  <Step title="Navigate to Knowledge Search">
+    Click **"Knowledge Search"** in main navigation
+  </Step>
+
+  <Step title="Select a Corpus">
+    Click **"@ Connected Data"** and choose a corpus (e.g., "HR Policies")
+  </Step>
+
+  <Step title="Ask a Question">
+    Try: "What's the remote work policy?"
+
+    Or: "How much PTO do employees get?"
+  </Step>
+
+  <Step title="Review Results">
+    AVA searches documents and returns:
+    - AI-generated answer
+    - Source document citations
+    - Relevant excerpts
+  </Step>
+</Steps>
 
 <Info>
-  The initial scan may take a few minutes depending on the size of your data source.
+  If you don't see any corpora available, Knowledge Search hasn't been set up yet. Ask your administrator to create corpora from your SharePoint document libraries.
 </Info>
 
-## Step 5: View Your Results
+## Step 6: Customize AVA
 
-Navigate to the **Data Catalog** section to see discovered assets:
+Make AVA work better for you with custom instructions:
 
-```bash
-# Using CLI to view results
-ava catalog list --source salesforce
-```
+<Steps>
+  <Step title="Open Settings">
+    Click your profile icon (top right) → **"Settings"**
+  </Step>
 
-You'll see:
-- **Discovered Assets**: All data objects found in your source
-- **Classifications**: Automatic data type classifications (PII, PHI, etc.)
-- **Risk Scores**: AI-powered risk assessments for each asset
-- **Access Patterns**: Who has access to what data
+  <Step title="Custom Instructions">
+    Click **"Custom Instructions"** tab
+  </Step>
+
+  <Step title="Add Your Preferences">
+    Example:
+    ```
+    I'm a sales manager in the enterprise segment.
+
+    When showing opportunities:
+    - Always include ARR (Annual Recurring Revenue)
+    - Highlight deals over $100K
+    - Show sales cycle length
+
+    My working hours: 8am-6pm Pacific Time
+    Format currency in USD with commas
+    ```
+  </Step>
+
+  <Step title="Save">
+    Click **"Save"** - AVA will remember these preferences!
+  </Step>
+</Steps>
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="What data can AVA access?">
+    **Only what you can access.** AVA uses your Microsoft credentials and operates with your permissions. If you can't see a file in SharePoint, AVA can't either.
+  </Accordion>
+
+  <Accordion title="Is my data secure?">
+    **Yes!** AVA runs entirely within your organization's Azure tenant. Your data never leaves your environment. All processing happens in your tenant.
+  </Accordion>
+
+  <Accordion title="Can others see my conversations?">
+    **No**, unless you explicitly share them. Your chats are private by default.
+  </Accordion>
+
+  <Accordion title="How do I add more data sources?">
+    Data source connections (Salesforce, Jira, GitHub, etc.) are configured by your administrator. Contact your IT team to request additional integrations.
+  </Accordion>
+
+  <Accordion title="What if AVA doesn't understand me?">
+    Try:
+    - Being more specific
+    - Using @ mentions explicitly
+    - Breaking complex requests into simpler questions
+    - Checking that you have access to the data source
+  </Accordion>
+
+  <Accordion title="Can I use AVA on mobile?">
+    AVA is a web application that works in any modern browser, including mobile browsers. There's no dedicated mobile app yet.
+  </Accordion>
+</AccordionGroup>
+
+## Tips for Success
+
+<CardGroup cols={2}>
+  <Card title="Use @ Mentions" icon="at">
+    Explicitly reference data sources with @ for faster, more accurate results
+  </Card>
+
+  <Card title="Ask Follow-Ups" icon="comments">
+    AVA remembers context—refine answers with follow-up questions
+  </Card>
+
+  <Card title="Save Useful Prompts" icon="bookmark">
+    Create reusable prompts in the Prompt Library for frequent tasks
+  </Card>
+
+  <Card title="Explore Features" icon="compass">
+    Try Chat, Tasks, and Knowledge Search to find what works best for your workflow
+  </Card>
+
+  <Card title="Add Files for Context" icon="file-circle-plus">
+    Use workspace Search tab to add relevant documents to conversations
+  </Card>
+
+  <Card title="Take Notes" icon="pencil">
+    Use Notes tab to capture ideas and export to presentations
+  </Card>
+</CardGroup>
+
+## Example Workflows to Try
+
+Now that you're familiar with basics, try these real-world scenarios:
+
+<Tabs>
+  <Tab title="Meeting Prep">
+    1. **@Calendar** find tomorrow's client meeting
+    2. **@Salesforce** get account history
+    3. **@Mail** find recent email threads
+    4. Ask AVA to create a meeting prep document
+    5. Export to Notes → PowerPoint
+  </Tab>
+
+  <Tab title="Weekly Status">
+    1. **@Salesforce** show opportunities closing this week
+    2. **@Jira** show completed issues
+    3. **@GitHub** show merged PRs
+    4. Ask AVA to create status report
+    5. Export to Word document
+  </Tab>
+
+  <Tab title="Document Research">
+    1. Go to Knowledge Search
+    2. Select relevant corpus
+    3. Ask: "Find all mentions of [topic] in contracts"
+    4. Review results with source citations
+    5. Ask follow-up questions to refine
+  </Tab>
+
+  <Tab title="Content Creation">
+    1. Open Notes tab
+    2. Create outline
+    3. Ask AVA to draft each section
+    4. Copy good content from chat to notes
+    5. Iterate until satisfied
+    6. Export to desired format
+  </Tab>
+</Tabs>
 
 ## Next Steps
 
 <CardGroup cols={2}>
   <Card
-    title="Set Up Access Controls"
-    icon="lock"
-    href="/guides/data-governance/access-controls"
+    title="Explore Core Features"
+    icon="star"
+    href="/essentials/key-features"
   >
-    Configure role-based access controls for your data
+    Learn about all AVA capabilities
   </Card>
   <Card
-    title="Enable Compliance Tracking"
-    icon="clipboard-check"
-    href="/guides/data-governance/compliance-tracking"
+    title="AVA Chat Deep Dive"
+    icon="comments"
+    href="/features/ava-chat"
   >
-    Set up automated compliance monitoring
+    Master conversational AI
   </Card>
   <Card
-    title="Configure Risk Alerts"
-    icon="bell"
-    href="/guides/risk-management/alert-configuration"
+    title="Use Cases by Role"
+    icon="briefcase"
+    href="/essentials/use-cases"
   >
-    Get notified about potential data risks
+    See how your team can use AVA
   </Card>
   <Card
-    title="Explore the API"
-    icon="code"
-    href="/api-reference/introduction"
+    title="How AVA Works"
+    icon="gears"
+    href="/essentials/how-it-works"
   >
-    Build custom integrations with the AVA API
+    Understand the technology
   </Card>
 </CardGroup>
 
 ## Get Help
 
-<Card title="Need assistance?" icon="life-ring">
-  Our support team is here to help! Reach out via:
-  - **Email**: support@datarm.com
-  - **Chat**: Available in your AVA dashboard
-  - **Community**: Join our [Discord community](https://discord.gg/datarm)
-</Card>
+<CardGroup cols={2}>
+  <Card title="Support" icon="life-ring">
+    **Email**: avasupport@datarm.ai
 
-## What's Next?
+    Our team typically responds within 4 business hours
+  </Card>
 
-Now that you've completed the quickstart, dive deeper into AVA's capabilities:
+  <Card title="Request Demo" icon="calendar">
+    **Schedule**: [datarm.com/demo](https://datarm.com/demo)
 
-- [Understand how AVA works](/essentials/how-it-works)
-- [Learn about key features](/essentials/key-features)
-- [Explore use cases](/essentials/use-cases)
-- [Set up user permissions](/getting-started/user-permissions)
+    Get a personalized walkthrough with your actual data
+  </Card>
+</CardGroup>
+
+---
+
+**Congratulations!** 🎉 You've completed the AVA quickstart. You now know how to:
+- Have conversations with connected data using @ mentions
+- Use the Workspace (Search, Notes, File Viewer)
+- Create multi-step Tasks
+- Search documents with Knowledge Search
+- Customize AVA with custom instructions
+
+Start exploring and make AVA work for you!

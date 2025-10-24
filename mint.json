@@ -31,14 +31,6 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
-    },
-    {
-      "name": "SDK",
-      "url": "sdk"
-    },
-    {
       "name": "Changelog",
       "url": "changelog"
     }
@@ -78,114 +70,26 @@
       ]
     },
     {
-      "group": "Getting Started",
+      "group": "Core Features",
       "pages": [
-        "getting-started/installation",
-        "getting-started/authentication",
-        "getting-started/first-query",
-        "getting-started/connecting-data-sources",
-        "getting-started/user-permissions"
-      ]
-    },
-    {
-      "group": "Data Governance",
-      "pages": [
-        "guides/data-governance/overview",
-        "guides/data-governance/access-controls",
-        "guides/data-governance/compliance-tracking",
-        "guides/data-governance/audit-logs"
-      ]
-    },
-    {
-      "group": "Risk Management",
-      "pages": [
-        "guides/risk-management/overview",
-        "guides/risk-management/risk-scoring",
-        "guides/risk-management/alert-configuration",
-        "guides/risk-management/reporting"
-      ]
-    },
-    {
-      "group": "Integrations",
-      "pages": [
-        "guides/integrations/salesforce",
-        "guides/integrations/snowflake",
-        "guides/integrations/databricks",
-        "guides/integrations/custom-connectors"
-      ]
-    },
-    {
-      "group": "AI Capabilities",
-      "pages": [
-        "guides/ai-capabilities/intelligent-search",
-        "guides/ai-capabilities/automated-classification",
-        "guides/ai-capabilities/anomaly-detection"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/authentication",
-        "api-reference/rate-limits"
-      ]
-    },
-    {
-      "group": "Endpoints",
-      "pages": [
-        "api-reference/endpoints/data-sources",
-        "api-reference/endpoints/policies",
-        "api-reference/endpoints/users",
-        "api-reference/endpoints/reports",
-        "api-reference/endpoints/webhooks"
-      ]
-    },
-    {
-      "group": "SDK",
-      "pages": [
-        "sdk/overview",
-        "sdk/python",
-        "sdk/javascript",
-        "sdk/java",
-        "sdk/examples"
+        "features/ava-chat",
+        "features/ava-tasks",
+        "features/knowledge-search",
+        "features/workspace"
       ]
     },
     {
       "group": "Deployment",
       "pages": [
         "deployment/architecture",
-        "deployment/self-hosted",
-        "deployment/cloud-deployment",
-        "deployment/security",
-        "deployment/sso-setup",
-        "deployment/scalability"
-      ]
-    },
-    {
-      "group": "Administration",
-      "pages": [
-        "administration/user-management",
-        "administration/org-settings",
-        "administration/billing",
-        "administration/monitoring",
-        "administration/troubleshooting"
-      ]
-    },
-    {
-      "group": "Compliance",
-      "pages": [
-        "compliance/gdpr",
-        "compliance/ccpa",
-        "compliance/soc2",
-        "compliance/hipaa"
+        "deployment/security"
       ]
     },
     {
       "group": "Support",
       "pages": [
         "support/faq",
-        "support/contact",
-        "support/status"
+        "support/contact"
       ]
     },
     {
