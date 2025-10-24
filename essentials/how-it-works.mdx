@@ -1,120 +1,410 @@
 ---
 title: 'How AVA Works'
-description: 'Understanding AVA architecture and core workflows'
+description: 'Understanding AVA architecture, identity flow, and technical implementation'
 ---
 
 ## Architecture Overview
 
-AVA operates on a modern, cloud-native architecture designed for enterprise scale and security.
+AVA is deployed as a private, single-tenant application within your Azure environment. This architecture ensures your data never leaves your tenant while providing enterprise-grade AI capabilities through a secure, identity-based access model.
 
-## Core Components
+## Identity and Access Flow
 
-<CardGroup cols={2}>
-  <Card title="Discovery Engine" icon="radar">
-    Continuously scans and catalogs data across all connected sources
-  </Card>
-  <Card title="AI Classification Engine" icon="brain">
-    Machine learning models identify and classify sensitive data
-  </Card>
-  <Card title="Risk Scoring Engine" icon="shield-halved">
-    Evaluates risk based on multiple factors and context
-  </Card>
-  <Card title="Policy Engine" icon="gavel">
-    Enforces governance rules and access controls
-  </Card>
-</CardGroup>
-
-## Data Discovery Workflow
+The foundation of AVA's security model is **delegated permissions** through Microsoft Entra ID:
 
 <Steps>
-  <Step title="Connection">
-    AVA connects securely to your data sources via native APIs
+  <Step title="User Authentication">
+    Users sign in to AVA using their Microsoft work account (same credentials used for Office 365)
   </Step>
-  <Step title="Scanning">
-    Metadata is extracted without copying or moving actual data
+  <Step title="Entra ID Verification">
+    Microsoft Entra ID authenticates the user and establishes their identity and permissions
   </Step>
-  <Step title="Cataloging">
-    Assets are indexed in AVA's searchable data catalog
+  <Step title="Delegated Access">
+    AVA operates with the user's permissions—it can only access what the authenticated user can access
   </Step>
-  <Step title="Continuous Monitoring">
-    Changes are detected and catalog is updated automatically
+  <Step title="No Shadow RBAC">
+    **Critical**: AVA doesn't maintain separate permission systems. Delegated permissions MATCH existing access controls
   </Step>
 </Steps>
 
-## AI Classification
+<Warning>
+  **No Elevated Access**: AVA never has broader permissions than the user. If you can't access a file in SharePoint, neither can AVA on your behalf.
+</Warning>
 
-AVA uses advanced machine learning to classify data:
+## System Architecture
 
-<Accordion title="Pattern Recognition">
-  Identifies data patterns like email addresses, phone numbers, credit cards
-</Accordion>
-<Accordion title="Context Analysis">
-  Understands field names, table structures, and relationships
-</Accordion>
-<Accordion title="Content Analysis">
-  Analyzes sample data to infer sensitivity levels
-</Accordion>
-<Accordion title="Custom Training">
-  Learns from your feedback to improve accuracy over time
-</Accordion>
+### Frontend Layer
 
-## Risk Assessment
+**AVA Front End App Service** (Azure App Service)
+- React-based web application
+- Handles user interface and interactions
+- Communicates with backend via secure APIs
+- Session management and state
 
-AVA calculates risk scores based on:
+### Backend Layer
 
-- **Data Sensitivity**: PII, PHI, financial data receive higher risk scores
-- **Access Patterns**: Who has access and how data is being used
-- **Compliance Requirements**: Regulatory obligations tied to data types
-- **Security Posture**: Encryption, access controls, audit logging
-- **Historical Incidents**: Past security events and violations
-
-## Policy Enforcement
+Two primary backend services running as Azure Container Apps:
 
 <Tabs>
-  <Tab title="Access Control">
-    Define who can access what data based on roles, attributes, and context
+  <Tab title="Back End App Service">
+    **Core orchestration and AI integration**
+    - Chat conversation management
+    - Task workflow execution
+    - Model Context Protocol (MCP) orchestration
+    - AI provider integration (AI Foundry, AWS Bedrock, GCP Vertex)
+    - User context and session handling
   </Tab>
-  <Tab title="Data Retention">
-    Automatically enforce retention policies and deletion schedules
-  </Tab>
-  <Tab title="Usage Monitoring">
-    Track how data is accessed and used across your organization
-  </Tab>
-  <Tab title="Compliance Rules">
-    Enforce GDPR, CCPA, HIPAA, and other regulatory requirements
+  <Tab title="Services App Service">
+    **Knowledge Search and RAG capabilities**
+    - Document embedding generation
+    - Vector similarity search
+    - Corpus management
+    - SharePoint synchronization
+    - Search result ranking and retrieval
   </Tab>
 </Tabs>
 
-## Integration Methods
+### MCP Server Hub
 
-AVA integrates with your ecosystem through:
+**Container Apps running MCP servers**
 
-```mermaid
-graph LR
-    A[Data Sources] -->|Native APIs| B[AVA Platform]
-    B -->|Webhooks| C[Your Applications]
-    B -->|REST API| D[Custom Tools]
-    B -->|SDKs| E[Your Code]
-    B -->|SIEM| F[Security Tools]
+Model Context Protocol (MCP) servers act as standardized connectors to enterprise applications:
+
+<CardGroup cols={2}>
+  <Card title="Microsoft 365" icon="microsoft">
+    - Outlook (Mail & Calendar)
+    - OneDrive (Files)
+    - SharePoint (Sites)
+    - Teams (Meetings & Messages)
+  </Card>
+  <Card title="Salesforce" icon="salesforce">
+    - Read and write CRM data
+    - Query opportunities, leads, cases
+    - Update records
+  </Card>
+  <Card title="Jira" icon="jira">
+    - Issue management
+    - Project queries
+    - Status updates
+  </Card>
+  <Card title="GitHub" icon="github">
+    - Repository access
+    - Code search
+    - Pull request queries
+  </Card>
+</CardGroup>
+
+**Additional MCP Servers:**
+- NetSuite integration
+- Microsoft Security (Defender)
+- Web Scraping & Crawling
+- Custom MCP servers (extensible)
+
+### Data Layer
+
+<Tabs>
+  <Tab title="PostgreSQL Database">
+    **Relational data storage**
+    - User context and sessions
+    - Chat conversation history
+    - Task definitions and state
+    - Prompt library
+    - Activity logs
+    - Corpus metadata
+  </Tab>
+  <Tab title="pgVector Extension">
+    **Vector storage for RAG**
+    - Document embeddings for Knowledge Search
+    - Semantic search capabilities
+    - Fast similarity matching
+    - Embedded alongside relational data
+  </Tab>
+  <Tab title="Azure Blob Storage">
+    **File and binary storage**
+    - Uploaded documents
+    - Temporary file storage
+    - Export artifacts (PowerPoint, Word, Excel)
+  </Tab>
+</Tabs>
+
+### AI Providers
+
+AVA supports multiple AI providers for model flexibility:
+
+<CardGroup cols={3}>
+  <Card title="Azure AI Foundry" icon="microsoft">
+    **Primary provider**
+    - GPT-4, GPT-4 Turbo
+    - GPT-3.5 Turbo
+    - o1, o3-mini models
+    - Embeddings (text-embedding-ada-002)
+  </Card>
+  <Card title="AWS Bedrock" icon="aws">
+    **Alternative provider**
+    - Claude Sonnet
+    - Claude Opus
+    - Other Bedrock models
+  </Card>
+  <Card title="GCP Vertex AI" icon="google">
+    **Alternative provider**
+    - Gemini Pro
+    - PaLM models
+  </Card>
+</CardGroup>
+
+Users can select different models based on:
+- Task complexity
+- Response speed requirements
+- Cost considerations
+- Context window size needs
+
+### Supporting Azure Resources
+
+<CardGroup cols={3}>
+  <Card title="App Insights" icon="chart-line">
+    Application monitoring, telemetry, and performance tracking
+  </Card>
+  <Card title="Key Vault" icon="key">
+    Secure storage for secrets, API keys, and connection strings
+  </Card>
+  <Card title="Managed Identities" icon="id-card">
+    Passwordless authentication between Azure services
+  </Card>
+</CardGroup>
+
+## How a Conversation Works
+
+Let's trace a typical user interaction:
+
+<Steps>
+  <Step title="User Sends Message">
+    User types a message in AVA Chat: "@Salesforce show me my open opportunities"
+  </Step>
+  <Step title="Frontend to Backend">
+    Front End App Service sends request to Back End App Service with user context
+  </Step>
+  <Step title="Identity Context">
+    Backend validates user identity via Entra ID and retrieves delegated access token
+  </Step>
+  <Step title="@ Mention Detection">
+    Backend identifies @Salesforce mention and routes request to Salesforce MCP server
+  </Step>
+  <Step title="MCP Server Execution">
+    Salesforce MCP server:
+    - Uses delegated user token
+    - Queries Salesforce with user's permissions
+    - Returns only data user can access
+  </Step>
+  <Step title="AI Processing">
+    Backend sends user question + Salesforce data to selected AI provider (e.g., GPT-4 via Azure AI Foundry)
+  </Step>
+  <Step title="Response Generation">
+    AI model generates response based on retrieved data and user context
+  </Step>
+  <Step title="Return to User">
+    Response flows back through backend → frontend → user's browser
+  </Step>
+</Steps>
+
+## How Knowledge Search Works
+
+Knowledge Search uses Retrieval Augmented Generation (RAG):
+
+<Steps>
+  <Step title="Corpus Creation">
+    User creates a corpus pointing to a SharePoint site/document library
+  </Step>
+  <Step title="Document Ingestion">
+    Services App Service:
+    - Connects to SharePoint using user's delegated permissions
+    - Downloads documents user can access
+    - Chunks documents into manageable segments
+  </Step>
+  <Step title="Embedding Generation">
+    - Each chunk is sent to embedding model (e.g., text-embedding-ada-002)
+    - Vector embeddings are generated
+    - Embeddings stored in PostgreSQL with pgVector
+  </Step>
+  <Step title="Auto-Sync (Optional)">
+    If enabled, AVA periodically checks SharePoint for:
+    - New documents
+    - Modified documents
+    - Deleted documents
+    Updates embeddings accordingly
+  </Step>
+  <Step title="Search Query">
+    When user searches:
+    - Query is converted to vector embedding
+    - pgVector performs similarity search
+    - Top matching chunks are retrieved
+  </Step>
+  <Step title="AI-Powered Response">
+    - Retrieved chunks are sent to AI model as context
+    - Model generates response based on actual document content
+    - Cites source documents in response
+  </Step>
+</Steps>
+
+## How Tasks Work
+
+Multi-step task execution:
+
+<Steps>
+  <Step title="Task Definition">
+    User creates task with multiple steps, each with its own instructions
+  </Step>
+  <Step title="Document Context">
+    User can add documents from workspace (OneDrive, SharePoint, or local files)
+  </Step>
+  <Step title="Step Execution">
+    Backend processes each step sequentially:
+    - Evaluates step instructions
+    - Includes previous step results as context
+    - Can use @ mentions to pull live data
+    - SuperPrompt (if enabled) enhances AI guidance
+  </Step>
+  <Step title="State Management">
+    Task state stored in PostgreSQL:
+    - Current step
+    - Step results
+    - Overall progress
+  </Step>
+  <Step title="Template Saving">
+    Successful tasks can be saved as templates for reuse
+  </Step>
+</Steps>
+
+## Security Architecture
+
+### Authentication & Authorization
+
+```
+User → Entra ID (SAML/OAuth) → AVA Front End
+                                    ↓
+                      Delegated Access Token
+                                    ↓
+                         Back End App Service
+                                    ↓
+                    Uses User's Token for All MCP Calls
+                                    ↓
+                    Enterprise Apps (M365, Salesforce, etc.)
 ```
 
-## Security & Privacy
+**Key Principles:**
+- ✅ **Delegated Permissions**: AVA uses SAML/OAuth to obtain delegated access
+- ✅ **User-Scoped Access**: Every API call uses the authenticated user's token
+- ✅ **No Privilege Escalation**: AVA cannot access data the user cannot access
+- ✅ **Audit Trail**: All actions logged with user identity
 
-<Info>
-  AVA is built on zero-trust security principles with end-to-end encryption.
-</Info>
+### Data Security
 
-- **Data Never Leaves Your Environment**: Only metadata is processed
-- **Encrypted Transit**: All communications use TLS 1.3+
-- **Encrypted at Rest**: Data catalog encrypted with AES-256
-- **Role-Based Access**: Granular permissions for all users
-- **Audit Logging**: Complete audit trail of all actions
+<AccordionGroup>
+  <Accordion title="Data Residency">
+    - All data stays within your Azure tenant
+    - Processing happens in your tenant's region
+    - No external SaaS data transfer
+    - You control data location and retention
+  </Accordion>
+  <Accordion title="Encryption">
+    - **In Transit**: TLS 1.3 for all communications
+    - **At Rest**: Azure-managed encryption for database and blob storage
+    - **Secrets**: Stored in Azure Key Vault
+  </Accordion>
+  <Accordion title="Network Security">
+    - Container Apps in isolated virtual network
+    - Managed identities for service-to-service auth
+    - No hard-coded credentials
+    - Azure Private Link support (optional)
+  </Accordion>
+</AccordionGroup>
+
+## Deployment Model
+
+AVA is deployed as a **single-tenant, private deployment** for each customer:
+
+<CardGroup cols={2}>
+  <Card title="Your Azure Tenant" icon="building">
+    - Deployed entirely within your subscription
+    - You control all Azure resources
+    - No shared infrastructure
+    - Complete data isolation
+  </Card>
+  <Card title="Enterprise Application" icon="app-window">
+    - Registered in your Entra ID
+    - Uses your identity provider
+    - Integrates with your policies
+    - Respects your conditional access
+  </Card>
+</CardGroup>
+
+**This means:**
+- ✅ Data sovereignty: Your data, your tenant, your control
+- ✅ Compliance-friendly: Easier to meet regulatory requirements
+- ✅ Customizable: Can be tailored to your environment
+- ✅ Secure: No multi-tenant security risks
+
+## Scalability & Performance
+
+AVA is built to scale:
+
+- **Azure Container Apps**: Auto-scales based on demand
+- **PostgreSQL Flexible Server**: Can scale vertically and add read replicas
+- **Blob Storage**: Virtually unlimited storage capacity
+- **AI Providers**: Load balanced across regions
+
+**Performance Characteristics:**
+- Chat responses: 2-10 seconds (depending on model and complexity)
+- Knowledge Search: Sub-second vector search, 3-8 seconds total with AI generation
+- Task execution: Varies by steps and data sources
+- Concurrent users: Scales automatically with container app scaling
+
+## Monitoring & Observability
+
+<Tabs>
+  <Tab title="Application Insights">
+    - Request/response telemetry
+    - Performance metrics
+    - Dependency tracking
+    - Custom events and metrics
+    - Failure analysis
+  </Tab>
+  <Tab title="Logging">
+    - Structured application logs
+    - User activity tracking
+    - MCP server call logs
+    - AI provider interaction logs
+    - Export to Log Analytics
+  </Tab>
+  <Tab title="Alerting">
+    - Service health monitoring
+    - Performance degradation alerts
+    - Error rate thresholds
+    - Custom metric alerts
+  </Tab>
+</Tabs>
+
+## Technical Stack Summary
+
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React, TypeScript, Azure App Service |
+| **Backend** | Python, FastAPI, Azure Container Apps |
+| **Database** | PostgreSQL Flexible Server with pgVector |
+| **Storage** | Azure Blob Storage |
+| **Identity** | Microsoft Entra ID (SAML/OAuth) |
+| **Secrets** | Azure Key Vault |
+| **Monitoring** | Application Insights, Log Analytics |
+| **AI Models** | Azure AI Foundry, AWS Bedrock, GCP Vertex |
+| **Integrations** | Model Context Protocol (MCP) |
+| **Embedding** | text-embedding-ada-002, pgvector |
 
 ## Next Steps
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Key Features" icon="star" href="/essentials/key-features">
-    Explore AVA's full capabilities
+    Explore what you can do with AVA
+  </Card>
+  <Card title="Deployment Guide" icon="server" href="/deployment/architecture">
+    Learn how to deploy AVA
   </Card>
   <Card title="Get Started" icon="rocket" href="/quickstart">
     Start using AVA today

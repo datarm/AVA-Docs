@@ -1,6 +1,6 @@
 ---
 title: Welcome to AVA by DataRM
-description: Enterprise-grade AI-powered data governance and risk management platform
+description: Enterprise AI assistant that integrates seamlessly with your Microsoft 365 environment and business systems
 ---
 
 <img
@@ -16,128 +16,195 @@ description: Enterprise-grade AI-powered data governance and risk management pla
 
 ## What is AVA?
 
-AVA (AI Virtual Assistant) by DataRM is an enterprise-grade AI-powered platform that revolutionizes how organizations manage data governance and risk management. Built for security-conscious enterprises, AVA provides intelligent, automated solutions for data discovery, classification, access control, and compliance tracking.
+AVA (AI Virtual Assistant) is an enterprise-grade AI assistant that runs securely within your Azure tenant. Unlike traditional SaaS AI tools, AVA integrates directly with your Microsoft 365 environment and business systems, using your existing identity and permissions to provide a truly personalized, agentic experience.
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card
-    title="Data Governance"
-    icon="shield-check"
-    href="/guides/data-governance/overview"
+    title="AVA Chat"
+    icon="comments"
+    href="/features/ava-chat"
   >
-    Comprehensive access controls, compliance tracking, and audit capabilities
+    Conversational AI with access to your calendar, email, files, Salesforce, Jira, and more
   </Card>
   <Card
-    title="Risk Management"
-    icon="triangle-exclamation"
-    href="/guides/risk-management/overview"
+    title="AVA Tasks"
+    icon="list-check"
+    href="/features/ava-tasks"
   >
-    Intelligent risk scoring, automated alerts, and detailed reporting
+    Multi-step workflow automation with intelligent task orchestration
   </Card>
   <Card
-    title="AI Capabilities"
-    icon="brain"
-    href="/guides/ai-capabilities/intelligent-search"
+    title="Knowledge Search"
+    icon="magnifying-glass"
+    href="/features/knowledge-search"
   >
-    Advanced search, automated classification, and anomaly detection
-  </Card>
-  <Card
-    title="Enterprise Integrations"
-    icon="plug"
-    href="/guides/integrations/salesforce"
-  >
-    Seamless connections to Salesforce, Snowflake, Databricks, and more
+    RAG-powered search across your SharePoint documents and knowledge bases
   </Card>
 </CardGroup>
 
-## Key Features
+## The AVA Advantage
 
 <AccordionGroup>
-  <Accordion title="Intelligent Data Discovery">
-    Automatically discover and catalog data assets across your entire organization with AI-powered classification and tagging.
+  <Accordion title="Runs in Your Azure Tenant">
+    AVA is deployed as an Enterprise Application within your own Azure environment. Your data never leaves your tenant, ensuring maximum security and compliance.
   </Accordion>
-  <Accordion title="Automated Compliance">
-    Ensure GDPR, CCPA, SOC2, and HIPAA compliance with automated policy enforcement and audit trails.
+  <Accordion title="Identity-Based Security">
+    Uses Microsoft Entra ID for authentication. AVA only accesses what you can access—it operates with your delegated permissions, not elevated privileges.
   </Accordion>
-  <Accordion title="Real-time Risk Scoring">
-    Continuously monitor and assess data risks with machine learning-powered risk scoring and automated alerts.
+  <Accordion title="No Separate Agents Required">
+    Unlike other AI platforms, AVA doesn't require you to create separate agents for each integration. It seamlessly orchestrates across all your connected data sources in a single conversation.
   </Accordion>
-  <Accordion title="Enterprise-grade Security">
-    Built on zero-trust architecture with role-based access control, encryption, and comprehensive audit logging.
+  <Accordion title="Seamless Microsoft 365 Integration">
+    Native integration with Outlook, Teams, OneDrive, SharePoint, and the entire Microsoft 365 ecosystem.
   </Accordion>
 </AccordionGroup>
+
+## Core Capabilities
+
+### Integrated Workspace
+
+AVA features a powerful three-panel interface:
+
+<Steps>
+  <Step title="Session History">
+    Access all your past conversations, tasks, and knowledge searches organized by recency
+  </Step>
+  <Step title="Chat Area">
+    Central interaction space where you converse with AVA and use @ mentions to pull data from connected sources
+  </Step>
+  <Step title="Workspace Panel">
+    Tabbed interface for Search, Notes, and File Viewer—similar to artifacts in other AI tools but integrated with your Microsoft 365 environment
+  </Step>
+</Steps>
+
+### Connected Data Sources
+
+Pull information from multiple systems using simple @ mentions:
+
+<CardGroup cols={3}>
+  <Card title="Microsoft 365" icon="microsoft">
+    Mail, Calendar, Files, OneDrive, Teams, To Do
+  </Card>
+  <Card title="Salesforce" icon="salesforce">
+    Opportunities, Leads, Cases, Accounts, Contacts
+  </Card>
+  <Card title="Jira" icon="jira">
+    Issues, Projects, Boards, Sprints
+  </Card>
+  <Card title="GitHub" icon="github">
+    Repositories, Code, Pull Requests, Issues
+  </Card>
+  <Card title="NetSuite" icon="database">
+    Business records and transactions
+  </Card>
+  <Card title="Microsoft Security" icon="shield-halved">
+    Defender alerts and security information
+  </Card>
+</CardGroup>
+
+### Powerful Productivity Features
+
+<Tabs>
+  <Tab title="Export to Office">
+    Generate Word documents, PowerPoint presentations, and Excel spreadsheets directly from your conversations or notes
+  </Tab>
+  <Tab title="Meeting Integration">
+    Access and summarize recorded Microsoft Teams meetings, add them to conversations for context
+  </Tab>
+  <Tab title="Prompt Library">
+    Create, save, and share custom prompts with your team. Filter by connected data sources and file types
+  </Tab>
+  <Tab title="Model Selection">
+    Choose from multiple AI models across Azure OpenAI, AWS Bedrock, and Google Vertex AI
+  </Tab>
+</Tabs>
 
 ## Why Choose AVA?
 
 <CardGroup cols={3}>
-  <Card title="Easy to Deploy" icon="rocket">
-    Get started in minutes with cloud or self-hosted deployment options
+  <Card title="Enterprise Security" icon="lock">
+    Deployed in your Azure tenant with identity-based access control
   </Card>
-  <Card title="Scalable" icon="chart-line">
-    Built to handle enterprise-scale data volumes and user bases
+  <Card title="Zero Configuration" icon="rocket">
+    No need to create separate agents—AVA intelligently orchestrates all integrations
   </Card>
-  <Card title="Compliant" icon="file-certificate">
-    Pre-built compliance frameworks for major regulations
+  <Card title="Native Integration" icon="plug">
+    Built specifically for Microsoft 365 enterprise environments
   </Card>
-  <Card title="AI-Powered" icon="sparkles">
-    Leverage advanced AI for intelligent automation
+  <Card title="Agentic Intelligence" icon="brain">
+    AVA understands context and automatically pulls relevant data from connected sources
   </Card>
-  <Card title="Integrations" icon="puzzle-piece">
-    Connect to your existing data ecosystem seamlessly
+  <Card title="Delegated Permissions" icon="key">
+    Operates with your permissions—no elevated access required
   </Card>
-  <Card title="Support" icon="headset">
-    24/7 enterprise support and dedicated success team
+  <Card title="Flexible AI Models" icon="sparkles">
+    Choose the right model for each task across multiple providers
   </Card>
 </CardGroup>
 
 ## Get Started
 
 <Steps>
-  <Step title="Explore the Platform">
-    Learn about [what AVA can do](/essentials/what-is-ava) and how it can help your organization
+  <Step title="Sign In">
+    Authenticate with your Microsoft work account
   </Step>
-  <Step title="Quick Start">
-    Follow our [5-minute quickstart guide](/quickstart) to get up and running
+  <Step title="Explore Features">
+    Try [AVA Chat](/features/ava-chat), [Tasks](/features/ava-tasks), and [Knowledge Search](/features/knowledge-search)
   </Step>
   <Step title="Connect Your Data">
-    Set up [integrations](/getting-started/connecting-data-sources) with your data sources
+    Use @ mentions to access your [connected data sources](/integrations/microsoft-365)
   </Step>
-  <Step title="Configure Governance">
-    Implement [data governance policies](/guides/data-governance/overview) for your organization
+  <Step title="Create & Share">
+    Build custom prompts in the [Prompt Library](/guides/prompt-library) and share with your team
   </Step>
 </Steps>
 
-## Popular Resources
+## Popular Features
 
 <CardGroup cols={2}>
   <Card
-    title="API Reference"
-    icon="code"
-    href="/api-reference/introduction"
+    title="Using @ Mentions"
+    icon="at"
+    href="/guides/using-mentions"
   >
-    Complete API documentation for developers
+    Pull data from any connected source with simple @ syntax
   </Card>
   <Card
-    title="SDK Documentation"
-    icon="book-open"
-    href="/sdk/overview"
+    title="Knowledge Search Setup"
+    icon="books"
+    href="/guides/knowledge-search-setup"
   >
-    Python, JavaScript, and Java SDK guides
+    Create corpora from your SharePoint sites for intelligent document search
   </Card>
   <Card
-    title="Deployment Guide"
-    icon="server"
-    href="/deployment/architecture"
+    title="Workspace Features"
+    icon="table-columns"
+    href="/guides/workspace-features"
   >
-    Architecture and deployment best practices
+    Master the Notes, Search, and File Viewer capabilities
   </Card>
   <Card
-    title="Support & FAQ"
-    icon="circle-question"
-    href="/support/faq"
+    title="Exporting Content"
+    icon="file-export"
+    href="/guides/exporting-content"
   >
-    Common questions and support resources
+    Generate PowerPoint, Word, and Excel files from your work
   </Card>
 </CardGroup>
+
+## Technical Foundation
+
+AVA is built on modern, enterprise-grade architecture:
+
+- **Azure Container Apps**: Scalable, containerized Python backend
+- **PostgreSQL with pgvector**: Efficient vector storage for RAG capabilities
+- **Model Context Protocol (MCP)**: Standardized integration layer for all data sources
+- **Microsoft Entra ID**: Enterprise identity and access management
+- **Azure Key Vault**: Secure secrets management
+
+<Info>
+  Learn more about AVA's architecture in our [deployment guide](/deployment/architecture).
+</Info>
 
 ## Need Help?
 
@@ -147,7 +214,7 @@ AVA (AI Virtual Assistant) by DataRM is an enterprise-grade AI-powered platform 
     icon="envelope"
     href="/support/contact"
   >
-    Get in touch with our support team
+    Get in touch with our support team at avasupport@datarm.ai
   </Card>
   <Card
     title="Request a Demo"

@@ -1,180 +1,426 @@
 ---
 title: 'What is AVA?'
-description: 'Understanding AVA and its role in modern data governance'
+description: 'Understanding AVA: Your enterprise AI assistant integrated with Microsoft 365 and business systems'
 ---
 
 ## Overview
 
-AVA (AI Virtual Assistant) by DataRM is an enterprise-grade platform that transforms how organizations approach data governance, risk management, and compliance. Built on cutting-edge AI technology, AVA automates the complex tasks of data discovery, classification, access control, and compliance monitoring.
+AVA (AI Virtual Assistant) is an enterprise AI productivity platform that runs securely within your Azure tenant. Unlike external SaaS AI tools, AVA integrates seamlessly with your Microsoft 365 environment and business systems, using your existing Microsoft Entra identity to provide an intelligent, agentic experience tailored to your organization.
 
-## The Problem AVA Solves
+Think of AVA as your personal AI assistant that already knows your calendar, can access your emails, understands your documents, and connects to your business tools—all while respecting your permissions and keeping your data secure within your Azure tenant.
 
-Modern enterprises face critical challenges:
+## The AVA Difference
+
+AVA solves a critical challenge: **How do you give your organization the power of AI while maintaining enterprise security and leveraging your existing Microsoft 365 investment?**
 
 <AccordionGroup>
-  <Accordion title="Data Sprawl">
-    Data exists across hundreds of systems - cloud platforms, databases, SaaS applications, and file shares. Organizations struggle to maintain visibility and control.
+  <Accordion title="Runs Inside Your Azure Tenant">
+    AVA is deployed as an Azure Enterprise Application within your own Azure environment. This means:
+    - All data processing happens in your tenant
+    - No data is sent to external SaaS providers
+    - You maintain complete control over your information
+    - Compliance requirements are easier to meet
   </Accordion>
-  <Accordion title="Compliance Complexity">
-    Regulations like GDPR, CCPA, SOC2, and HIPAA require continuous monitoring and evidence collection. Manual compliance is time-consuming and error-prone.
+  <Accordion title="Uses Your Identity & Permissions">
+    AVA leverages Microsoft Entra ID (formerly Azure AD) for authentication:
+    - Users sign in with their work accounts
+    - AVA operates with delegated user permissions
+    - It can only access what the user can access
+    - No elevated privileges or broad access required
+    - Perfect for zero-trust environments
   </Accordion>
-  <Accordion title="Security Risks">
-    Sensitive data (PII, PHI, financial data) is often unprotected or accessible to unauthorized users, creating security vulnerabilities.
+  <Accordion title="No Agent Creation Needed">
+    Unlike other AI platforms that require creating separate agents for each integration:
+    - AVA intelligently orchestrates all connected data sources
+    - Single conversation can span multiple systems
+    - Context is maintained across data sources
+    - Natural language interface—just ask what you need
   </Accordion>
-  <Accordion title="Lack of Visibility">
-    Organizations don't know what data they have, where it is, who has access, or how it's being used.
+  <Accordion title="Enterprise-Grade Microsoft Integration">
+    Built specifically for Microsoft 365 enterprises:
+    - Native integration with Outlook, Teams, SharePoint, OneDrive
+    - Works with your existing security policies
+    - Supports your organizational structure
+    - Familiar Microsoft-style authentication and UX
   </Accordion>
 </AccordionGroup>
 
-## How AVA Works
+## Three Core Capabilities
 
-AVA provides an intelligent, automated solution:
+### 1. AVA Chat
 
-<Steps>
-  <Step title="Discover">
-    Automatically scans and catalogs data across all connected systems
-  </Step>
-  <Step title="Classify">
-    Uses AI to identify and tag sensitive data types (PII, PHI, financial, etc.)
-  </Step>
-  <Step title="Assess">
-    Evaluates risk based on sensitivity, access patterns, and compliance requirements
-  </Step>
-  <Step title="Protect">
-    Enforces access controls and governance policies automatically
-  </Step>
-  <Step title="Monitor">
-    Continuously tracks compliance status and alerts on policy violations
-  </Step>
-</Steps>
+Your conversational AI interface for everything you need at work.
 
-## Core Capabilities
+**What you can do:**
+- Ask about your schedule: "What meetings do I have today?"
+- Query your email: "Show me emails from Sarah about the project"
+- Access files: "Find my Q4 budget spreadsheet"
+- Pull Salesforce data: "What opportunities are closing this month?"
+- Check Jira: "Show me my open issues"
+- Query GitHub: "What pull requests are waiting for my review?"
 
-### Data Governance
+**How it works:**
+Use the `@` mention system to reference any connected data source. AVA understands context and can combine information from multiple sources in a single response.
+
+**Example conversation:**
+```
+You: @Calendar what's on my schedule today?
+AVA: You have 3 meetings: Team standup at 9am, Client call at 11am...
+
+You: @Salesforce check status of opportunities discussed in that client call
+AVA: Looking at your calendar, the 11am meeting is with Acme Corp.
+     In Salesforce, you have 2 open opportunities with Acme Corp...
+
+You: Draft an email to follow up
+AVA: [Generates email draft using context from both systems]
+```
+
+[Learn more about AVA Chat →](/features/ava-chat)
+
+### 2. AVA Tasks
+
+Multi-step workflow automation with intelligent orchestration.
+
+**What you can do:**
+- Create multi-step processes with individual instructions
+- Add documents from your OneDrive or SharePoint for context
+- Use the SuperPrompt toggle for enhanced AI guidance
+- Save successful workflows as templates
+- Share task templates with your team
+
+**Use cases:**
+- Document analysis workflows
+- Research and synthesis projects
+- Content creation pipelines
+- Data transformation tasks
+- Report generation
+
+**Example task:**
+```
+Task: Quarterly Business Review Preparation
+
+Step 1: Review financial data
+  - Pull Q4 financials from [uploaded Excel file]
+  - Summarize key metrics
+
+Step 2: Analyze pipeline
+  - @Salesforce get all opportunities closing next quarter
+  - Identify top 10 by value
+
+Step 3: Create presentation
+  - Generate PowerPoint with findings
+  - Export to workspace
+```
+
+[Learn more about AVA Tasks →](/features/ava-tasks)
+
+### 3. Knowledge Search
+
+RAG-powered search across your SharePoint documents and knowledge bases.
+
+**What you can do:**
+- Search multiple document libraries simultaneously
+- Query specific "corpora" (collections of related documents)
+- Create custom corpora from SharePoint sites
+- Configure automatic syncing
+- Extract specific fields from documents
+
+**Perfect for:**
+- Contract management (search all contracts)
+- HR policy questions (query employee handbooks)
+- Technical documentation (find specific procedures)
+- Customer service (search support documentation)
+- Legal research (query legal documents)
+
+**How it works:**
+Instead of keyword search, Knowledge Search uses semantic understanding to find relevant information across all your documents, even if they don't contain your exact search terms.
+
+**Example:**
+```
+Using: @Contracts Demo corpus
+
+You: Find all contracts with early termination clauses
+
+AVA: I found 12 contracts with early termination provisions:
+     1. Acme Corp - 30 day notice required...
+     2. TechStart LLC - 60 day notice with fee...
+     [Provides summaries with source citations]
+```
+
+[Learn more about Knowledge Search →](/features/knowledge-search)
+
+## The Workspace
+
+AVA's right-side panel is like having a second screen for your AI work—similar to artifacts in other AI tools, but integrated with your Microsoft 365 environment.
+
+### Three Workspace Tabs:
+
+<Tabs>
+  <Tab title="Search">
+    **Find and add content to your conversation**
+    - Microsoft: Search your OneDrive and SharePoint files
+    - Meetings: Access recorded Teams meetings with transcripts
+    - My Computer: Upload files from your local device
+
+    **Use it to:**
+    - Add documents for AVA to analyze
+    - Include meeting transcripts for summaries
+    - Reference files in your conversation
+  </Tab>
+  <Tab title="Notes">
+    **Rich text editor for capturing and creating**
+    - Full formatting toolbar
+    - Create structured documents
+    - Export to PowerPoint
+    - Copy to clipboard
+
+    **Use it to:**
+    - Take notes during conversations
+    - Draft documents collaboratively with AVA
+    - Organize ideas from multiple chats
+    - Generate presentations from your notes
+  </Tab>
+  <Tab title="File Viewer">
+    **View and edit files from SharePoint/OneDrive**
+    - Toggle between View and Edit modes
+    - Microsoft Office integration
+    - Direct access to your files
+
+    **Use it to:**
+    - Review documents while chatting about them
+    - Make edits without leaving AVA
+    - Reference multiple files simultaneously
+  </Tab>
+</Tabs>
+
+[Learn more about Workspace →](/features/workspace)
+
+## Connected Data Sources (MCP Integration)
+
+AVA uses the Model Context Protocol (MCP) to integrate with your business systems. Once connected, you can access data using simple `@` mentions.
+
+### Currently Supported:
 
 <CardGroup cols={2}>
-  <Card title="Automated Discovery" icon="magnifying-glass">
-    Find all data assets across your organization automatically
+  <Card title="Microsoft 365 Apps" icon="microsoft">
+    - Outlook (Mail & Calendar)
+    - OneDrive (Files & Folders)
+    - SharePoint (Sites & Lists)
+    - Teams (Messages & Meetings)
+    - To Do (Tasks & Lists)
   </Card>
-  <Card title="Smart Classification" icon="tags">
-    AI-powered identification of sensitive data types
+  <Card title="Salesforce" icon="salesforce">
+    - Opportunities
+    - Leads
+    - Cases
+    - Accounts
+    - Contacts
+    - Custom Objects
   </Card>
-  <Card title="Access Control" icon="key">
-    Role-based permissions and policy enforcement
+  <Card title="Jira" icon="jira">
+    - Issues
+    - Projects
+    - Boards
+    - Sprints
+    - Comments
   </Card>
-  <Card title="Audit Trails" icon="list-check">
-    Complete audit logs for compliance and security
+  <Card title="GitHub" icon="github">
+    - Repositories
+    - Pull Requests
+    - Issues
+    - Code Search
+    - Commit History
+  </Card>
+  <Card title="NetSuite" icon="database">
+    - Business Records
+    - Transactions
+    - Custom Records
+  </Card>
+  <Card title="Microsoft Security" icon="shield-halved">
+    - Defender Alerts
+    - Security Incidents
+    - Threat Intelligence
   </Card>
 </CardGroup>
 
-### Risk Management
+## Global Features Available Everywhere
 
-<CardGroup cols={2}>
-  <Card title="Risk Scoring" icon="gauge-high">
-    AI-driven risk assessment for all data assets
+### Prompt Library
+
+Create and share custom prompts across your organization:
+
+- **Create**: Build prompts with instructions and connected data references
+- **Filter**: By connected data sources, file types, or teams
+- **Share**: With individuals, teams, or Microsoft 365 groups
+- **Organize**: Personal prompts vs team prompts
+
+**Example prompt:**
+```
+Name: "Weekly Pipeline Review"
+Connected Data: @Salesforce
+File Types: Excel
+
+Prompt: "Review all opportunities closing this week.
+        Create a summary table with: Company, Value,
+        Close Date, and Risk Level. Export to Excel."
+```
+
+### Model Selection
+
+Choose the right AI model for your task:
+
+- **Azure OpenAI**: GPT-4, GPT-4 Turbo, GPT-3.5
+- **AWS Bedrock**: Claude Sonnet, Claude Opus
+- **Google Vertex**: Gemini Pro, PaLM
+
+Each model has different strengths—select based on:
+- Complexity of the task
+- Speed requirements
+- Cost considerations
+- Context window needs
+
+### Custom Instructions
+
+Personalize how AVA works for you:
+
+```
+Example custom instructions:
+
+"I'm a sales manager at a SaaS company. When analyzing
+opportunities, always include ARR, sales cycle length,
+and competitive threats. Format financial data in tables.
+My working hours are 8am-5pm Pacific Time."
+```
+
+AVA will remember these preferences across all conversations.
+
+### Export Capabilities
+
+Generate Office documents from your work:
+
+<CardGroup cols={4}>
+  <Card title="PowerPoint" icon="file-powerpoint">
+    From chat conversations or notes
   </Card>
-  <Card title="Real-time Alerts" icon="bell">
-    Immediate notifications for policy violations
+  <Card title="Word" icon="file-word">
+    Create formatted documents
   </Card>
-  <Card title="Anomaly Detection" icon="chart-line">
-    Identify unusual access patterns and behaviors
+  <Card title="Excel" icon="file-excel">
+    Generate spreadsheets with data
   </Card>
-  <Card title="Compliance Reports" icon="file-chart-column">
-    Automated reporting for auditors and regulators
+  <Card title="Text Files" icon="file-lines">
+    Plain text exports
   </Card>
 </CardGroup>
+
+## How AVA Maintains Security
+
+### Identity-Based Access
+
+- Uses Microsoft Entra ID authentication
+- Operates with **delegated user permissions**
+- No service accounts with elevated access
+- Each user sees only what they're authorized to see
+
+### Data Residency
+
+- All processing happens in your Azure tenant
+- Data never leaves your environment
+- You control data location and retention
+- Meets compliance requirements (GDPR, HIPAA, etc.)
+
+### Audit & Compliance
+
+- All actions are logged
+- Integration with Azure Monitor
+- Telemetry and usage tracking
+- Support for compliance frameworks
 
 ## Who Uses AVA?
 
-AVA serves diverse teams across your organization:
-
 <Tabs>
-  <Tab title="Data Teams">
-    **Data Governance Officers** use AVA to:
-    - Maintain a complete data catalog
-    - Enforce governance policies
-    - Ensure compliance across systems
-    - Track data lineage and usage
+  <Tab title="Sales Teams">
+    - Check opportunity pipelines
+    - Update CRM records
+    - Draft customer emails
+    - Prepare presentations
+    - Schedule meetings
   </Tab>
-  <Tab title="Security Teams">
-    **Chief Information Security Officers** use AVA to:
-    - Identify and protect sensitive data
-    - Monitor access patterns
-    - Detect security threats
-    - Respond to incidents quickly
+  <Tab title="Support Teams">
+    - Search knowledge bases
+    - Find customer history
+    - Query case information
+    - Access documentation
+    - Create responses
   </Tab>
-  <Tab title="Compliance Teams">
-    **Compliance Officers** use AVA to:
-    - Automate compliance monitoring
-    - Generate audit reports
-    - Track regulatory changes
-    - Demonstrate compliance to auditors
+  <Tab title="Developers">
+    - Query GitHub repos
+    - Check Jira tickets
+    - Search code
+    - Review PRs
+    - Generate documentation
   </Tab>
-  <Tab title="IT Teams">
-    **IT Administrators** use AVA to:
-    - Manage data source connections
-    - Configure integrations
-    - Monitor system health
-    - Troubleshoot issues
+  <Tab title="Executives">
+    - Review meeting summaries
+    - Check calendar conflicts
+    - Query business metrics
+    - Draft communications
+    - Access files quickly
+  </Tab>
+  <Tab title="Legal/Compliance">
+    - Search contract libraries
+    - Query policy documents
+    - Find specific clauses
+    - Generate reports
+    - Track document versions
+  </Tab>
+  <Tab title="HR Teams">
+    - Search HR policies
+    - Find employee documentation
+    - Query benefits information
+    - Draft communications
+    - Access org charts
   </Tab>
 </Tabs>
 
 ## Key Differentiators
 
-What makes AVA unique:
-
-| Feature | Traditional Tools | AVA |
-|---------|------------------|-----|
-| **Data Discovery** | Manual, scheduled scans | Continuous, AI-powered discovery |
-| **Classification** | Rule-based patterns | Machine learning classification |
-| **Risk Assessment** | Static risk scores | Dynamic, context-aware scoring |
-| **Compliance** | Periodic audits | Real-time monitoring |
-| **Deployment** | Weeks to months | Minutes to hours |
-| **Scalability** | Limited to specific systems | Enterprise-scale, cross-platform |
-
-## Industry Applications
-
-<CardGroup cols={2}>
-  <Card title="Financial Services" icon="building-columns">
-    Protect customer financial data, ensure SOX compliance, prevent fraud
-  </Card>
-  <Card title="Healthcare" icon="hospital">
-    Secure PHI, maintain HIPAA compliance, manage patient privacy
-  </Card>
-  <Card title="Retail & E-commerce" icon="cart-shopping">
-    Protect customer PII, ensure PCI-DSS compliance, prevent data breaches
-  </Card>
-  <Card title="Technology & SaaS" icon="laptop-code">
-    Manage customer data, demonstrate SOC2 compliance, scale governance
-  </Card>
-</CardGroup>
-
-## Technical Architecture
-
-AVA is built on modern, cloud-native architecture:
-
-```mermaid
-graph TD
-    A[Data Sources] --> B[AVA Connectors]
-    B --> C[Discovery Engine]
-    C --> D[AI Classification]
-    D --> E[Risk Scoring]
-    E --> F[Policy Engine]
-    F --> G[Alerts & Reports]
-    G --> H[Users & Teams]
-```
-
-<Info>
-  Learn more about AVA's architecture in our [deployment guide](/deployment/architecture).
-</Info>
+| Feature | Traditional AI Tools | AVA |
+|---------|---------------------|-----|
+| **Deployment** | External SaaS | Your Azure tenant |
+| **Authentication** | Separate login | Microsoft Entra ID |
+| **Permissions** | API keys/tokens | Delegated user permissions |
+| **Data Access** | Data sent externally | Data stays in tenant |
+| **Agent Creation** | Manual setup required | Automatic orchestration |
+| **Microsoft 365** | Basic via APIs | Native integration |
+| **Security Model** | Trust the vendor | Zero-trust compatible |
+| **Customization** | Limited to vendor options | Full control in your tenant |
 
 ## Getting Started
 
-Ready to transform your data governance?
+Ready to experience AI that works the way your organization does?
+
+<Steps>
+  <Step title="Sign In">
+    Use your Microsoft work account—same credentials you use every day
+  </Step>
+  <Step title="Explore the Interface">
+    Three panels: Session History, Chat Area, Workspace
+  </Step>
+  <Step title="Try @ Mentions">
+    Start typing @ to see your connected data sources
+  </Step>
+  <Step title="Create a Task">
+    Build your first multi-step workflow
+  </Step>
+  <Step title="Search Your Docs">
+    Try Knowledge Search on a SharePoint site
+  </Step>
+</Steps>
 
 <CardGroup cols={2}>
   <Card
-    title="Quick Start"
+    title="Quick Start Guide"
     icon="rocket"
     href="/quickstart"
   >
@@ -185,7 +431,7 @@ Ready to transform your data governance?
     icon="calendar"
     href="https://datarm.com/demo"
   >
-    See AVA in action with your data
+    See AVA with your actual data
   </Card>
 </CardGroup>
 
@@ -193,12 +439,12 @@ Ready to transform your data governance?
 
 <CardGroup cols={3}>
   <Card title="How It Works" icon="gears" href="/essentials/how-it-works">
-    Deep dive into AVA's technology
+    Technical architecture and design
   </Card>
   <Card title="Key Features" icon="star" href="/essentials/key-features">
-    Explore all capabilities
+    Complete feature overview
   </Card>
   <Card title="Use Cases" icon="briefcase" href="/essentials/use-cases">
-    Real-world applications
+    Real-world examples
   </Card>
 </CardGroup>
