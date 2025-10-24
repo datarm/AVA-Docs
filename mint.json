@@ -2,9 +2,9 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "AVA by DataRM",
   "logo": {
-    "dark": "/logos/Logo AVA - Grey White.png",
-    "light": "/logos/Logo AVA White Purp.png",
-    "href": "https://datarm.com"
+    "dark": "/logos/Logo AVA - 'AVA' horiz.png",
+    "light": "/logos/Logo AVA - 'AVA' horiz.png",
+    "href": "https://datarm.ai"
   },
   "favicon": "/logos/Logo AVA Purp White No Words.png",
   "colors": {
@@ -19,15 +19,10 @@
       "to": "#ad2a97"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Sign In",
-      "url": "https://app.datarm.com"
-    }
-  ],
+  "topbarLinks": [],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://datarm.com/demo"
+    "url": "https://datarm.ai/contact"
   },
   "tabs": [
     {
@@ -37,19 +32,9 @@
   ],
   "anchors": [
     {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://discord.gg/datarm"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://datarm.com/blog"
-    },
-    {
-      "name": "Support",
-      "icon": "life-ring",
-      "url": "https://datarm.com/support"
+      "name": "Website",
+      "icon": "globe",
+      "url": "https://datarm.ai"
     }
   ],
   "navigation": [
@@ -126,7 +111,6 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/datarm",
     "linkedin": "https://linkedin.com/company/datarm"
   },
   "analytics": {
