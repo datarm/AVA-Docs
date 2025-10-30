@@ -1,0 +1,138 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build documentation
+        run: npm run build
+        
+      - name: Start server
+        run: npm run serve &
+        
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/AVA-Docs/ --timeout 30000
+        
+      - name: Test build artifacts
+        run: |
+          if [ ! -d "build" ]; then
+            echo "Build directory not found!"
+            exit 1
+          fi
+          echo "Build completed successfully"
+      
+  link-check:
+    name: Check for Broken Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build documentation
+        run: npm run build
+        
+      - name: Check links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress './build/**/*.html' --exclude-mail --exclude-loopback
+          fail: true
+          format: markdown
+          output: link-check-results.md
+          
+      - name: Upload link check results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-results
+          path: link-check-results.md
+
+  size-check:
+    name: Build Size Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build documentation
+        run: npm run build
+        
+      - name: Calculate build size
+        id: size
+        run: |
+          BUILD_SIZE=$(du -sb build | cut -f1)
+          BUILD_SIZE_MB=$(echo "scale=2; $BUILD_SIZE / 1024 / 1024" | bc)
+          echo "size=$BUILD_SIZE_MB" >> $GITHUB_OUTPUT
+          echo "Build size: ${BUILD_SIZE_MB} MB"
+          
+      - name: Comment PR with size
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const size = '${{ steps.size.outputs.size }}';
+            const body = `## 📦 Build Size Report\n\n**Total Build Size:** ${size} MB\n\n✅ Build completed successfully`;
+            
+            // Find existing comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('Build Size Report')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }

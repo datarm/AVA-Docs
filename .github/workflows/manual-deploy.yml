@@ -1,0 +1,172 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+          - dry-run
+      version_tag:
+        description: 'Version tag (optional, e.g., v1.0.0)'
+        required: false
+        type: string
+      create_backup:
+        description: 'Create backup before deployment'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for tags
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Set environment variables
+        run: |
+          if [ "${{ inputs.environment }}" == "staging" ]; then
+            echo "BASE_URL=/AVA-Docs-staging/" >> $GITHUB_ENV
+            echo "DEPLOY_BRANCH=gh-pages-staging" >> $GITHUB_ENV
+          else
+            echo "BASE_URL=/AVA-Docs/" >> $GITHUB_ENV
+            echo "DEPLOY_BRANCH=gh-pages" >> $GITHUB_ENV
+          fi
+          
+      - name: Build documentation
+        run: npm run build
+        env:
+          BASE_URL: ${{ env.BASE_URL }}
+          
+      - name: Validate build
+        run: |
+          if [ ! -d "build" ]; then
+            echo "❌ Build directory not found!"
+            exit 1
+          fi
+          echo "✅ Build validated successfully"
+          echo "📊 Build size: $(du -sh build | cut -f1)"
+          
+      - name: Create backup
+        if: inputs.create_backup && inputs.environment == 'production'
+        run: |
+          BACKUP_NAME="backup-$(date +%Y%m%d-%H%M%S).tar.gz"
+          tar -czf $BACKUP_NAME build/
+          echo "📦 Backup created: $BACKUP_NAME"
+          
+      - name: Upload backup artifact
+        if: inputs.create_backup && inputs.environment == 'production'
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-backup-${{ github.run_number }}
+          path: backup-*.tar.gz
+          retention-days: 30
+          
+      - name: Dry run notification
+        if: inputs.environment == 'dry-run'
+        run: |
+          echo "🔍 Dry run completed successfully!"
+          echo "📋 Deployment Summary:"
+          echo "  - Environment: ${{ inputs.environment }}"
+          echo "  - Base URL: ${{ env.BASE_URL }}"
+          echo "  - Build size: $(du -sh build | cut -f1)"
+          echo "  - Total files: $(find build -type f | wc -l)"
+          echo ""
+          echo "✅ Build artifacts ready but NOT deployed"
+          
+      - name: Deploy to GitHub Pages (Production)
+        if: inputs.environment == 'production'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: false
+          force_orphan: true
+          
+      - name: Deploy to Staging
+        if: inputs.environment == 'staging'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          destination_dir: staging
+          keep_files: false
+          
+      - name: Create version tag
+        if: inputs.version_tag != '' && inputs.environment == 'production'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          # Check if tag exists
+          if git rev-parse "${{ inputs.version_tag }}" >/dev/null 2>&1; then
+            echo "⚠️ Tag ${{ inputs.version_tag }} already exists"
+          else
+            git tag -a "${{ inputs.version_tag }}" -m "Release ${{ inputs.version_tag }} - Deployed to ${{ inputs.environment }}"
+            git push origin "${{ inputs.version_tag }}"
+            echo "✅ Created tag: ${{ inputs.version_tag }}"
+          fi
+          
+      - name: Deployment summary
+        if: inputs.environment != 'dry-run'
+        run: |
+          echo "## 🚀 Deployment Complete!"
+          echo ""
+          echo "### Deployment Details:"
+          echo "- **Environment:** ${{ inputs.environment }}"
+          echo "- **Version Tag:** ${{ inputs.version_tag || 'N/A' }}"
+          echo "- **Backup Created:** ${{ inputs.create_backup }}"
+          echo "- **Commit:** ${{ github.sha }}"
+          echo "- **Triggered by:** ${{ github.actor }}"
+          echo ""
+          if [ "${{ inputs.environment }}" == "production" ]; then
+            echo "### 🌐 Live URL:"
+            echo "https://datarm.github.io/AVA-Docs/"
+          elif [ "${{ inputs.environment }}" == "staging" ]; then
+            echo "### 🧪 Staging URL:"
+            echo "https://datarm.github.io/AVA-Docs/staging/"
+          fi
+          
+      - name: Create deployment record
+        if: inputs.environment != 'dry-run'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: '${{ inputs.environment }}',
+              description: 'Manual deployment via workflow',
+              auto_merge: false,
+              required_contexts: []
+            });
+            
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.data.id,
+              state: 'success',
+              environment_url: '${{ inputs.environment }}' === 'production' 
+                ? 'https://datarm.github.io/AVA-Docs/' 
+                : 'https://datarm.github.io/AVA-Docs/staging/',
+              description: 'Deployment completed successfully'
+            });

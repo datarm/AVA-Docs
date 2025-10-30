@@ -1,0 +1,94 @@
+{
+  "project": "AVA Documentation",
+  "description": "Docusaurus-based documentation site for AVA enterprise AI platform",
+  "commands": {
+    "dev": {
+      "command": "npm start",
+      "description": "Start development server on port 3000",
+      "category": "development"
+    },
+    "build": {
+      "command": "npm run build",
+      "description": "Build production site",
+      "category": "build",
+      "validation": true
+    },
+    "serve": {
+      "command": "npm run serve",
+      "description": "Serve production build locally",
+      "category": "testing"
+    },
+    "deploy": {
+      "command": "npm run deploy",
+      "description": "Deploy to GitHub Pages",
+      "category": "deployment",
+      "requires": ["build"]
+    },
+    "clean": {
+      "command": "npm run clear",
+      "description": "Clear cache and generated files",
+      "category": "maintenance"
+    },
+    "install": {
+      "command": "npm install",
+      "description": "Install dependencies",
+      "category": "setup"
+    },
+    "kill-port": {
+      "command": "npx kill-port 3000",
+      "description": "Kill process on port 3000",
+      "category": "troubleshooting"
+    }
+  },
+  "auto_commands": {
+    "after_file_changes": {
+      "docs/**/*.md": ["build"],
+      "src/**/*.js": ["build"],
+      "src/**/*.css": ["build"],
+      "docusaurus.config.js": ["build"],
+      "sidebars.js": ["build"]
+    },
+    "before_commit": ["build"],
+    "after_install": ["build"]
+  },
+  "validation": {
+    "build_command": "npm run build",
+    "test_command": "npm run build",
+    "lint_command": "npm run build"
+  },
+  "common_tasks": [
+    {
+      "name": "Add new documentation page",
+      "steps": [
+        "Create new .md file in docs/ directory",
+        "Add frontmatter with sidebar_position and title",
+        "Write content using Markdown",
+        "Run build to validate"
+      ]
+    },
+    {
+      "name": "Update homepage",
+      "steps": [
+        "Edit src/pages/index.js",
+        "Update styles in src/pages/index.module.css",
+        "Test in both light and dark modes",
+        "Run build to validate"
+      ]
+    },
+    {
+      "name": "Deploy to production",
+      "steps": [
+        "Run npm run build",
+        "Check for build errors",
+        "Run npm run deploy",
+        "Verify at https://datarm.github.io/AVA-Docs/"
+      ]
+    }
+  ],
+  "environment": {
+    "node_version": ">=18.0.0",
+    "npm_version": ">=9.0.0",
+    "development_url": "http://localhost:3000/AVA-Docs/",
+    "production_url": "https://datarm.github.io/AVA-Docs/"
+  }
+}

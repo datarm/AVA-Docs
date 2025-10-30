@@ -1,0 +1,205 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+    - cron: '0 3 * * 0'  # Weekly on Sunday at 3 AM UTC
+  workflow_dispatch:
+    inputs:
+      check_type:
+        description: 'Type of check to run'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - links
+          - dependencies
+          - performance
+
+jobs:
+  daily-link-check:
+    name: Daily Link Validation
+    if: github.event_name == 'schedule' || inputs.check_type == 'all' || inputs.check_type == 'links'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build documentation
+        run: npm run build
+        
+      - name: Check for broken links
+        id: link-check
+        uses: lycheeverse/lychee-action@v1
+        continue-on-error: true
+        with:
+          args: --verbose --no-progress './build/**/*.html' --exclude-mail --exclude-loopback
+          fail: false
+          format: markdown
+          output: broken-links.md
+          
+      - name: Create issue if broken links found
+        if: steps.link-check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const linkReport = fs.readFileSync('broken-links.md', 'utf8');
+            
+            const issueTitle = '🔗 Broken Links Detected - ' + new Date().toISOString().split('T')[0];
+            
+            // Check if issue already exists
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'broken-links'
+            });
+            
+            const existingIssue = issues.find(issue => 
+              issue.title.includes('Broken Links Detected') && 
+              issue.title.includes(new Date().toISOString().split('T')[0])
+            );
+            
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                body: `## Broken Links Found\n\nDaily link check has detected broken links in the documentation.\n\n### Report\n\n${linkReport}\n\n### Action Required\n\nPlease review and fix the broken links listed above.`,
+                labels: ['bug', 'documentation', 'broken-links']
+              });
+            }
+
+  weekly-dependency-check:
+    name: Weekly Dependency Analysis
+    if: (github.event.schedule == '0 3 * * 0') || inputs.check_type == 'all' || inputs.check_type == 'dependencies'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Check for outdated dependencies
+        id: outdated
+        run: |
+          npm outdated --json > outdated.json || true
+          cat outdated.json
+          
+      - name: Analyze vulnerabilities
+        id: audit
+        run: |
+          npm audit --json > audit.json || true
+          cat audit.json
+          
+      - name: Create dependency report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let outdated = {};
+            let audit = {};
+            
+            try {
+              const outdatedContent = fs.readFileSync('outdated.json', 'utf8');
+              if (outdatedContent) outdated = JSON.parse(outdatedContent);
+            } catch (e) {
+              console.log('No outdated dependencies');
+            }
+            
+            try {
+              const auditContent = fs.readFileSync('audit.json', 'utf8');
+              if (auditContent) audit = JSON.parse(auditContent);
+            } catch (e) {
+              console.log('No audit issues');
+            }
+            
+            if (Object.keys(outdated).length > 0 || (audit.metadata && audit.metadata.vulnerabilities.total > 0)) {
+              let body = '## 📦 Weekly Dependency Report\n\n';
+              
+              if (Object.keys(outdated).length > 0) {
+                body += '### Outdated Dependencies\n\n';
+                body += '| Package | Current | Wanted | Latest |\n';
+                body += '|---------|---------|--------|--------|\n';
+                
+                for (const [name, info] of Object.entries(outdated)) {
+                  body += `| ${name} | ${info.current} | ${info.wanted} | ${info.latest} |\n`;
+                }
+                body += '\n';
+              }
+              
+              if (audit.metadata && audit.metadata.vulnerabilities.total > 0) {
+                const vulns = audit.metadata.vulnerabilities;
+                body += '### Security Vulnerabilities\n\n';
+                body += `- **Critical:** ${vulns.critical}\n`;
+                body += `- **High:** ${vulns.high}\n`;
+                body += `- **Moderate:** ${vulns.moderate}\n`;
+                body += `- **Low:** ${vulns.low}\n`;
+                body += '\n';
+              }
+              
+              body += '### Recommended Actions\n\n';
+              body += '1. Review and update dependencies\n';
+              body += '2. Run `npm audit fix` to automatically fix vulnerabilities\n';
+              body += '3. Test thoroughly after updates\n';
+              
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '📦 Weekly Dependency Report - ' + new Date().toISOString().split('T')[0],
+                body: body,
+                labels: ['dependencies', 'maintenance']
+              });
+            }
+
+  lighthouse-performance:
+    name: Performance Analysis
+    if: (github.event.schedule == '0 3 * * 0') || inputs.check_type == 'all' || inputs.check_type == 'performance'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build documentation
+        run: npm run build
+        
+      - name: Start server
+        run: npm run serve &
+        
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000/AVA-Docs/
+        
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            http://localhost:3000/AVA-Docs/
+            http://localhost:3000/AVA-Docs/docs/intro
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3

@@ -1,0 +1,98 @@
+{
+  "project_preferences": {
+    "language": "javascript",
+    "framework": "docusaurus",
+    "style_guide": "airbnb",
+    "formatting": {
+      "indent_size": 2,
+      "indent_type": "space",
+      "line_length": 100,
+      "quote_style": "single",
+      "semicolons": true,
+      "trailing_comma": "es5"
+    },
+    "naming_conventions": {
+      "files": "kebab-case",
+      "components": "PascalCase",
+      "functions": "camelCase",
+      "constants": "UPPER_SNAKE_CASE",
+      "css_classes": "camelCase_or_kebab-case"
+    }
+  },
+  "code_generation": {
+    "prefer_functional_components": true,
+    "use_hooks": true,
+    "prefer_arrow_functions": true,
+    "use_typescript": false,
+    "include_comments": "minimal",
+    "error_handling": "try-catch",
+    "import_style": "es6"
+  },
+  "documentation_style": {
+    "markdown_flavor": "github",
+    "heading_style": "atx",
+    "list_style": "dash",
+    "code_fence_style": "backticks",
+    "admonition_style": "docusaurus",
+    "link_style": "inline",
+    "image_storage": "/static/img/"
+  },
+  "testing": {
+    "framework": "none",
+    "coverage_threshold": 0,
+    "run_tests_on_save": false
+  },
+  "security": {
+    "check_dependencies": true,
+    "scan_for_secrets": true,
+    "enforce_https": true,
+    "sanitize_user_input": true
+  },
+  "performance": {
+    "lazy_load_images": true,
+    "optimize_bundle": true,
+    "use_cdn": false,
+    "cache_strategy": "default"
+  },
+  "ai_assistance": {
+    "auto_complete": true,
+    "suggest_improvements": true,
+    "explain_errors": true,
+    "provide_examples": true,
+    "verbosity": "concise",
+    "technical_level": "intermediate"
+  },
+  "workflow": {
+    "auto_format_on_save": false,
+    "auto_build_on_change": false,
+    "show_build_errors": true,
+    "clear_console_on_build": true,
+    "open_browser_on_start": true
+  },
+  "ignore_patterns": [
+    "node_modules/",
+    ".docusaurus/",
+    "build/",
+    ".cache/",
+    "Legacy Documentation/",
+    "*.log",
+    ".DS_Store",
+    "Thumbs.db"
+  ],
+  "important_files": [
+    "CLAUDE.md",
+    "docusaurus.config.js",
+    "sidebars.js",
+    "src/css/custom.css",
+    "src/pages/index.js",
+    "package.json"
+  ],
+  "common_queries": [
+    "How do I add a new documentation page?",
+    "How do I change the theme color?",
+    "How do I add images to documentation?",
+    "How do I deploy to GitHub Pages?",
+    "How do I update the homepage?",
+    "How do I add a new section to the sidebar?"
+  ]
+}

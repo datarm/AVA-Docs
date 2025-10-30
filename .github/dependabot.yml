@@ -1,0 +1,81 @@
+# Dependabot configuration for AVA Documentation
+# This file configures automated dependency updates
+
+version: 2
+updates:
+  # npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    target-branch: "main"
+    # Group related updates to reduce PR noise
+    groups:
+      docusaurus:
+        patterns:
+          - "@docusaurus/*"
+        update-types:
+          - "minor"
+          - "patch"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-*"
+        update-types:
+          - "minor"
+          - "patch"
+      development:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+    # Commit message customization
+    commit-message:
+      prefix: "deps"
+      prefix-development: "deps-dev"
+      include: "scope"
+    # Labels to add to PRs
+    labels:
+      - "dependencies"
+      - "automated"
+    # Reviewers and assignees
+    reviewers:
+      - "datarm/ava-platform-team"
+    assignees:
+      - "datarm/ava-maintainers"
+    # Version update strategy
+    versioning-strategy: "increase"
+    # Ignore specific dependencies if needed
+    ignore:
+      # Example: Ignore major updates for react
+      # - dependency-name: "react"
+      #   update-types: ["version-update:semver-major"]
+    # Allow specific dependencies
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "development"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "05:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    target-branch: "main"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "ci"
+      - "automated"
+      - "github-actions"
+    reviewers:
+      - "datarm/ava-platform-team"

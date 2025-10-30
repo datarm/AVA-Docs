@@ -1,0 +1,57 @@
+# AVA Documentation Code Owners
+# This file defines who is responsible for code reviews in different parts of the repository
+# These owners will be automatically requested for review when someone opens a pull request
+
+# Default owners for everything in the repo
+# Unless a later match takes precedence, these owners will be requested for review
+* @datarm/ava-docs-team
+
+# Documentation content owners
+# All markdown files and documentation content
+/docs/ @datarm/ava-content-team @datarm/ava-docs-team
+/blog/ @datarm/ava-content-team @datarm/ava-marketing
+*.md @datarm/ava-content-team
+
+# Specific documentation areas
+/docs/admin/ @datarm/ava-platform-team @datarm/ava-security
+/docs/api/ @datarm/ava-engineering @datarm/ava-platform-team
+/docs/features/chat/ @datarm/ava-ai-team @datarm/ava-content-team
+/docs/features/tasks/ @datarm/ava-automation-team @datarm/ava-content-team
+/docs/features/knowledge-search/ @datarm/ava-search-team @datarm/ava-content-team
+/docs/guides/ @datarm/ava-content-team @datarm/ava-support
+/docs/release-notes/ @datarm/ava-product @datarm/ava-engineering
+
+# Configuration and build files
+/docusaurus.config.js @datarm/ava-platform-team @datarm/ava-engineering
+/sidebars.js @datarm/ava-platform-team @datarm/ava-content-team
+/package.json @datarm/ava-platform-team @datarm/ava-engineering
+/package-lock.json @datarm/ava-platform-team @datarm/ava-engineering
+/.github/ @datarm/ava-platform-team @datarm/ava-devops
+
+# Theme and UI components
+/src/css/ @datarm/ava-ui-team @datarm/ava-design
+/src/components/ @datarm/ava-ui-team @datarm/ava-frontend
+/src/pages/ @datarm/ava-ui-team @datarm/ava-frontend
+/src/theme/ @datarm/ava-ui-team @datarm/ava-design
+/static/img/ @datarm/ava-design @datarm/ava-marketing
+
+# CI/CD and workflows
+/.github/workflows/ @datarm/ava-devops @datarm/ava-platform-team
+/.github/actions/ @datarm/ava-devops @datarm/ava-platform-team
+/.github/dependabot.yml @datarm/ava-security @datarm/ava-platform-team
+
+# Security-sensitive files
+/.github/CODEOWNERS @datarm/ava-security @datarm/ava-platform-team
+/.github/workflows/security.yml @datarm/ava-security @datarm/ava-devops
+
+# Legacy documentation (preserved for reference)
+/Legacy Documentation/ @datarm/ava-docs-team @datarm/ava-platform-team
+
+# Build and deployment configuration
+/babel.config.js @datarm/ava-platform-team
+/tsconfig.json @datarm/ava-platform-team
+/.gitignore @datarm/ava-platform-team
+
+# IMPORTANT: Order matters! The last matching pattern takes precedence.
+# Use GitHub teams format: @org/team-name
+# Individual users can also be specified: @username
