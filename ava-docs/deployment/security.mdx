@@ -1,0 +1,469 @@
+---
+title: 'Security Architecture'
+description: 'Understanding AVA security model and delegated permissions'
+---
+
+## Security Philosophy
+
+AVA's security model is built on a fundamental principle: **delegated user permissions**. AVA never operates with elevated privileges or service accounts. Instead, it uses your Microsoft Entra ID identity and accesses only what you can access.
+
+<Info>
+  **Zero Trust by Design**: Every action AVA performs is authenticated through your Entra ID identity with delegated permissions. No backdoors, no elevated access, no shadow IT.
+</Info>
+
+## Identity & Access Management
+
+### Microsoft Entra ID Integration
+
+AVA leverages your existing Microsoft Entra ID (formerly Azure AD) for all authentication and authorization:
+
+<Tabs>
+  <Tab title="User Authentication">
+    **Single Sign-On (SSO)**:
+    - Users sign in with their corporate Microsoft account
+    - Multi-factor authentication (MFA) enforced if configured in Entra ID
+    - Conditional Access policies honored
+    - Session management controlled by Entra ID policies
+
+    **No Separate Credentials**:
+    - No passwords stored in AVA
+    - No separate user database to manage
+    - User provisioning/deprovisioning managed via Entra ID
+  </Tab>
+
+  <Tab title="Delegated Permissions">
+    **How It Works**:
+    1. User authenticates with Entra ID
+    2. AVA requests delegated permissions (OAuth 2.0)
+    3. User grants consent (one-time)
+    4. AVA receives access token with user's permissions
+    5. All API calls use user's identity
+
+    **What This Means**:
+    - AVA can only access files the user can access
+    - AVA can only read emails the user can read
+    - AVA can only query Salesforce data the user can query
+    - Audit logs show the actual user, not a service account
+  </Tab>
+
+  <Tab title="Application Permissions">
+    **Enterprise Application**:
+    - Registered in your Entra ID
+    - Visible in Azure Portal → Enterprise Applications
+    - Permissions visible and auditable
+    - Can be disabled/removed by admins
+
+    **Required Permissions** (all delegated, not application):
+    - Microsoft Graph API: User.Read, Mail.Read, Calendars.Read, Files.Read
+    - Additional permissions per connected MCP server
+    - All permissions require user consent or admin consent
+  </Tab>
+</Tabs>
+
+## Data Security
+
+### Encryption
+
+<CardGroup cols={2}>
+  <Card title="At Rest" icon="lock">
+    **Azure Storage Encryption**:
+    - All data encrypted with AES-256
+    - PostgreSQL encrypted at rest
+    - Encryption keys managed by Azure Key Vault
+    - FIPS 140-2 validated encryption modules
+  </Card>
+
+  <Card title="In Transit" icon="shield-halved">
+    **TLS 1.3 Everywhere**:
+    - All API communication encrypted
+    - Frontend ↔ Backend: TLS 1.3
+    - Backend ↔ Database: TLS 1.3
+    - MCP Servers ↔ External APIs: TLS 1.3
+  </Card>
+
+  <Card title="Key Management" icon="key">
+    **Azure Key Vault**:
+    - All secrets stored in Key Vault
+    - No hardcoded credentials
+    - Automatic secret rotation
+    - Access logged and auditable
+  </Card>
+
+  <Card title="Data Residency" icon="globe">
+    **Your Tenant Only**:
+    - Data never leaves your Azure tenant
+    - No cross-tenant data sharing
+    - Compliance with data residency requirements
+    - Full control over data location
+  </Card>
+</CardGroup>
+
+### Data Protection
+
+**What AVA Stores**:
+- User session metadata (who logged in, when)
+- Conversation history (chat messages, task definitions)
+- Knowledge Search corpora metadata and embeddings
+- User preferences and custom instructions
+- Audit logs
+
+**What AVA Does NOT Store**:
+- User passwords (handled by Entra ID)
+- Raw email or calendar data (fetched on-demand via delegated permissions)
+- Salesforce/Jira/GitHub data (fetched on-demand via MCP servers)
+- Any data AVA doesn't need to function
+
+**Data Retention**:
+- Conversation history: Configurable (default 90 days, can be set to unlimited)
+- Knowledge Search embeddings: Until corpus is deleted
+- Audit logs: Configurable (default 365 days, can export to Azure Storage)
+- Session tokens: Expire per Entra ID policy (typically 1-24 hours)
+
+## Network Security
+
+### Architecture
+
+```
+Internet → Azure Front Door (DDoS Protection)
+         ↓
+    App Service (Frontend - Public)
+         ↓ (TLS)
+    Container Apps (Backend - Private VNet)
+         ↓ (Private Endpoint)
+    PostgreSQL (Database - Private VNet)
+         ↓ (Managed Identity)
+    Key Vault (Secrets - Private VNet)
+```
+
+### Network Isolation
+
+<AccordionGroup>
+  <Accordion title="Private Endpoints">
+    - **PostgreSQL**: Accessible only within VNet, no public endpoint
+    - **Key Vault**: Private endpoint for secret access
+    - **Container Apps**: Backend services in private VNet subnet
+    - **No Direct Database Access**: Database not exposed to internet
+  </Accordion>
+
+  <Accordion title="VNet Integration">
+    - All backend services deployed in customer's VNet
+    - Network Security Groups (NSGs) control traffic
+    - Azure Firewall optional for additional control
+    - VNet peering with customer networks supported
+  </Accordion>
+
+  <Accordion title="DDoS Protection">
+    - Azure DDoS Protection Standard enabled
+    - Automatic mitigation of layer 3/4 attacks
+    - Rate limiting at application layer
+    - WAF rules for common attack patterns
+  </Accordion>
+
+  <Accordion title="Traffic Flow">
+    **Inbound**:
+    - Users → Azure Front Door → App Service (HTTPS only)
+    - App Service → Container Apps (internal HTTPS)
+
+    **Outbound** (from backend):
+    - Container Apps → Microsoft Graph API (via delegated permissions)
+    - Container Apps → MCP Servers (internal, same VNet)
+    - MCP Servers → External APIs (Salesforce, Jira, etc. via HTTPS)
+    - All outbound traffic logged
+  </Accordion>
+</AccordionGroup>
+
+## Managed Identity & RBAC
+
+### How AVA Backend Accesses Resources
+
+AVA backend services use **Azure Managed Identity** instead of credentials:
+
+<Steps>
+  <Step title="Identity Assignment">
+    Each Container App is assigned a system-managed identity automatically by Azure
+  </Step>
+
+  <Step title="Role Assignment">
+    The managed identity is granted specific Azure RBAC roles:
+    - **Key Vault Secrets User**: Read secrets from Key Vault
+    - **PostgreSQL Database User**: Connect to database
+    - **Storage Blob Data Contributor**: (if using Azure Storage for exports)
+  </Step>
+
+  <Step title="Authentication">
+    When backend needs to access a resource:
+    1. Requests access token from Azure Instance Metadata Service
+    2. Azure validates the managed identity
+    3. Returns short-lived access token
+    4. Backend uses token to access resource
+  </Step>
+
+  <Step title="No Credentials">
+    **Benefits**:
+    - No passwords or keys in configuration
+    - Automatic credential rotation
+    - Audit trail via Azure AD logs
+    - Cannot be compromised or leaked
+  </Step>
+</Steps>
+
+### User-Level RBAC
+
+Within AVA, access is controlled by:
+
+1. **Microsoft 365 Permissions**: Users see only their own email, calendar, files
+2. **Salesforce Permissions**: Delegated access respects Salesforce sharing rules
+3. **Jira Permissions**: Users see only projects/issues they have access to
+4. **GitHub Permissions**: Repository access follows GitHub permissions
+5. **Knowledge Search**: Users can only search corpora they're granted access to
+
+<Info>
+  **No Shadow RBAC**: AVA doesn't create a separate permission system. It uses your existing access controls in each system.
+</Info>
+
+## Audit & Compliance
+
+### Audit Logging
+
+All actions in AVA are logged with:
+
+- **Who**: User identity (UPN from Entra ID)
+- **What**: Action performed (query, export, corpus access, etc.)
+- **When**: Timestamp (UTC)
+- **Where**: Source IP, device info
+- **Result**: Success/failure, error codes
+
+**Log Destinations**:
+- Azure Monitor / Application Insights
+- Azure Storage (for long-term retention)
+- Azure Sentinel (for SIEM integration)
+- Export to customer's log management system
+
+### Compliance Frameworks
+
+AVA supports compliance with:
+
+<CardGroup cols={3}>
+  <Card title="SOC 2 Type II" icon="certificate">
+    Security, availability, confidentiality controls
+  </Card>
+  <Card title="ISO 27001" icon="shield-check">
+    Information security management system
+  </Card>
+  <Card title="GDPR" icon="scale-balanced">
+    EU data protection and privacy
+  </Card>
+  <Card title="HIPAA" icon="hospital">
+    Healthcare data security (via Azure compliance)
+  </Card>
+  <Card title="FedRAMP" icon="flag-usa">
+    Federal government (via Azure Government)
+  </Card>
+  <Card title="PCI DSS" icon="credit-card">
+    Payment card data security (via Azure)
+  </Card>
+</CardGroup>
+
+<Info>
+  **Shared Responsibility Model**: Azure provides infrastructure compliance (physical security, network, encryption). AVA provides application-level compliance (access controls, audit logs, data handling). Customer is responsible for user access management and data classification.
+</Info>
+
+### Data Subject Rights (GDPR)
+
+AVA supports GDPR data subject rights:
+
+- **Right to Access**: Export all user data via admin API
+- **Right to Erasure**: Delete user and all associated data
+- **Right to Portability**: Export data in machine-readable format (JSON)
+- **Right to Rectification**: Users can edit/delete their conversations
+- **Data Retention Policies**: Configurable retention periods
+
+## Security Best Practices
+
+### For Administrators
+
+<AccordionGroup>
+  <Accordion title="Enable MFA for All Users">
+    Configure in Entra ID:
+    - Require MFA for all users accessing AVA
+    - Use Conditional Access policies
+    - Consider hardware tokens for privileged users
+  </Accordion>
+
+  <Accordion title="Review Permissions Regularly">
+    - Audit Enterprise Application permissions quarterly
+    - Review user access to AVA
+    - Check MCP server configurations
+    - Validate Knowledge Search corpus permissions
+  </Accordion>
+
+  <Accordion title="Monitor Audit Logs">
+    - Set up alerts for suspicious activity
+    - Review failed login attempts
+    - Monitor data export events
+    - Check for unusual query patterns
+  </Accordion>
+
+  <Accordion title="Limit Knowledge Search Corpora">
+    - Only create corpora for documents users should access
+    - Don't include sensitive documents unless necessary
+    - Use corpus-level access controls
+    - Regularly review corpus contents
+  </Accordion>
+
+  <Accordion title="Configure Conditional Access">
+    Entra ID Conditional Access policies apply to AVA:
+    - Require MFA from untrusted locations
+    - Block legacy authentication
+    - Require compliant devices
+    - Restrict access by IP range
+  </Accordion>
+</AccordionGroup>
+
+### For End Users
+
+<AccordionGroup>
+  <Accordion title="Don't Share Sensitive Data">
+    - AVA stores conversation history
+    - Don't paste passwords, API keys, or secrets
+    - Be mindful of PHI, PII, financial data
+    - Use Knowledge Search for sensitive documents (more controlled)
+  </Accordion>
+
+  <Accordion title="Verify Exported Content">
+    - Review PowerPoint/Word exports before sharing externally
+    - Exports may contain aggregated data from multiple sources
+    - Check for sensitive information before sending
+  </Accordion>
+
+  <Accordion title="Use Custom Instructions Wisely">
+    - Custom instructions are stored in database
+    - Don't include sensitive information
+    - Keep instructions professional and task-focused
+  </Accordion>
+
+  <Accordion title="Report Security Concerns">
+    - Contact your IT admin if you see unusual behavior
+    - Report suspected unauthorized access
+    - Security team email: avasupport@datarm.ai
+  </Accordion>
+</AccordionGroup>
+
+## Incident Response
+
+### Security Incident Handling
+
+<Steps>
+  <Step title="Detection">
+    - Azure Monitor alerts trigger automatically
+    - Security Operations Center (SOC) monitoring
+    - User reports via support channel
+  </Step>
+
+  <Step title="Analysis">
+    - Review audit logs and telemetry
+    - Determine scope and impact
+    - Identify affected users/data
+  </Step>
+
+  <Step title="Containment">
+    - Disable compromised accounts (via Entra ID)
+    - Revoke access tokens
+    - Isolate affected Container Apps if needed
+    - Block IP addresses if attack detected
+  </Step>
+
+  <Step title="Remediation">
+    - Patch vulnerabilities
+    - Reset credentials if needed
+    - Restore from backup if data corruption
+    - Update security configurations
+  </Step>
+
+  <Step title="Communication">
+    - Notify affected users within 72 hours (GDPR)
+    - Report to management/board if major incident
+    - Document incident in compliance logs
+    - Post-mortem and lessons learned
+  </Step>
+</Steps>
+
+### Breach Notification
+
+In the unlikely event of a data breach:
+
+- **Timeline**: Notification within 72 hours of discovery (GDPR requirement)
+- **Channels**: Email to admin contacts, in-app notification
+- **Information Provided**: What data affected, timeline, remediation steps
+- **Support**: Dedicated incident support team assigned
+
+## Security Certifications
+
+AVA maintains the following security certifications:
+
+- **SOC 2 Type II**: Annual audit by independent CPA firm
+- **ISO 27001**: Information Security Management System certification
+- **Penetration Testing**: Quarterly by third-party security firm
+- **Vulnerability Scanning**: Continuous automated scanning
+- **Responsible Disclosure Program**: security@datarm.ai
+
+<Tip>
+  **Request Security Documentation**: Contact avasupport@datarm.ai to receive:
+  - SOC 2 Type II report (requires NDA)
+  - ISO 27001 certificate
+  - Penetration test summary
+  - Security whitepaper
+</Tip>
+
+## Common Security Questions
+
+<AccordionGroup>
+  <Accordion title="Can AVA access data I can't see?">
+    **No.** AVA uses delegated permissions. It can only access what you can access with your Microsoft work account.
+  </Accordion>
+
+  <Accordion title="Does AVA store my emails?">
+    **No.** AVA fetches email data on-demand via Microsoft Graph API using your permissions. Only the AI's response is stored in conversation history.
+  </Accordion>
+
+  <Accordion title="Can admins see my conversations?">
+    **No by default.** Conversations are private to each user. However, admins can enable organization-wide audit logging to comply with legal/regulatory requirements.
+  </Accordion>
+
+  <Accordion title="What happens if my laptop is stolen?">
+    AVA sessions are tied to your Entra ID authentication. If you report device theft, IT admin can:
+    - Revoke device access in Entra ID
+    - Force sign-out from all sessions
+    - Your conversations remain secure in Azure
+  </Accordion>
+
+  <Accordion title="How is AVA different from public ChatGPT?">
+    **Key Differences**:
+    - AVA data never leaves your Azure tenant
+    - Uses your identity and permissions
+    - No training on your data
+    - Enterprise-grade security and compliance
+    - Audit logs and governance controls
+  </Accordion>
+
+  <Accordion title="Is my data used to train AI models?">
+    **No.** AVA uses AI models (GPT-4, Claude, etc.) but your data is never used to train or improve these models. All prompts are sent with opt-out flags to prevent training.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Architecture Overview" icon="diagram-project" href="/deployment/architecture">
+    Understand AVA deployment architecture
+  </Card>
+  <Card title="How It Works" icon="gears" href="/essentials/how-it-works">
+    Technical flow and MCP integration
+  </Card>
+  <Card title="Audit Logs" icon="clipboard-list" href="/guides/data-governance/audit-logs">
+    Monitor and review security events
+  </Card>
+  <Card title="Contact Security Team" icon="shield" href="mailto:avasupport@datarm.ai">
+    Questions about security? Email us
+  </Card>
+</CardGroup>

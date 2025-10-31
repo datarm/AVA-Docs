@@ -1,0 +1,196 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "AVA by DataRM",
+  "logo": {
+    "dark": "/logos/Logo AVA - 'AVA' horiz.png",
+    "light": "/logos/Logo AVA - 'AVA' horiz.png",
+    "href": "https://docs.datarm.ai"
+  },
+  "favicon": "/logos/Logo AVA Purp White No Words.png",
+  "colors": {
+    "primary": "#431968",
+    "light": "#7916dd",
+    "dark": "#431968",
+    "background": {
+      "dark": "#0f0f0f"
+    },
+    "anchors": {
+      "from": "#431968",
+      "to": "#ad2a97"
+    }
+  },
+  "topbarLinks": [],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://datarm.ai/contact"
+  },
+  "tabs": [
+    {
+      "name": "User Guide",
+      "url": "user-guide"
+    },
+    {
+      "name": "Admin Guide",
+      "url": "admin-guide"
+    },
+    {
+      "name": "Integrations",
+      "url": "integrations"
+    },
+    {
+      "name": "Adoption & Training",
+      "url": "adoption"
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "AVA by DataRM",
+      "icon": "globe",
+      "url": "https://docs.datarm.ai"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "why-ava",
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Essentials",
+      "pages": [
+        "essentials/what-is-ava",
+        "essentials/how-it-works",
+        "essentials/key-features",
+        "essentials/core-capabilities",
+        "essentials/use-cases"
+      ]
+    },
+    {
+      "group": "Core Features",
+      "pages": [
+        "features/ava-chat",
+        "features/ava-tasks",
+        "features/knowledge-search",
+        "features/workspace"
+      ]
+    },
+    {
+      "group": "User Guide",
+      "pages": [
+        "user-guide/overview",
+        "user-guide/first-time-user",
+        "user-guide/using-ava-chat",
+        "user-guide/creating-tasks",
+        "user-guide/searching-knowledge",
+        "user-guide/keyboard-shortcuts"
+      ]
+    },
+    {
+      "group": "Admin Guide",
+      "pages": [
+        "admin-guide/overview",
+        "admin-guide/deployment-checklist",
+        "admin-guide/entra-id-setup",
+        "admin-guide/mcp-servers",
+        "admin-guide/user-provisioning",
+        "admin-guide/monitoring"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/overview",
+        "integrations/microsoft-365",
+        "integrations/salesforce",
+        "integrations/jira",
+        "integrations/github",
+        "integrations/netsuite",
+        "integrations/troubleshooting"
+      ]
+    },
+    {
+      "group": "Adoption & Training",
+      "pages": [
+        "adoption/overview",
+        "adoption/rollout-strategy",
+        "adoption/training-resources",
+        "adoption/measuring-success",
+        "adoption/champion-program"
+      ]
+    },
+    {
+      "group": "Deployment",
+      "pages": [
+        "deployment/architecture",
+        "deployment/security"
+      ]
+    },
+    {
+      "group": "Resources",
+      "pages": [
+        "resources/glossary"
+      ]
+    },
+    {
+      "group": "Support",
+      "pages": [
+        "support/contact"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog/About AVA 2.9.0",
+        "changelog/About AVA 2.8.0",
+        "changelog/About AVA 2.7.1",
+        "changelog/About AVA 2.7.0",
+        "changelog/About AVA 2.6.3",
+        "changelog/About AVA 2.6.0",
+        "changelog/About AVA 2.5.0",
+        "changelog/About AVA 2.4.1",
+        "changelog/About AVA 2.4.0",
+        "changelog/About AVA 2.3.2",
+        "changelog/About AVA 2.3.0",
+        "changelog/About AVA 2.2.1",
+        "changelog/About AVA 2.2.0",
+        "changelog/About AVA 2.1.1",
+        "changelog/About AVA 2.1.0",
+        "changelog/About AVA 2.0.3",
+        "changelog/About AVA 2.0.2",
+        "changelog/About AVA 2.0.1",
+        "changelog/About AVA 2.0.0",
+        "changelog/About AVA 1.10.1",
+        "changelog/About AVA 1.10.0",
+        "changelog/About AVA 1.9.1",
+        "changelog/About AVA 1.9.0",
+        "changelog/About AVA 1.8.0",
+        "changelog/About AVA 1.7.0",
+        "changelog/About AVA 1.3.7",
+        "changelog/About AVA 1.3.6"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "linkedin": "https://linkedin.com/company/datarm"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-XXXXXXXXXX"
+    }
+  },
+  "search": {
+    "prompt": "Search AVA documentation..."
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
+  }
+}

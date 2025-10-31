@@ -1,0 +1,661 @@
+---
+title: 'Key Features'
+description: 'Comprehensive overview of AVA capabilities across Chat, Tasks, Knowledge Search, and Workspace'
+---
+
+## AVA Chat Features
+
+Your conversational AI interface with connected data access.
+
+<CardGroup cols={2}>
+  <Card title="@ Mention System" icon="at">
+    Pull data from any connected source by typing @ - simple, intuitive access to all your business systems
+  </Card>
+  <Card title="Multi-Source Conversations" icon="network-wired">
+    Combine information from multiple sources in a single conversation without switching contexts
+  </Card>
+  <Card title="Session History" icon="clock-rotate-left">
+    Access all your past conversations, organized by recency with search and filtering
+  </Card>
+  <Card title="Conversation Sharing" icon="share-nodes">
+    Share chat sessions with team members, including full context and history
+  </Card>
+</CardGroup>
+
+### Connected Data Sources
+
+Access live data from enterprise applications:
+
+<Tabs>
+  <Tab title="Microsoft 365">
+    - **@Mail**: Query your Outlook inbox and sent items
+    - **@Calendar**: Check schedule, find meetings, see availability
+    - **@Files**: Search and access OneDrive and SharePoint documents
+    - **@Teams**: Access Teams messages and channel information
+    - **@ToDo**: View and manage your task lists
+  </Tab>
+  <Tab title="CRM & Sales">
+    - **@Salesforce**: Query opportunities, leads, cases, accounts, contacts
+    - Update CRM records directly from chat
+    - Create new records with AI assistance
+    - Generate reports and forecasts
+  </Tab>
+  <Tab title="Development Tools">
+    - **@GitHub**: Search repositories, check PR status, review code
+    - **@Jira**: Query issues, update tickets, check sprint status
+    - Link commits to conversations
+    - Generate development summaries
+  </Tab>
+  <Tab title="Other Integrations">
+    - **@NetSuite**: Business records and transactions
+    - **@Security**: Microsoft Defender alerts and incidents
+    - **@Web**: Web scraping and content crawling
+    - **Custom MCP servers**: Extend with your own integrations
+  </Tab>
+</Tabs>
+
+### Conversation Capabilities
+
+- **Context Awareness**: AVA remembers earlier in the conversation and maintains context across @ mentions
+- **Multi-Turn Dialogues**: Natural back-and-forth conversations with follow-up questions
+- **Code Generation**: Generate and explain code in multiple languages
+- **Data Analysis**: Analyze data from connected sources and generate insights
+- **Content Creation**: Draft emails, documents, presentations with business context
+
+## AVA Tasks Features
+
+Multi-step workflow automation with intelligent orchestration.
+
+<CardGroup cols={2}>
+  <Card title="Multi-Step Workflows" icon="list-ol">
+    Create tasks with multiple sequential steps, each with its own instructions
+  </Card>
+  <Card title="Task Library" icon="book-bookmark">
+    Save successful workflows as templates and share with your team
+  </Card>
+  <Card title="SuperPrompt" icon="wand-magic-sparkles">
+    Toggle enhanced AI guidance for better results on complex tasks
+  </Card>
+  <Card title="Document Integration" icon="file-circle-plus">
+    Add documents from workspace for context in any step
+  </Card>
+</CardGroup>
+
+### Task Capabilities
+
+<AccordionGroup>
+  <Accordion title="Sequential Execution">
+    Each step runs in order, with results from previous steps available as context for subsequent steps
+  </Accordion>
+  <Accordion title="Live Data Integration">
+    Use @ mentions within task steps to pull fresh data from connected sources
+  </Accordion>
+  <Accordion title="Progress Tracking">
+    Visual progress indicators show which steps are complete, in progress, or pending
+  </Accordion>
+  <Accordion title="Template Sharing">
+    Share task templates with:
+    - Individual team members
+    - Microsoft 365 groups
+    - Entire organization
+  </Accordion>
+  <Accordion title="Result Export">
+    Export task results to Office formats (Word, PowerPoint, Excel) or plain text
+  </Accordion>
+</AccordionGroup>
+
+### Common Task Use Cases
+
+- **Research & Analysis**: Multi-step research workflows with synthesis
+- **Report Generation**: Automated report creation from multiple data sources
+- **Document Processing**: Batch processing of documents with consistent steps
+- **Content Creation**: Structured content creation pipelines
+- **Data Transformation**: ETL-style workflows for data manipulation
+
+## Knowledge Search Features
+
+RAG-powered semantic search across your SharePoint documents.
+
+<CardGroup cols={2}>
+  <Card title="Multi-Corpus Search" icon="magnifying-glass-plus">
+    Query multiple document collections simultaneously in a single search
+  </Card>
+  <Card title="Corpus Creation" icon="folder-plus">
+    Create custom knowledge bases from any SharePoint site or document library
+  </Card>
+  <Card title="Auto-Sync" icon="arrows-rotate">
+    Automatically update corpus when documents are added, modified, or deleted
+  </Card>
+  <Card title="Field Extraction" icon="table-cells">
+    Extract custom fields from documents for enhanced search capabilities
+  </Card>
+</CardGroup>
+
+### Knowledge Search Capabilities
+
+<Tabs>
+  <Tab title="Semantic Search">
+    - Understands intent, not just keywords
+    - Finds relevant content even without exact matches
+    - Handles questions in natural language
+    - Returns ranked results by relevance
+  </Tab>
+  <Tab title="Source Attribution">
+    - Every answer includes source citations
+    - Direct links to source documents
+    - Displays file names and locations
+    - Shows relevant excerpts
+  </Tab>
+  <Tab title="Corpus Management">
+    - View all embedded files in a corpus
+    - Add or remove specific documents
+    - Edit corpus descriptions
+    - Configure auto-sync settings
+    - Set field extraction rules
+  </Tab>
+  <Tab title="Access Control">
+    - Respects SharePoint permissions
+    - Users only search documents they can access
+    - Corpus owners control sharing
+    - Delegated permissions model
+  </Tab>
+</Tabs>
+
+### Perfect For
+
+- **Contract Libraries**: Search all contracts for specific clauses, terms, or conditions
+- **HR Documentation**: Find policies, procedures, and employee information
+- **Technical Documentation**: Query manuals, specifications, and guides
+- **Customer Service**: Search support articles, FAQs, and troubleshooting guides
+- **Legal Documents**: Research case law, precedents, and legal opinions
+- **Compliance Materials**: Find regulatory documents and compliance procedures
+
+## Workspace Features
+
+Integrated panel for search, notes, and file viewing.
+
+### Search Tab
+
+<CardGroup cols={3}>
+  <Card title="Microsoft Files" icon="microsoft">
+    Search OneDrive and SharePoint for documents to add to conversations
+  </Card>
+  <Card title="Meetings" icon="video">
+    Access recorded Teams meetings with transcripts and summaries
+  </Card>
+  <Card title="My Computer" icon="laptop">
+    Upload files from your local device to reference in chat
+  </Card>
+</CardGroup>
+
+**Features:**
+- Full-text search across your Microsoft 365 files
+- Filter by file type (Word, Excel, PowerPoint, PDF, etc.)
+- Preview files before adding to conversation
+- Drag-and-drop file upload
+- Meeting filter by date and attendees
+
+### Notes Tab
+
+Rich text editor for capturing ideas and creating content.
+
+**Capabilities:**
+- Full formatting toolbar (bold, italic, headers, lists, etc.)
+- Create structured documents collaboratively with AVA
+- Copy notes to clipboard
+- **Export to PowerPoint**: Generate presentations directly from notes
+- Organize ideas from multiple chat sessions
+- Save notes for later reference
+
+**Use Cases:**
+- Meeting notes while chatting with AVA
+- Brainstorming and idea capture
+- Document drafting with AI assistance
+- Presentation content development
+- Structured note-taking
+
+### File Viewer Tab
+
+View and edit documents from SharePoint and OneDrive.
+
+**Features:**
+- **View Mode**: Preview documents without editing
+- **Edit Mode**: Make changes using Microsoft Office Online integration
+- Multi-tab support for multiple documents
+- Direct access to user's files
+- Synchronized with SharePoint/OneDrive
+
+**Benefits:**
+- Reference documents while chatting about them
+- Make edits without leaving AVA
+- Keep context while working on files
+- Side-by-side comparison of documents
+
+## Prompt Library Features
+
+Create, organize, and share custom prompts across your organization.
+
+<CardGroup cols={2}>
+  <Card title="Prompt Creation" icon="pencil">
+    Build custom prompts with instructions, connected data references, and file type filters
+  </Card>
+  <Card title="Team Collaboration" icon="users">
+    Share prompts with individuals, teams, or Microsoft 365 groups
+  </Card>
+  <Card title="Smart Filtering" icon="filter">
+    Filter prompts by connected data sources, file types, or sharing scope
+  </Card>
+  <Card title="Prompt Templates" icon="clone">
+    Use pre-built prompts as starting points for your own
+  </Card>
+</CardGroup>
+
+### Prompt Capabilities
+
+<AccordionGroup>
+  <Accordion title="Connected Data References">
+    Include specific data sources in your prompts:
+    - @Salesforce for CRM queries
+    - @Microsoft365 for file and calendar access
+    - @Jira for development workflow prompts
+    - Any combination of connected sources
+  </Accordion>
+  <Accordion title="File Type Filtering">
+    Specify which file types the prompt applies to:
+    - Excel spreadsheets only
+    - Word documents only
+    - PowerPoint presentations
+    - PDF documents
+    - Email messages
+    - Meeting transcripts
+  </Accordion>
+  <Accordion title="Sharing Options">
+    Control who can use your prompts:
+    - **Personal**: Only you
+    - **Team**: Specific Microsoft 365 group
+    - **Organization**: Everyone in your company
+    - **Individual**: Specific people
+  </Accordion>
+  <Accordion title="Version Control">
+    Prompts maintain history:
+    - See when prompts were created/modified
+    - Track who created or last updated
+    - Revert to previous versions if needed
+  </Accordion>
+</AccordionGroup>
+
+### Example Prompts
+
+```
+Name: "Weekly Sales Pipeline Review"
+Connected Data: @Salesforce
+File Types: Excel
+Sharing: Sales Team
+
+Prompt: "Review all opportunities closing this week. Create a
+summary table with Company, Deal Value, Close Date, Stage, and
+Risk Assessment. Sort by deal value descending. Export to Excel."
+```
+
+```
+Name: "Contract Clause Extraction"
+Connected Data: @Contracts Demo (Knowledge Search)
+File Types: PDF, Word
+Sharing: Legal Team
+
+Prompt: "Extract all payment terms, termination clauses, and
+renewal provisions from this contract. Create a structured summary
+with section references."
+```
+
+## Model Selection & AI Features
+
+Choose the right AI model for each task.
+
+### Available Models
+
+<Tabs>
+  <Tab title="Azure OpenAI">
+    **Text & Reasoning:**
+    - **GPT-5**: Latest flagship model for logic-heavy and multi-step tasks
+    - **GPT-5 Pro**: Extended reasoning capabilities for complex analysis
+    - **GPT-5 Codex**: Advanced coding model for development tasks
+    - **GPT-5 Chat**: Natural, multimodal, context-aware conversations
+    - **GPT-5 Mini/Nano**: Lightweight, cost-effective variants for speed
+
+    **Image Generation:**
+    - **GPT-image-1**: Latest image generation with improved quality and detail
+    - **DALL-E 3**: High-quality image generation with natural/vivid styles
+  </Tab>
+  <Tab title="AWS Bedrock">
+    - **Claude Opus 4.1**: Most intelligent model, industry leader for coding and agents
+    - **Claude Sonnet 4.5**: Most intelligent for complex agents, 1M token context
+    - **Claude Haiku 4.5**: Fast, cost-effective near-frontier intelligence
+    - **Claude Sonnet 4**: Hybrid reasoning with instant or deep thinking modes
+    - **Claude Opus 4**: Next-gen model for autonomous AI agents
+  </Tab>
+  <Tab title="GCP Vertex">
+    - **Gemini 2.5 Pro**: Most advanced model with Deep Think mode for complex reasoning
+    - **Gemini 2.5 Flash**: Best price-performance, rapid creative workflows
+    - **Gemini 2.5 Flash-Lite**: Speed and cost-optimized variant
+    - **Gemini Pro**: Standard model for general-purpose tasks
+  </Tab>
+</Tabs>
+
+### Model Selection Criteria
+
+Choose based on:
+- **Task Complexity**: Use GPT-5, GPT-5 Pro, Claude Opus 4.1, or Gemini 2.5 Pro for complex reasoning and multi-step logic
+- **Speed Requirements**: Use GPT-5 Nano, Claude Haiku 4.5, or Gemini 2.5 Flash-Lite for quick responses
+- **Coding Tasks**: GPT-5 Codex or Claude Opus 4.1 excel at code generation and debugging
+- **Context Window**: Claude Sonnet 4.5 (1M tokens) for large document analysis
+- **Cost**: Balance performance needs with budget - GPT-5 Mini/Nano, Flash, and Haiku models offer best price-performance
+- **Conversations**: GPT-5 Chat and Gemini 2.5 models excel at natural, context-aware dialogue
+- **Image Generation**: GPT-image-1 for latest quality, DALL-E 3 for creative visual content
+
+### Custom Instructions
+
+Personalize AVA's behavior globally:
+
+```
+Example Custom Instructions:
+
+"I'm a VP of Sales at a B2B SaaS company. When analyzing
+opportunities:
+- Always show ARR (Annual Recurring Revenue)
+- Include sales cycle length
+- Highlight competitive threats
+- Flag deals over $100K
+
+Format financial data in tables with currency symbols.
+My timezone is Pacific Time (PT).
+My working hours are 8am-6pm weekdays."
+```
+
+AVA applies these preferences to all conversations and tasks.
+
+## Export & Integration Features
+
+Generate Office documents from your AI work.
+
+<CardGroup cols={4}>
+  <Card title="PowerPoint" icon="file-powerpoint">
+    From conversations, notes, or task results
+  </Card>
+  <Card title="Word Documents" icon="file-word">
+    Formatted documents with proper styling
+  </Card>
+  <Card title="Excel Spreadsheets" icon="file-excel">
+    Data tables and analysis results
+  </Card>
+  <Card title="Plain Text" icon="file-lines">
+    Simple text file exports
+  </Card>
+</CardGroup>
+
+### PowerPoint Generation
+
+Special capability to create presentations:
+
+- **From Chat**: Select conversation turns to include as slides
+- **From Notes**: Convert notes directly to presentation format
+- **Smart Formatting**: Auto-applies appropriate slide layouts
+- **Image Support**: Includes images and charts where relevant
+- **Customizable**: Edit generated slides before export
+
+### Export Options
+
+All exports support:
+- Copy to clipboard for pasting elsewhere
+- Download directly to local device
+- Save to OneDrive/SharePoint
+- Share via link with team members
+
+## Collaboration Features
+
+Work together with your team using AVA.
+
+<CardGroup cols={2}>
+  <Card title="Chat Sharing" icon="share">
+    Share entire conversations with team members including full context
+  </Card>
+  <Card title="Task Templates" icon="clone">
+    Share successful workflow templates across teams
+  </Card>
+  <Card title="Prompt Library" icon="book">
+    Organizational prompt repository for best practices
+  </Card>
+  <Card title="Knowledge Bases" icon="database">
+    Shared corpus access for team knowledge search
+  </Card>
+</CardGroup>
+
+### Sharing Capabilities
+
+- **Granular Permissions**: Control who can view vs edit
+- **Microsoft 365 Integration**: Share with existing groups and teams
+- **Link-Based Sharing**: Generate secure share links
+- **Access Tracking**: See who has accessed shared resources
+
+## Core Capabilities Available Everywhere
+
+**AI That Works™** - These powerful features work across all of AVA (Chat, Tasks, Knowledge Search), making AVA your AI super assistant.
+
+<Tabs>
+  <Tab title="Images">
+    **Add and generate images**
+
+    **Upload Images:**
+    - Add screenshots, diagrams, photos to any conversation
+    - Supported formats: JPG, PNG, GIF, WebP
+    - Available in Chat, Tasks, and Knowledge Search
+    - AVA analyzes and references images in context
+
+    **Generate Images:**
+    - Create images using GPT-image-1 or DALL-E 3
+    - Simply describe what you want to see
+    - Perfect for presentations, concepts, documentation
+    - Generate professional visuals on demand
+
+    **Use Cases:**
+    - Design feedback on mockups
+    - Troubleshoot errors with screenshots
+    - Visualize data and concepts
+    - Create presentation graphics
+    - Illustrate documentation
+
+    [Learn more about image capabilities →](/essentials/core-capabilities#work-with-images)
+  </Tab>
+
+  <Tab title="Microsoft Actions">
+    **Take action via Microsoft Graph API**
+
+    **Schedule Meetings:**
+    - "Schedule a 30-minute meeting with Sarah tomorrow at 2pm"
+    - AVA checks availability and sends invitations
+    - Creates Teams meeting links automatically
+
+    **Create Tasks:**
+    - "Add 'Review Q4 budget' to my todo list by Friday"
+    - Tasks created in Microsoft To Do
+    - Can assign to others with deadlines
+
+    **Share Documents:**
+    - "Share this presentation with the Sales team"
+    - AVA sets permissions and sends notifications
+    - Manages access levels (view/edit)
+
+    **Send Emails:**
+    - "Draft a follow-up email to the client"
+    - AVA composes and can send on your behalf
+    - Uses conversation context for relevant content
+
+    **The possibilities are nearly endless** with Microsoft Graph API integration.
+
+    [Explore all Microsoft actions →](/essentials/core-capabilities#microsoft-365-actions-via-graph-api)
+  </Tab>
+
+  <Tab title="Copy to Notes">
+    **Build documents from conversations**
+
+    **One-Click Copy:**
+    - Click "Copy to Notes" on any AVA response
+    - Content added to your Workspace Notes
+    - Organize and format as needed
+    - Build comprehensive documents
+
+    **Use Cases:**
+    - Compile research from multiple conversations
+    - Gather insights for reports
+    - Build presentations from chat sessions
+    - Create knowledge documents
+    - Organize findings across sessions
+
+    **Export Options:**
+    - PowerPoint presentations
+    - Word documents
+    - Copy to clipboard
+    - Save to OneDrive
+
+    [Learn more about Notes →](/features/workspace#notes-tab)
+  </Tab>
+
+  <Tab title="Share Conversations">
+    **Collaborate with teammates**
+
+    **Why Share:**
+    - Speed up work by sharing ongoing analysis
+    - Get input with full context
+    - Transfer knowledge efficiently
+    - Team alignment on complex problems
+
+    **How to Share:**
+    1. Click "Share" in conversation header
+    2. Select individual users or Microsoft 365 groups
+    3. Set permissions (view or collaborate)
+    4. Recipients see full conversation history
+
+    **Access Levels:**
+    - **View**: See conversation but can't modify
+    - **Collaborate**: Continue the conversation
+
+    **Use Cases:**
+    - Get manager feedback on analysis
+    - Onboard team members quickly
+    - Collaborative problem-solving
+    - Document decision-making process
+
+    [Explore conversation sharing →](/essentials/core-capabilities#share-conversations)
+  </Tab>
+
+  <Tab title="PowerPoint Generation">
+    **From conversations to presentations**
+
+    **Current Capability:**
+    - Export Notes to PowerPoint
+    - H1 headings become slide titles
+    - Bullets formatted automatically
+    - Professional layouts applied
+
+    **Version 3 (Coming Soon):**
+    - Generate presentations directly from Chat
+    - Intelligent layout selection
+    - Automatic image integration
+    - Brand template support
+    - "Turn this conversation into a presentation" - done!
+
+    **Use Cases:**
+    - Executive summaries
+    - Sales presentations
+    - Research findings
+    - Meeting preparation
+    - Status reports
+
+    [Learn about PowerPoint generation →](/essentials/core-capabilities#powerpoint-generation)
+  </Tab>
+
+  <Tab title="Export Everywhere">
+    **Generate Office documents**
+
+    **Export Options:**
+    - **PowerPoint**: Presentations from notes or conversations
+    - **Word**: Formatted documents and reports
+    - **Excel**: Data tables and analysis
+    - **PDF**: Shareable documents
+    - **Clipboard**: Quick copy and paste
+
+    **Available From:**
+    - Any chat conversation
+    - Task results
+    - Knowledge Search results
+    - Workspace Notes
+    - Any AVA interaction
+
+    **Workflow:**
+    1. Complete work in AVA
+    2. Choose export format
+    3. AVA generates document
+    4. Download or save to OneDrive
+    5. Edit in Office if needed
+
+    [Explore export capabilities →](/essentials/core-capabilities#export-capabilities)
+  </Tab>
+</Tabs>
+
+<Tip>
+  **AI That Works**: AVA leverages Microsoft Graph API to be your AI super assistant—taking real action across your Microsoft 365 environment, not just answering questions.
+</Tip>
+
+<Info>
+  **Want to learn more?** Visit our comprehensive [Core Capabilities](/essentials/core-capabilities) page to explore all these features in detail.
+</Info>
+
+## Security & Privacy Features
+
+Enterprise-grade security built in.
+
+<AccordionGroup>
+  <Accordion title="Delegated Permissions">
+    AVA only accesses what the authenticated user can access - no elevated privileges
+  </Accordion>
+  <Accordion title="Data Residency">
+    All data stays within your Azure tenant - never sent to external SaaS providers
+  </Accordion>
+  <Accordion title="Audit Logging">
+    Complete audit trail of all user actions via Application Insights
+  </Accordion>
+  <Accordion title="Encryption">
+    TLS 1.3 in transit, Azure-managed encryption at rest
+  </Accordion>
+  <Accordion title="Identity-Based Access">
+    Microsoft Entra ID authentication with SAML/OAuth
+  </Accordion>
+</AccordionGroup>
+
+## Performance & Scale
+
+Built for enterprise workloads:
+
+- **Auto-Scaling**: Azure Container Apps scale based on demand
+- **Fast Search**: Sub-second vector search with pgVector
+- **Large Context**: Support for 128K+ token context windows (model-dependent)
+- **Concurrent Users**: No hard limits - scales with your Azure resources
+- **Document Processing**: Parallel embedding generation for fast corpus creation
+- **Model Load Balancing**: Distribute requests across AI provider regions
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Use Cases" icon="briefcase" href="/essentials/use-cases">
+    See how organizations use these features
+  </Card>
+  <Card title="Get Started" icon="rocket" href="/quickstart">
+    Start using AVA today
+  </Card>
+  <Card title="Chat Features" icon="comments" href="/features/ava-chat">
+    Deep dive into AVA Chat
+  </Card>
+  <Card title="Knowledge Search" icon="magnifying-glass" href="/features/knowledge-search">
+    Learn about Knowledge Search
+  </Card>
+</CardGroup>

@@ -1,0 +1,110 @@
+---
+title: "AVA 2.7.1"
+description: "Release notes for AVA 2.7.1"
+date: "2025-09-22"
+---
+
+# AVA 2.7.1
+
+**Release Date:** September 22, 2025
+
+## Overview
+
+AVA 2.7.1 is a maintenance release addressing critical bugs and performance issues identified in version 2.7.0. This release includes important stability improvements and security patches.
+
+---
+
+## Bug Fixes
+
+<Check>**Critical**: Fixed data corruption issue in PostgreSQL metadata store during concurrent writes</Check>
+<Check>**Critical**: Resolved authentication bypass vulnerability in API v2 endpoints (CVE-2024-XXXXX)</Check>
+<Check>Corrected calculation errors in compliance score aggregation</Check>
+<Check>Fixed memory leak in background data discovery jobs</Check>
+<Check>Resolved UI freezing issue when viewing large policy lists (500+ policies)</Check>
+<Check>Addressed incorrect timezone handling in audit log timestamps</Check>
+<Check>Fixed broken links in email notification templates</Check>
+<Check>Corrected SAML SSO redirect issues with certain identity providers</Check>
+<Check>Resolved data export failures for datasets with null values in certain fields</Check>
+
+---
+
+## Performance Improvements
+
+<CardGroup cols={2}>
+  <Card title="Database Optimization" icon="database">
+    - Improved index usage for metadata queries (40% faster)
+    - Optimized connection pooling for high-concurrency scenarios
+    - Reduced lock contention in write operations
+  </Card>
+
+  <Card title="UI Responsiveness" icon="gauge-high">
+    - Fixed rendering delays for data catalog pages
+    - Improved pagination performance for large result sets
+    - Reduced initial page load time by 25%
+  </Card>
+</CardGroup>
+
+---
+
+## Security Updates
+
+<Warning>
+  **Important**: This release includes critical security patches. Immediate upgrade strongly recommended.
+</Warning>
+
+- Patched authentication bypass vulnerability (CVSS 9.1)
+- Updated OpenSSL to version 3.0.11
+- Enhanced input sanitization for all user-supplied data
+- Improved password policy enforcement
+
+---
+
+## Configuration Changes
+
+<Info>
+  No configuration changes required for this release. Upgrade is backward compatible with 2.7.0.
+</Info>
+
+---
+
+## Known Issues
+
+- Data lineage visualization may not display correctly in Firefox ESR (workaround available in KB article #1247)
+- Scheduled reports may be delayed by up to 5 minutes during peak hours (optimization planned for 2.8.0)
+
+---
+
+## Upgrade Instructions
+
+<AccordionGroup>
+  <Accordion title="Docker Deployment">
+    ```bash
+    docker pull datarm/ava:2.7.1
+    docker-compose down
+    docker-compose up -d
+    ```
+  </Accordion>
+
+  <Accordion title="Kubernetes Deployment">
+    ```bash
+    helm upgrade ava datarm/ava --version 2.7.1
+    kubectl rollout status deployment/ava
+    ```
+  </Accordion>
+
+  <Accordion title="On-Premises Installation">
+    1. Download the installer from the customer portal
+    2. Run the upgrade script with administrator privileges
+    3. Restart the AVA services
+    4. Verify the upgrade in Settings > About
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Support
+
+For assistance with this upgrade, contact:
+- **Email**: avasupport@datarm.ai
+- **Portal**: https://support.datarm.ai
+- **Emergency**: Available for Enterprise tier customers

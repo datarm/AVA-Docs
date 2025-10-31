@@ -1,0 +1,733 @@
+---
+title: 'AVA Tasks'
+description: 'Multi-step workflow automation with intelligent orchestration'
+---
+
+## Overview
+
+AVA Tasks transforms complex, multi-step workflows into automated processes. Break down any project into sequential steps, add documents for context, and let AVA execute each step intelligently—remembering results from previous steps and pulling live data from connected sources.
+
+<CardGroup cols={2}>
+  <Card title="Multi-Step Workflows" icon="list-ol">
+    Create tasks with unlimited sequential steps
+  </Card>
+  <Card title="Task Library" icon="book-bookmark">
+    Save and share successful workflows as templates
+  </Card>
+  <Card title="SuperPrompt" icon="wand-magic-sparkles">
+    Enhanced AI guidance for complex tasks
+  </Card>
+  <Card title="Document Context" icon="file-circle-plus">
+    Add files from workspace to any step
+  </Card>
+</CardGroup>
+
+## Creating Your First Task
+
+### Basic Structure
+
+Every AVA Task consists of:
+
+<Steps>
+  <Step title="Task Name">
+    Descriptive name for your workflow (e.g., "Weekly Pipeline Analysis")
+  </Step>
+  <Step title="Steps">
+    Individual instructions executed in sequence
+  </Step>
+  <Step title="Documents (Optional)">
+    Files added from workspace for context
+  </Step>
+  <Step title="SuperPrompt Toggle">
+    Enable enhanced AI guidance for better results
+  </Step>
+</Steps>
+
+### Example: Sales Report Generation
+
+```
+Task Name: Weekly Sales Report
+
+Step 1: Gather Data
+Instructions: @Salesforce get all opportunities that closed this week.
+             Include company name, deal value, close date, and owner.
+
+Step 2: Analyze Trends
+Instructions: Compare this week's closed deals to last week. Identify:
+             - Total value comparison
+             - Win rate changes
+             - Top performers
+
+Step 3: Create Summary
+Instructions: Generate an executive summary with key insights and
+             recommendations for next week.
+
+Step 4: Export
+Instructions: Create a PowerPoint presentation with:
+             - Slide 1: Executive summary
+             - Slide 2: Closed deals table
+             - Slide 3: Trend analysis
+             - Slide 4: Recommendations
+
+Documents: [Last week's report for comparison]
+SuperPrompt: ON
+```
+
+## Task Capabilities
+
+### Sequential Execution
+
+<AccordionGroup>
+  <Accordion title="Context Preservation">
+    Each step has access to all previous step results:
+
+    **Step 1 Output**: List of 10 contracts
+    **Step 2**: "Analyze the contracts from Step 1 for payment terms"
+    AVA remembers the contracts and analyzes them
+
+    **Benefit**: Build complex workflows without manual copying
+  </Accordion>
+
+  <Accordion title="Live Data Integration">
+    Use @ mentions in any step to pull fresh data:
+
+    **Step 1**: @Salesforce get Q4 opportunities
+    **Step 2**: @Jira find issues blocking deals from Step 1
+    **Step 3**: @GitHub check if fixes are deployed
+
+    **Benefit**: Always work with current information
+  </Accordion>
+
+  <Accordion title="Progress Tracking">
+    Visual indicators show:
+    - ✅ Completed steps (green checkmark)
+    - ⏳ Current step (spinner animation)
+    - ⏸️ Pending steps (gray)
+    - ❌ Failed steps (red X with error message)
+
+    **Benefit**: Monitor long-running tasks
+  </Accordion>
+
+  <Accordion title="Step Results">
+    Each completed step shows:
+    - Full AI response
+    - Execution time
+    - Any data pulled from connected sources
+    - Option to re-run individual steps
+
+    **Benefit**: Debug and refine workflows easily
+  </Accordion>
+</AccordionGroup>
+
+### Document Integration
+
+Add files from workspace to provide context:
+
+<Tabs>
+  <Tab title="From OneDrive/SharePoint">
+    1. Click "Add Documents" button
+    2. Select "Microsoft Files" tab in workspace
+    3. Search for your file
+    4. Click to add to task
+
+    **Use Cases**:
+    - Add templates for consistent output
+    - Include reference materials
+    - Provide examples for AI to follow
+    - Add data files for analysis
+  </Tab>
+
+  <Tab title="From Local Computer">
+    1. Click "Add Documents" button
+    2. Select "My Computer" tab
+    3. Drag and drop or browse for files
+    4. Files uploaded to Azure blob storage
+
+    **Use Cases**:
+    - Upload CSV/Excel for data processing
+    - Add images for analysis
+    - Include PDFs for extraction
+    - Provide proprietary templates
+  </Tab>
+
+  <Tab title="From Meetings">
+    1. Click "Add Documents" button
+    2. Select "Meetings" tab
+    3. Choose recorded Teams meeting
+    4. Transcript added to task context
+
+    **Use Cases**:
+    - Analyze meeting discussions
+    - Extract action items
+    - Create follow-up materials
+    - Generate meeting summaries
+  </Tab>
+</Tabs>
+
+### SuperPrompt Feature
+
+Toggle SuperPrompt ON for enhanced AI guidance:
+
+**What It Does**:
+- Provides more detailed reasoning
+- Better handles ambiguous instructions
+- Improves complex analysis
+- More thorough responses
+
+**When to Use**:
+- Complex analysis tasks
+- Ambiguous requirements
+- Creative content generation
+- Research and synthesis
+
+**When to Skip**:
+- Simple data retrieval
+- Straightforward formatting
+- Quick queries (faster without)
+
+**Example Difference**:
+
+Without SuperPrompt:
+```
+Step: Analyze the contract
+Output: [Lists key terms]
+```
+
+With SuperPrompt:
+```
+Step: Analyze the contract
+Output: [Comprehensive analysis with]:
+- Key terms with explanations
+- Potential risks identified
+- Comparison to standard terms
+- Recommendations
+- Referenced sections
+```
+
+## Prompt Library
+
+Save and reuse custom prompts to accelerate your team's workflow.
+
+<Frame>
+  <img src="/images/tasks/prompt-library-templates.png" alt="AVA Prompt Library showing template cards for Case Deflection, Meeting Summarization, and Resume Analysis" />
+</Frame>
+
+### What is the Prompt Library?
+
+The Prompt Library is a centralized repository of:
+- **Pre-built prompts** for common business tasks
+- **Team-shared templates** created by your organization
+- **Personal prompts** you've saved for reuse
+- **Connected Data integrations** for context-aware responses
+
+### Creating Custom Prompts
+
+To create your own reusable prompt:
+
+<Steps>
+  <Step title="Click 'Create New Prompt'">
+    Open the Prompt Library from the navigation
+  </Step>
+  <Step title="Add a Descriptive Name">
+    Explain the prompt's purpose clearly
+  </Step>
+  <Step title="Write Your Prompt">
+    Include specific instructions and placeholders if needed
+  </Step>
+  <Step title="Tag with Categories">
+    Add tags for easy discovery (department, function, data source)
+  </Step>
+  <Step title="Choose Sharing Settings">
+    Select: Personal, Team, or Organization-wide
+  </Step>
+  <Step title="Test and Refine">
+    Run the prompt to verify it works as expected
+  </Step>
+  <Step title="Save to Library">
+    Make it available for future use
+  </Step>
+</Steps>
+
+### Using Connected Data in Prompts
+
+Prompts can integrate with your Connected Data sources:
+
+```
+Find @[Salesforce] Cases marked "High Priority"
+from the last week and summarize the key issues
+```
+
+This allows AVA to access real-time data from your connected systems while executing the prompt.
+
+### Sharing & Collaboration
+
+<Tabs>
+  <Tab title="Personal Prompts">
+    Private to you, perfect for individual workflows and experimentation.
+  </Tab>
+  <Tab title="Team Prompts">
+    Shared with your Microsoft 365 team, enabling collaboration on common processes.
+  </Tab>
+  <Tab title="Organization Prompts">
+    Available to everyone in your company, ideal for company-wide standards and best practices.
+  </Tab>
+</Tabs>
+
+## Task Library
+
+### Saving Task Templates
+
+After creating a successful task:
+
+<Frame>
+  <img src="/images/tasks/task-creation-interface.png" alt="AVA Tasks interface showing task name, sequential steps, document selection, and SuperPrompt toggle" />
+</Frame>
+
+<Steps>
+  <Step title="Complete Task">
+    Run the task and verify results
+  </Step>
+  <Step title="Click 'Save as Template'">
+    Located at top of completed task
+  </Step>
+  <Step title="Name Your Template">
+    Descriptive name: "Contract Review Workflow"
+  </Step>
+  <Step title="Add Description">
+    Explain what the template does and when to use it
+  </Step>
+  <Step title="Set Sharing">
+    Choose: Personal, Team, or Organization
+  </Step>
+</Steps>
+
+### Using Task Templates
+
+1. Click "New Task" button
+2. Select "From Template" tab
+3. Browse or search templates
+4. Click template to load
+5. Customize if needed
+6. Run task
+
+### Template Management
+
+<CardGroup cols={2}>
+  <Card title="Version Control" icon="code-branch">
+    Templates maintain version history; revert to previous versions
+  </Card>
+  <Card title="Usage Analytics" icon="chart-line">
+    See how often templates are used across organization
+  </Card>
+  <Card title="Share & Collaborate" icon="users">
+    Share with Microsoft 365 groups or entire organization
+  </Card>
+  <Card title="Template Categories" icon="folder-tree">
+    Organize by department, use case, or project
+  </Card>
+</CardGroup>
+
+## Common Task Patterns
+
+### Research & Analysis Pattern
+
+Perfect for: Market research, competitive analysis, literature reviews
+
+```
+Task: Competitive Analysis
+
+Step 1: Gather Information
+- @Web search for competitor X product information
+- @Files access our competitive analysis folder
+
+Step 2: Compare Features
+- Create comparison table: Our product vs Competitor
+- Highlight differentiators
+
+Step 3: Pricing Analysis
+- @Salesforce get our pricing for similar deals
+- Compare to competitor's public pricing
+
+Step 4: Generate Report
+- Create executive summary
+- SWOT analysis
+- Recommendations
+- Export to PowerPoint
+```
+
+### Document Processing Pattern
+
+Perfect for: Contract review, resume screening, invoice processing
+
+```
+Task: Contract Review
+
+Step 1: Extract Key Terms
+- Payment terms and schedule
+- Termination clauses
+- Liability limitations
+- Renewal provisions
+
+Step 2: Risk Assessment
+- Identify unfavorable terms
+- Compare to standard contract
+- Flag items requiring legal review
+
+Step 3: Create Summary
+- One-page executive summary
+- Risk rating (Low/Medium/High)
+- Recommended actions
+
+Documents: [Standard contract template, Company contract guidelines]
+SuperPrompt: ON
+```
+
+### Content Creation Pattern
+
+Perfect for: Blog posts, presentations, reports, proposals
+
+```
+Task: Blog Post Creation
+
+Step 1: Research
+- @Files access brand guidelines and past posts
+- @Web research topic trends
+- Identify target keywords
+
+Step 2: Outline
+- Create detailed outline
+- Define key messages
+- Plan structure (intro, 3 sections, conclusion)
+
+Step 3: Draft Content
+- Write complete draft following outline
+- Include SEO keywords naturally
+- Match brand voice
+
+Step 4: Optimize
+- Add compelling headlines
+- Create meta description
+- Suggest images
+- Export to Word
+```
+
+### Data Analysis Pattern
+
+Perfect for: Sales reports, performance analysis, trend identification
+
+```
+Task: Monthly Sales Analysis
+
+Step 1: Gather Data
+- @Salesforce get all closed opportunities this month
+- Include: deal value, sales cycle, owner, product
+
+Step 2: Calculate Metrics
+- Total revenue
+- Average deal size
+- Win rate by product
+- Average sales cycle
+
+Step 3: Trend Analysis
+- Compare to last month
+- Identify top performers
+- Flag concerning trends
+
+Step 4: Visualize
+- Create charts and graphs
+- Executive dashboard
+- Export to Excel
+
+Documents: [Last month's report]
+```
+
+## Real-World Examples
+
+### Sales Team: Proposal Generation
+
+```
+Task Name: Custom Proposal for [Customer Name]
+
+Step 1: Research Customer
+@Salesforce get account history and open opportunities
+@Mail find all email correspondence
+@Calendar review past meeting notes
+
+Step 2: Identify Requirements
+Analyze conversations for:
+- Pain points mentioned
+- Budget indicators
+- Timeline requirements
+- Decision criteria
+
+Step 3: Draft Proposal
+Use template: [Standard Proposal Template.docx]
+Customize sections:
+- Executive summary (customer-specific)
+- Proposed solution addressing pain points
+- Pricing based on requirements
+- Timeline matching their needs
+
+Step 4: Create Presentation
+Generate PowerPoint for proposal presentation:
+- Title slide
+- Problem statement (their pain points)
+- Our solution
+- Pricing options
+- Next steps
+
+Documents: [Standard Proposal Template, Past Winning Proposals]
+SuperPrompt: ON
+
+Time Saved: 4 hours → 30 minutes
+```
+
+### Legal Team: Contract Analysis
+
+```
+Task Name: Vendor Contract Review
+
+Step 1: Extract Standard Clauses
+- Payment terms
+- Liability and indemnification
+- Termination provisions
+- Confidentiality requirements
+- Dispute resolution
+
+Step 2: Compare to Standards
+Use: [Company Standard Vendor Contract]
+Identify deviations:
+- More favorable terms
+- Less favorable terms
+- Missing provisions
+
+Step 3: Risk Assessment
+Classify each deviation:
+- Acceptable
+- Requires negotiation
+- Unacceptable (deal breaker)
+
+Step 4: Generate Red-Line
+Create marked-up version with:
+- Suggested changes in track changes
+- Comments explaining concerns
+- Alternative language
+
+Documents: [Vendor Contract.pdf, Company Standards.docx]
+SuperPrompt: ON
+
+Time Saved: 2 hours → 15 minutes
+```
+
+### HR Team: Job Description Creation
+
+```
+Task Name: Create Job Description for [Role]
+
+Step 1: Research Role
+@Files access similar job descriptions
+@Web search for market salary data
+Analyze requirements for this role
+
+Step 2: Draft Core Sections
+- Role summary and purpose
+- Key responsibilities (8-10)
+- Required qualifications
+- Preferred qualifications
+- Skills and competencies
+
+Step 3: Add Company Info
+Include:
+- Company overview
+- Department structure
+- Growth opportunities
+- Benefits summary
+
+Step 4: Optimize for Recruiting
+- Add engaging language
+- Include DEI statement
+- SEO-friendly title
+- Clear application process
+
+Documents: [Company JD Template, Benefits Guide]
+
+Time Saved: 3 hours → 20 minutes
+```
+
+### Development Team: Sprint Planning
+
+```
+Task Name: Sprint Planning Document
+
+Step 1: Review Backlog
+@Jira get all issues in backlog
+Prioritize by: customer impact, effort, dependencies
+
+Step 2: Assess Capacity
+Team velocity: [from previous sprints]
+Available hours: [team size × sprint length]
+Planned time off: @Calendar check team calendars
+
+Step 3: Select Issues
+Choose issues fitting capacity
+Balance: features, bugs, tech debt
+Check dependencies: @GitHub
+
+Step 4: Create Sprint Plan
+Generate document with:
+- Sprint goal
+- Selected issues with estimates
+- Assignment recommendations
+- Risk factors
+- Success criteria
+
+Export to PowerPoint for kickoff meeting
+
+Time Saved: 2 hours → 15 minutes
+```
+
+## Advanced Features
+
+### Error Handling
+
+If a step fails:
+
+<Steps>
+  <Step title="AVA Notifies You">
+    Error message displayed with details
+  </Step>
+  <Step title="Review Error">
+    Click step to see what went wrong
+  </Step>
+  <Step title="Fix & Re-run">
+    Edit step instructions and click "Re-run Step"
+  </Step>
+  <Step title="Continue">
+    Once fixed, task continues from that step
+  </Step>
+</Steps>
+
+Common errors:
+- Invalid @ mention (data source not available)
+- Insufficient permissions
+- Timeout on long operations
+- Network connectivity issues
+
+### Task Iteration
+
+Improve tasks over time:
+
+1. **Run task first time**: Note what works and what doesn't
+2. **Refine steps**: Edit instructions for better results
+3. **Adjust SuperPrompt**: Toggle on/off to find optimal setting
+4. **Update documents**: Add better templates or examples
+5. **Save as template**: Once perfected, save for reuse
+
+### Collaborative Tasks
+
+Work with team members:
+
+- **Create task** with clear steps
+- **Share via Microsoft 365 group**
+- **Team members run** same workflow
+- **Compare results** and refine
+- **Update template** with improvements
+
+## Performance Tips
+
+<AccordionGroup>
+  <Accordion title="Break Complex Tasks into Smaller Steps">
+    Instead of: "Analyze everything and create report"
+    Better:
+    - Step 1: Gather data
+    - Step 2: Calculate metrics
+    - Step 3: Identify trends
+    - Step 4: Create visualizations
+    - Step 5: Write summary
+    - Step 6: Export report
+  </Accordion>
+
+  <Accordion title="Use Specific Instructions">
+    Instead of: "Analyze the data"
+    Better: "Calculate mean, median, and standard deviation for sales data. Identify outliers. Create a distribution chart."
+  </Accordion>
+
+  <Accordion title="Reference Previous Steps Explicitly">
+    "Using the data from Step 2, calculate..."
+    "Take the list generated in Step 1 and..."
+    "Based on the analysis in Step 3, recommend..."
+  </Accordion>
+
+  <Accordion title="Add Examples to Documents">
+    Upload examples of desired output format.
+    AVA will match the style and structure.
+  </Accordion>
+
+  <Accordion title="Test with Small Data First">
+    Before processing 1000 contracts, test workflow with 2-3.
+    Refine process, then scale up.
+  </Accordion>
+</AccordionGroup>
+
+## Common Questions
+
+<Tabs>
+  <Tab title="General">
+    **Q: How many steps can a task have?**
+    A: No hard limit, but 5-15 steps is typical. Very long tasks may hit timeout limits.
+
+    **Q: Can I pause a task and resume later?**
+    A: Not currently. Tasks must complete once started. Save progress by exporting results.
+
+    **Q: Can tasks run on a schedule?**
+    A: Not yet, but this feature is planned.
+
+    **Q: Can one task trigger another?**
+    A: Not directly. You can save results and manually start next task with that context.
+  </Tab>
+
+  <Tab title="Documents">
+    **Q: How many documents can I add?**
+    A: Up to 20 documents per task. Total size limit: 100MB.
+
+    **Q: What file types are supported?**
+    A: PDF, Word (.docx), Excel (.xlsx), PowerPoint (.pptx), text (.txt), images (.jpg, .png), CSV
+
+    **Q: Are documents stored permanently?**
+    A: Documents remain attached to the task. Deleted after 90 days of inactivity.
+
+    **Q: Can I reference specific pages?**
+    A: Yes, in instructions: "Review pages 5-8 of Contract.pdf"
+  </Tab>
+
+  <Tab title="Performance">
+    **Q: How long does a task take?**
+    A: Depends on complexity and data sources:
+    - Simple 5-step task: 30-60 seconds
+    - Complex 10-step with analysis: 2-5 minutes
+    - Large document processing: 5-15 minutes
+
+    **Q: Does SuperPrompt slow things down?**
+    A: Slightly (10-20% longer), but often worth it for better quality.
+
+    **Q: Can I cancel a running task?**
+    A: Yes, click "Cancel Task" button. Completed steps remain visible.
+  </Tab>
+</Tabs>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create First Task" icon="play" href="/quickstart">
+    Follow quickstart guide to create your first task
+  </Card>
+  <Card title="Task Templates" icon="clone" href="/guides/creating-tasks">
+    Learn to build reusable workflows
+  </Card>
+  <Card title="Best Practices" icon="star" href="/guides/task-best-practices">
+    Tips for effective task creation
+  </Card>
+  <Card title="Examples Library" icon="book" href="/guides/task-examples">
+    Browse task templates by use case
+  </Card>
+</CardGroup>

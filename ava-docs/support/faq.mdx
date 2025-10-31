@@ -1,0 +1,77 @@
+---
+title: 'FAQ'
+description: 'Frequently asked questions about AVA'
+---
+
+## General Questions
+
+<AccordionGroup>
+  <Accordion title="What is AVA?">
+    AVA is an AI-powered data governance and risk management platform that helps organizations discover, classify, and protect sensitive data across their entire data ecosystem.
+  </Accordion>
+
+  <Accordion title="What data sources does AVA support?">
+    AVA supports 100+ data sources including Salesforce, Snowflake, Databricks, PostgreSQL, MySQL, MongoDB, S3, Azure Blob Storage, and more. You can also build custom connectors.
+  </Accordion>
+
+  <Accordion title="How does pricing work?">
+    AVA offers three pricing tiers: Standard ($499/month), Professional ($1,499/month), and Enterprise (custom pricing). Contact sales for details.
+  </Accordion>
+
+  <Accordion title="Is my data secure?">
+    Yes. AVA uses AES-256 encryption at rest, TLS 1.3 in transit, and is SOC 2, ISO 27001, and GDPR certified. All credentials are encrypted and we never store your actual data, only metadata.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="Can I deploy AVA on-premises?">
+    AVA is deployed exclusively in customer Azure tenants. Contact your DataRM representative for deployment options.
+  </Accordion>
+
+  <Accordion title="Does AVA support SSO?">
+    Yes. AVA supports SAML 2.0 and OAuth with providers like Okta, Azure AD, Google Workspace, and others. See the [SSO Setup](/deployment/sso-setup) guide.
+  </Accordion>
+
+  <Accordion title="What APIs does AVA provide?">
+    AVA provides a comprehensive REST API for all platform features. We also offer SDKs for Python, JavaScript, and Java. See the [API Reference](/api-reference/introduction).
+  </Accordion>
+
+  <Accordion title="How often does AVA scan my data?">
+    You can configure scan schedules per data source. We recommend daily scans for production systems. AVA also supports real-time change detection.
+  </Accordion>
+</AccordionGroup>
+
+## Compliance Questions
+
+<AccordionGroup>
+  <Accordion title="Does AVA help with GDPR compliance?">
+    Yes. AVA automates GDPR compliance including data discovery, DSAR processing, consent management, and right to erasure. See the [GDPR Guide](/compliance/gdpr).
+  </Accordion>
+
+  <Accordion title="Is AVA HIPAA compliant?">
+    Yes. AVA is designed for HIPAA compliance with PHI detection, encryption, access controls, and audit logging. We can sign BAAs with healthcare customers.
+  </Accordion>
+
+  <Accordion title="Can AVA help with SOC 2 certification?">
+    Yes. AVA automates evidence collection for SOC 2 controls and provides the audit trails needed for certification.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Contact Support" icon="envelope" href="/support/contact">
+    Get help from our team
+  </Card>
+  <Card title="System Status" icon="signal" href="/support/status">
+    Check system status
+  </Card>
+  <Card title="Documentation" icon="book" href="/introduction">
+    Browse full documentation
+  </Card>
+  <Card title="Request Demo" icon="calendar" href="https://datarm.com/demo">
+    Schedule a demo
+  </Card>
+</CardGroup>

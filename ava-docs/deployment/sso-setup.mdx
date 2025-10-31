@@ -1,0 +1,70 @@
+---
+title: 'SSO Setup'
+description: 'Configure single sign-on for AVA'
+---
+
+## Supported Providers
+
+<CardGroup cols={3}>
+  <Card title="Okta" icon="key">
+    SAML 2.0 and OAuth
+  </Card>
+  <Card title="Azure AD" icon="microsoft">
+    SAML and OpenID Connect
+  </Card>
+  <Card title="Google Workspace" icon="google">
+    SAML 2.0
+  </Card>
+</CardGroup>
+
+## Okta Setup
+
+<Steps>
+  <Step title="Create SAML App">
+    In Okta, create new SAML 2.0 application
+  </Step>
+  <Step title="Configure URLs">
+    - **SSO URL**: `https://ava.your-domain.com/auth/saml/callback`
+    - **Audience URI**: `https://ava.your-domain.com`
+  </Step>
+  <Step title="Get Metadata">
+    Download SAML metadata from Okta
+  </Step>
+  <Step title="Configure in AVA">
+    ```bash
+    ava auth configure saml \
+      --provider okta \
+      --metadata-url "https://your-domain.okta.com/app/xxx/sso/saml/metadata"
+    ```
+  </Step>
+</Steps>
+
+## Azure AD Setup
+
+<Steps>
+  <Step title="Register Enterprise App">
+    In Azure AD, create enterprise application
+  </Step>
+  <Step title="Configure SAML">
+    Set up SAML-based SSO
+  </Step>
+  <Step title="Configure in AVA">
+    ```bash
+    ava auth configure saml \
+      --provider azure \
+      --tenant-id "YOUR_TENANT_ID" \
+      --metadata-url "https://login.microsoftonline.com/YOUR_TENANT_ID/federationmetadata/2007-06/federationmetadata.xml"
+    ```
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/getting-started/authentication">
+    Full authentication guide
+  </Card>
+  <Card title="User Permissions" icon="users-gear" href="/getting-started/user-permissions">
+    Configure permissions
+  </Card>
+</CardGroup>

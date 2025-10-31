@@ -1,0 +1,410 @@
+---
+title: 'Why Choose AVA?'
+description: 'Enterprise AI that works—secure, integrated, and purpose-built for Microsoft 365 environments'
+---
+
+# Why Choose AVA?
+
+## AI That Works™, Not Just Talks
+
+Most AI assistants just answer questions. **AVA takes action.**
+
+AVA completes real work in your Microsoft 365 environment—scheduling meetings, creating tasks, sharing files, generating presentations, and orchestrating complex workflows across your business systems. It's the difference between an AI chatbot and an AI super assistant.
+
+<CardGroup cols={3}>
+  <Card title="Enterprise Security" icon="lock">
+    Deployed in your Azure tenant with identity-based access control
+  </Card>
+  <Card title="Zero Configuration" icon="rocket">
+    No need to create separate agents—AVA intelligently orchestrates all integrations
+  </Card>
+  <Card title="Native Integration" icon="plug">
+    Built specifically for Microsoft 365 enterprise environments
+  </Card>
+  <Card title="Agentic Intelligence" icon="brain">
+    AVA understands context and automatically pulls relevant data from connected sources
+  </Card>
+  <Card title="Delegated Permissions" icon="key">
+    Operates with your permissions—no elevated access required
+  </Card>
+  <Card title="Flexible AI Models" icon="sparkles">
+    Choose the right model for each task across multiple providers
+  </Card>
+</CardGroup>
+
+## The AVA Advantage
+
+<AccordionGroup>
+  <Accordion title="Runs in Your Azure Tenant">
+    **Your data never leaves your environment**
+
+    AVA is deployed as an Enterprise Application within your own Azure tenant. Unlike SaaS AI tools that send your data to external clouds, AVA processes everything within your infrastructure.
+
+    **Benefits:**
+    - Complete data sovereignty and control
+    - Meet strict compliance requirements (GDPR, HIPAA, SOC2)
+    - No third-party data exposure
+    - Audit trail stays in your tenant
+    - Aligns with existing Azure governance
+
+    Your IT team controls deployment, updates, and access—not an external vendor.
+  </Accordion>
+
+  <Accordion title="Identity-Based Security">
+    **Delegated permissions—AVA accesses only what you can access**
+
+    AVA uses Microsoft Entra ID (formerly Azure AD) for authentication. It operates with **your delegated permissions**, not elevated admin privileges.
+
+    **What this means:**
+    - If you can't access a file in SharePoint, neither can AVA on your behalf
+    - No "shadow RBAC" or separate permission systems to manage
+    - Every action is logged with your identity
+    - Conditional Access policies apply to AVA
+    - MFA and security policies are enforced
+
+    **Unlike other AI tools:**
+    - Many AI platforms require admin-level API keys that can access *everything*
+    - AVA never has broader access than the user—it's fundamentally more secure
+  </Accordion>
+
+  <Accordion title="No Separate Agents Required">
+    **One conversation, all your data sources**
+
+    Unlike other AI platforms where you must create and configure separate agents for each integration (one for Salesforce, another for Jira, another for email), AVA seamlessly orchestrates across all your connected data sources in a single conversation.
+
+    **Example:**
+    ```
+    You: @Salesforce show opportunities closing this quarter
+    AVA: [Returns Salesforce data]
+
+    You: For each opportunity, check @Jira for blocking issues
+    AVA: [Automatically combines Salesforce + Jira data]
+
+    You: Email the report to my team
+    AVA: [Generates report and drafts email via Outlook]
+    ```
+
+    **One AI assistant, zero configuration required.** Just use @ mentions and AVA handles the complexity.
+  </Accordion>
+
+  <Accordion title="Seamless Microsoft 365 Integration">
+    **Native integration with your entire Microsoft ecosystem**
+
+    AVA leverages Microsoft Graph API for deep integration:
+
+    **Outlook:**
+    - Read and send emails
+    - Schedule meetings with availability checking
+    - Access calendar events
+    - Manage inbox with AI assistance
+
+    **Teams:**
+    - Access meeting transcripts
+    - Search channel messages
+    - Create Teams meetings
+    - Summarize conversations
+
+    **OneDrive & SharePoint:**
+    - Search across all your files
+    - View and edit documents in AVA
+    - Share files with proper permissions
+    - Create folders and organize content
+
+    **To Do:**
+    - Create and manage tasks
+    - Set due dates and reminders
+    - Organize with lists
+    - Track completion
+
+    **And more:**
+    - Planner integration
+    - Power BI data access
+    - Microsoft Security (Defender)
+    - All via unified @Microsoft 365 Apps mention
+  </Accordion>
+</AccordionGroup>
+
+## Enterprise-Grade Technical Foundation
+
+AVA is built on modern, proven Azure infrastructure designed for scale and reliability.
+
+### Architecture
+
+<CardGroup cols={2}>
+  <Card title="Azure Container Apps" icon="docker">
+    **Scalable, serverless Python backend**
+
+    - Auto-scales based on demand
+    - Handles concurrent users seamlessly
+    - Containerized for consistency
+    - Rapid deployment updates
+  </Card>
+
+  <Card title="PostgreSQL with pgVector" icon="database">
+    **High-performance vector storage for RAG**
+
+    - Sub-second semantic search
+    - Stores document embeddings
+    - Efficient similarity matching
+    - Scalable to millions of documents
+  </Card>
+
+  <Card title="Model Context Protocol (MCP)" icon="plug">
+    **Standardized integration layer**
+
+    - Connects to any enterprise system
+    - Extensible architecture
+    - Community-driven server ecosystem
+    - Custom connectors supported
+  </Card>
+
+  <Card title="Microsoft Entra ID" icon="shield-halved">
+    **Enterprise identity & access**
+
+    - SAML/OAuth authentication
+    - Delegated permissions model
+    - Conditional Access support
+    - MFA enforcement
+  </Card>
+
+  <Card title="Azure Key Vault" icon="key">
+    **Secure secrets management**
+
+    - API keys encrypted at rest
+    - No hard-coded credentials
+    - Managed identities for services
+    - Audit logging for access
+  </Card>
+
+  <Card title="Application Insights" icon="chart-line">
+    **Monitoring & telemetry**
+
+    - Performance tracking
+    - Error detection
+    - Usage analytics
+    - Custom dashboards
+  </Card>
+</CardGroup>
+
+### Security Features
+
+<Tabs>
+  <Tab title="Data Protection">
+    **Your data stays secure**
+
+    - **Encryption in Transit**: TLS 1.3 for all communications
+    - **Encryption at Rest**: Azure-managed encryption for databases and storage
+    - **Secrets Management**: Azure Key Vault for API keys and credentials
+    - **Network Security**: Container Apps in isolated virtual network
+    - **Private Link**: Optional Azure Private Link for VPN-only access
+  </Tab>
+
+  <Tab title="Access Control">
+    **Identity-based security model**
+
+    - **Microsoft Entra ID**: Enterprise SSO authentication
+    - **Delegated Permissions**: AVA uses user's token for all API calls
+    - **No Privilege Escalation**: Can't access data user can't access
+    - **Conditional Access**: Respects your org's access policies
+    - **MFA Support**: Multi-factor authentication enforced
+  </Tab>
+
+  <Tab title="Compliance">
+    **Meet regulatory requirements**
+
+    - **Data Residency**: Processes data in your Azure region
+    - **GDPR Compliant**: Data stays in your tenant
+    - **HIPAA Compatible**: Suitable for healthcare deployments
+    - **SOC 2**: Azure infrastructure compliance
+    - **Audit Trails**: Complete logging in Application Insights
+  </Tab>
+
+  <Tab title="Governance">
+    **You maintain control**
+
+    - **Tenant Isolation**: Single-tenant deployment
+    - **Admin Controls**: IT manages users, access, and policies
+    - **Azure Governance**: Integrates with existing Azure controls
+    - **Update Control**: You control when to update AVA
+    - **Data Retention**: You define retention policies
+  </Tab>
+</Tabs>
+
+## Flexible AI Model Selection
+
+Choose the right model for each task—AVA supports multiple AI providers for maximum flexibility.
+
+<CardGroup cols={3}>
+  <Card title="Azure OpenAI" icon="microsoft">
+    **Primary AI provider**
+
+    - GPT-5 family (including Pro, Codex, Chat)
+    - GPT-4o for balanced performance
+    - o1 and o3-mini for reasoning
+    - GPT-image-1 and DALL-E 3 for images
+    - Native Azure integration
+  </Card>
+
+  <Card title="AWS Bedrock" icon="aws">
+    **Alternative provider**
+
+    - Claude Opus 4.1 (best for coding)
+    - Claude Sonnet 4.5 (1M token context)
+    - Claude Haiku 4.5 (fast, cost-effective)
+    - Latest Anthropic models
+  </Card>
+
+  <Card title="GCP Vertex AI" icon="google">
+    **Google AI models**
+
+    - Gemini 2.5 Pro with Deep Think
+    - Gemini 2.5 Flash (best price-performance)
+    - Gemini Pro for general tasks
+    - Flexible deployment options
+  </Card>
+</CardGroup>
+
+**Why this matters:**
+- **Best tool for the job**: Use Claude for coding, GPT-5 for reasoning, Gemini for speed
+- **No vendor lock-in**: Switch providers as new models emerge
+- **Cost optimization**: Choose economical models for routine tasks
+- **Future-proof**: New models added as they become available
+
+## Proven Results
+
+<CardGroup cols={2}>
+  <Card title="Deployment Speed" icon="gauge-high">
+    **Up and running in hours, not weeks**
+
+    Unlike AI platforms requiring agent configuration, data connectors, and complex setup, AVA deploys quickly:
+    - Azure infrastructure: 2-4 hours
+    - User provisioning: Minutes via Entra ID
+    - Integrations: Zero configuration required
+  </Card>
+
+  <Card title="User Adoption" icon="users">
+    **Employees actually use it**
+
+    AVA's @ mention system and natural language interface mean minimal training:
+    - Intuitive for end users
+    - Works with existing workflows
+    - No specialized knowledge required
+    - Immediate productivity gains
+  </Card>
+
+  <Card title="ROI" icon="chart-line-up">
+    **Measurable business impact**
+
+    Organizations report:
+    - 40% faster research and analysis
+    - 60% reduction in report generation time
+    - 30% improvement in data-driven decisions
+    - Hours saved per employee per week
+  </Card>
+
+  <Card title="IT Satisfaction" icon="badge-check">
+    **Admins love the control**
+
+    IT teams appreciate:
+    - Runs in their Azure tenant
+    - Standard Azure monitoring
+    - Delegated permissions model
+    - No shadow IT risks
+  </Card>
+</CardGroup>
+
+## How AVA Compares
+
+| Feature | AVA | Generic AI Chatbots | Other Enterprise AI |
+|---------|-----|---------------------|---------------------|
+| **Deployment** | Your Azure tenant | External SaaS | Usually SaaS |
+| **Data Location** | Never leaves tenant | External clouds | Varies |
+| **Permissions** | Delegated (user-scoped) | Often admin-level | Mixed |
+| **M365 Integration** | Native via Graph API | Limited or via connectors | Varies |
+| **Agent Setup** | Zero—seamless orchestration | Manual per integration | Often complex |
+| **AI Models** | Multi-provider choice | Single provider | Usually locked in |
+| **Real Actions** | Yes (via Graph API) | Usually chat-only | Varies |
+| **Enterprise Support** | Full Azure infrastructure | SaaS support | Varies |
+
+## Get Started with AVA
+
+<Steps>
+  <Step title="Talk to Us">
+    [Contact our team](https://datarm.ai/contact) to discuss your requirements and use cases
+  </Step>
+  <Step title="Deployment">
+    We'll work with your IT team to deploy AVA in your Azure tenant
+  </Step>
+  <Step title="Onboarding">
+    User provisioning via Entra ID and optional training for your team
+  </Step>
+  <Step title="Start Working">
+    Your team begins using AVA immediately—no complex setup required
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Explore Features"
+    icon="compass"
+    href="/introduction"
+  >
+    Learn what AVA can do for your team
+  </Card>
+  <Card
+    title="See How It Works"
+    icon="gears"
+    href="/essentials/how-it-works"
+  >
+    Understand AVA's technical architecture
+  </Card>
+  <Card
+    title="Get Started"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Try AVA with our quickstart guide
+  </Card>
+  <Card
+    title="Contact Sales"
+    icon="calendar"
+    href="https://datarm.ai/contact"
+  >
+    Request a demo or talk to our team
+  </Card>
+</CardGroup>
+
+## Need More Information?
+
+<CardGroup cols={2}>
+  <Card
+    title="Use Cases"
+    icon="briefcase"
+    href="/essentials/use-cases"
+  >
+    See how organizations use AVA across departments
+  </Card>
+  <Card
+    title="Security Details"
+    icon="shield-check"
+    href="/deployment/security"
+  >
+    Deep dive into AVA's security architecture
+  </Card>
+  <Card
+    title="Deployment Guide"
+    icon="server"
+    href="/deployment/architecture"
+  >
+    Technical details for IT administrators
+  </Card>
+  <Card
+    title="Contact Support"
+    icon="envelope"
+    href="/support/contact"
+  >
+    Get in touch: avasupport@datarm.ai
+  </Card>
+</CardGroup>

@@ -1,0 +1,134 @@
+---
+title: "AVA 2.8.0"
+description: "Release notes for AVA 2.8.0"
+date: "2025-10-10"
+---
+
+# AVA 2.8.0
+
+**Release Date:** October 10, 2025
+
+## Overview
+
+AVA 2.8.0 delivers enhanced integration capabilities, advanced data lineage visualization, and improved governance workflows. This release emphasizes enterprise connectivity and streamlined compliance operations.
+
+---
+
+## New Features
+
+<AccordionGroup>
+  <Accordion title="Enhanced Data Lineage Visualization">
+    - **Column-level Lineage**: Trace data transformations at the column level across entire data pipelines
+    - **Impact Analysis**: Instantly visualize downstream impacts of schema or data changes
+    - **Interactive Lineage Graph**: Zoom, filter, and explore complex data flows with improved UI
+    - **Lineage Export**: Export lineage diagrams as SVG, PNG, or interactive HTML
+    - **Historical Lineage**: Track how data flows have changed over time
+  </Accordion>
+
+  <Accordion title="Microsoft 365 Integration Suite">
+    - **SharePoint Connector**: Scan and classify documents in SharePoint Online
+    - **Teams Integration**: Governance notifications and approvals directly in Microsoft Teams
+    - **OneDrive Scanning**: Automatic discovery of sensitive data in OneDrive for Business
+    - **Outlook Add-in**: Data classification and DLP warnings in email composition
+    - **Power BI Integration**: Governance metadata for Power BI datasets and reports
+  </Accordion>
+
+  <Accordion title="Advanced Workflow Engine">
+    - **Visual Workflow Designer**: Build complex governance workflows with drag-and-drop
+    - **Conditional Logic**: Create sophisticated approval chains with branching logic
+    - **SLA Management**: Define and track service level agreements for governance requests
+    - **Workflow Templates**: Pre-built templates for common governance scenarios
+    - **Parallel Approvals**: Support for concurrent approval paths
+  </Accordion>
+
+  <Accordion title="Data Quality Monitoring">
+    - **Automated Quality Checks**: Schedule and run data quality validations
+    - **Quality Metrics Dashboard**: Monitor completeness, accuracy, consistency, and timeliness
+    - **Anomaly Detection**: AI-driven detection of data quality issues
+    - **Quality Alerts**: Configurable notifications for quality threshold violations
+    - **Remediation Tracking**: Track data quality improvement initiatives
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Improvements
+
+<CardGroup cols={2}>
+  <Card title="Policy Management" icon="file-shield">
+    - Policy versioning with rollback capabilities
+    - Bulk policy application to multiple assets
+    - Policy effectiveness analytics
+    - Template library with 50+ pre-built policies
+  </Card>
+
+  <Card title="Reporting Engine" icon="chart-line">
+    - 30+ new compliance report templates
+    - Custom report builder with drag-and-drop
+    - Scheduled report distribution via email
+    - Export to PDF, Excel, and PowerPoint formats
+  </Card>
+
+  <Card title="Integration Framework" icon="plug">
+    - REST API performance improvements (35% faster)
+    - New connectors: Snowflake, Databricks, MongoDB
+    - Enhanced error handling with detailed diagnostics
+    - Connector health monitoring dashboard
+  </Card>
+
+  <Card title="User Management" icon="users">
+    - Role-based access control granularity improvements
+    - User activity analytics and insights
+    - Self-service user onboarding workflows
+    - Enhanced group management with nested groups
+  </Card>
+</CardGroup>
+
+---
+
+## Bug Fixes
+
+<Check>Fixed issue where large metadata imports would timeout</Check>
+<Check>Resolved display issues in Safari for data catalog search</Check>
+<Check>Corrected permission inheritance for nested organizational units</Check>
+<Check>Fixed duplicate entries in data steward assignment lists</Check>
+<Check>Addressed slow loading times for assets with extensive metadata</Check>
+<Check>Resolved export failures for reports with more than 100,000 rows</Check>
+<Check>Fixed incorrect date range calculations in compliance dashboards</Check>
+
+---
+
+## Security Updates
+
+<Info>
+  This release includes important security patches. Update recommended for all users.
+</Info>
+
+- Updated dependencies to address CVE-2024-XXXX
+- Enhanced input validation for API endpoints
+- Improved session management and token rotation
+- Additional logging for security-relevant events
+
+---
+
+## Deprecation Notice
+
+<Warning>
+  The legacy metadata import API will be deprecated in AVA 3.0. Please migrate to the new bulk import API introduced in this version.
+</Warning>
+
+---
+
+## Known Issues
+
+- Lineage visualization may be slow for graphs with more than 5,000 nodes (optimization planned for 2.9.0)
+- Teams integration requires admin consent for certain tenants
+- Power BI connector requires Power BI Pro or Premium licenses
+
+---
+
+## Upgrade Notes
+
+<Info>
+  Database migrations may take 15-30 minutes for large deployments. Schedule during maintenance windows.
+</Info>

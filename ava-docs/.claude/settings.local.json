@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(done)",
+      "Bash(python:*)",
+      "Bash(awk:*)",
+      "Bash(dir:*)",
+      "Bash(if not exist logosbrands mkdir logosbrands)",
+      "Bash(npm install:*)",
+      "Bash(npx playwright install:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(mintlify dev:*)",
+      "Bash(timeout /t 10 /nobreak)",
+      "Bash(npx mintlify@latest dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(cat:*)",
+      "Read(//c/Repos/AVA-Docs/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

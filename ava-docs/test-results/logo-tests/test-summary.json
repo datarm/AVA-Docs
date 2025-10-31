@@ -1,0 +1,51 @@
+{
+  "successfulPages": [
+    "Home Page",
+    "Integrations Overview",
+    "Microsoft 365 Integration",
+    "Salesforce Integration",
+    "Jira Integration",
+    "GitHub Integration",
+    "NetSuite Integration"
+  ],
+  "failedPages": [],
+  "logoIssues": [
+    {
+      "page": "Integrations Overview",
+      "image": "Microsoft 365",
+      "src": "/logos/brands/microsoft-365.svg",
+      "issue": "Image failed to load (broken)",
+      "severity": "error"
+    },
+    {
+      "page": "Integrations Overview",
+      "image": "NetSuite",
+      "src": "/logos/brands/netsuite.svg",
+      "issue": "Image failed to load (broken)",
+      "severity": "error"
+    },
+    {
+      "page": "Microsoft 365 Integration",
+      "image": "Microsoft 365",
+      "src": "/logos/brands/microsoft-365.svg",
+      "issue": "Too small: 120x56px (minimum: 80px)",
+      "severity": "warning"
+    },
+    {
+      "page": "Microsoft 365 Integration",
+      "image": "Microsoft 365",
+      "src": "/logos/brands/microsoft-365.svg",
+      "issue": "Image failed to load (broken)",
+      "severity": "error"
+    }
+  ],
+  "screenshots": [
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\home-page.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\integrations-overview.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\microsoft-365.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\salesforce.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\jira.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\github.png",
+    "C:\\Repos\\AVA-Docs\\ava-docs\\test-results\\logo-tests\\netsuite.png"
+  ]
+}

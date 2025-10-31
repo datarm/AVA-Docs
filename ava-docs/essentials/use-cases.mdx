@@ -1,0 +1,583 @@
+---
+title: 'Use Cases'
+description: 'Real-world applications of AVA across teams and industries'
+---
+
+## By Team/Role
+
+### Sales Teams
+
+<AccordionGroup>
+  <Accordion title="Pipeline Management">
+    **Scenario**: Sales manager needs to review upcoming deals
+
+    **With AVA**:
+    ```
+    @Salesforce show me all opportunities closing this quarter
+    with deal value over $50K. Group by stage and highlight any
+    at risk.
+    ```
+
+    **Result**: AVA pulls live Salesforce data, analyzes each opportunity, provides risk assessment, and can generate a PowerPoint presentation for the weekly sales meeting
+
+    **Time Saved**: 2 hours/week → 5 minutes
+  </Accordion>
+
+  <Accordion title="Account Research">
+    **Scenario**: Preparing for customer meeting tomorrow
+
+    **With AVA**:
+    ```
+    @Calendar who am I meeting with tomorrow at 2pm?
+    @Salesforce show me their account history
+    @Mail find all email threads with this contact
+    Draft a meeting agenda based on previous conversations
+    ```
+
+    **Result**: AVA connects the dots across calendar, CRM, and email to provide complete account context and drafts a personalized agenda
+
+    **Time Saved**: 45 minutes → 5 minutes
+  </Accordion>
+
+  <Accordion title="Proposal Generation">
+    **Scenario**: Need to create custom proposal for prospect
+
+    **With AVA**:
+    - Upload previous winning proposals to workspace
+    - @Salesforce pull prospect details and requirements
+    - Use AVA Tasks to create multi-step proposal workflow
+    - Export final proposal to Word or PowerPoint
+
+    **Result**: Consistent, high-quality proposals leveraging past successes
+
+    **Time Saved**: 4 hours → 45 minutes
+  </Accordion>
+</AccordionGroup>
+
+### Customer Support Teams
+
+<CardGroup cols={2}>
+  <Card title="Knowledge Base Search" icon="magnifying-glass">
+    **Scenario**: Customer asks complex technical question
+
+    **With AVA**: Use Knowledge Search with support documentation corpus to find relevant articles instantly, even if exact keywords don't match
+
+    **Benefit**: Faster resolution, consistent answers
+  </Card>
+
+  <Card title="Customer History" icon="clock-rotate-left">
+    **Scenario**: Need full customer context quickly
+
+    **With AVA**: @Salesforce get case history, @Mail find all correspondence, @Files access shared documents—all in one conversation
+
+    **Benefit**: Complete context without system-hopping
+  </Card>
+
+  <Card title="Response Drafting" icon="pen-to-square">
+    **Scenario**: Complex technical response needed
+
+    **With AVA**: Query knowledge base, reference similar past cases, draft response using your custom instructions for tone and formatting
+
+    **Benefit**: Professional, accurate responses quickly
+  </Card>
+
+  <Card title="Case Updates" icon="square-check">
+    **Scenario**: Update multiple systems after resolving issue
+
+    **With AVA**: @Salesforce update case status, @Mail send customer update, add resolution to knowledge base—all from one conversation
+
+    **Benefit**: Consistent updates across systems
+  </Card>
+</CardGroup>
+
+### Development Teams
+
+<Tabs>
+  <Tab title="Sprint Planning">
+    **Workflow**:
+    1. @Jira show all issues in next sprint
+    2. @GitHub check which PRs are still open
+    3. Ask AVA to analyze capacity and dependencies
+    4. Generate sprint planning doc with recommendations
+    5. Export to PowerPoint for sprint kickoff
+
+    **Value**: Data-driven sprint planning with minimal manual work
+  </Tab>
+
+  <Tab title="Code Review Context">
+    **Workflow**:
+    1. @GitHub show me PR #123
+    2. @Jira find related issue
+    3. Ask AVA to explain the changes and potential impact
+    4. Review code with AI-powered analysis
+    5. Draft review comments
+
+    **Value**: Faster, more thorough code reviews
+  </Tab>
+
+  <Tab title="Bug Investigation">
+    **Workflow**:
+    1. @Jira get bug report details
+    2. @GitHub search for similar past issues
+    3. @Files access relevant documentation
+    4. Ask AVA to suggest root cause and fix
+    5. Update Jira with findings
+
+    **Value**: Faster bug resolution with context from multiple sources
+  </Tab>
+
+  <Tab title="Documentation Generation">
+    **Workflow**:
+    1. @GitHub get repository README and code
+    2. Upload architecture diagrams from OneDrive
+    3. Use AVA Tasks to generate comprehensive docs
+    4. Export to Word or Markdown
+    5. Commit back to repository
+
+    **Value**: Up-to-date documentation without manual writing
+  </Tab>
+</Tabs>
+
+### Executive Leadership
+
+<Steps>
+  <Step title="Meeting Preparation">
+    **Scenario**: Board meeting tomorrow, need comprehensive update
+
+    **With AVA**:
+    - @Calendar review this week's meetings
+    - Access recorded Teams meetings for key discussions
+    - @Salesforce get sales metrics
+    - Generate executive summary in notes
+    - Export to PowerPoint for presentation
+  </Step>
+
+  <Step title="Decision Support">
+    **Scenario**: Need analysis for strategic decision
+
+    **With AVA**:
+    - Query multiple data sources simultaneously
+    - Analyze trends and patterns
+    - Ask "what-if" questions with different scenarios
+    - Generate decision memo with supporting data
+  </Step>
+
+  <Step title="Communication Drafting">
+    **Scenario**: Company-wide announcement needed
+
+    **With AVA**:
+    - Review previous communications for tone/style
+    - Draft announcement with custom instructions
+    - Get feedback from AVA on clarity and impact
+    - Export final version
+  </Step>
+</Steps>
+
+### HR Teams
+
+<AccordionGroup>
+  <Accordion title="Policy Questions">
+    **Scenario**: Employee asks about PTO policy
+
+    **With AVA Knowledge Search**:
+    - Create corpus from HR policy SharePoint site
+    - Employee handbook auto-synced
+    - HR can quickly search: "What's the PTO rollover policy?"
+    - AVA returns exact policy with source citation
+
+    **Benefit**: Instant, accurate policy answers; Less HR admin time
+  </Accordion>
+
+  <Accordion title="Onboarding">
+    **Scenario**: New hire starting Monday
+
+    **With AVA**:
+    - @Files access onboarding checklist template
+    - @Calendar schedule orientation meetings
+    - @Mail draft welcome email
+    - Use Tasks to create personalized onboarding plan
+    - Share with manager via Microsoft 365 group
+
+    **Benefit**: Consistent, comprehensive onboarding
+  </Accordion>
+
+  <Accordion title="Employee Records">
+    **Scenario**: Need to find all documentation for employee review
+
+    **With AVA**:
+    - @Files search for employee's documents
+    - @Mail find performance review emails
+    - Compile everything in workspace
+    - Generate review summary document
+
+    **Benefit**: Complete employee context quickly
+  </Accordion>
+</AccordionGroup>
+
+### Legal & Compliance Teams
+
+<CardGroup cols={2}>
+  <Card title="Contract Analysis" icon="file-contract">
+    **Use Case**: Review hundreds of contracts for specific clause
+
+    **Solution**: Knowledge Search corpus of all contracts; Query: "Find all contracts with indemnification clauses"
+
+    **Time Saved**: Days → Minutes
+  </Card>
+
+  <Card title="Legal Research" icon="scale-balanced">
+    **Use Case**: Find relevant precedents and case law
+
+    **Solution**: Corpus of legal documents; Semantic search finds relevant cases even with different terminology
+
+    **Benefit**: More comprehensive research
+  </Card>
+
+  <Card title="Compliance Checks" icon="list-check">
+    **Use Case**: Ensure vendor contracts meet requirements
+
+    **Solution**: Create task template for contract review checklist; Apply to each new vendor contract
+
+    **Benefit**: Consistent compliance verification
+  </Card>
+
+  <Card title="Document Drafting" icon="pen-nib">
+    **Use Case**: Draft new contract based on templates
+
+    **Solution**: Upload template contracts; Use AVA to customize for specific situation; Export to Word
+
+    **Benefit**: Faster drafting with consistency
+  </Card>
+</CardGroup>
+
+### Marketing Teams
+
+<Tabs>
+  <Tab title="Content Creation">
+    **Workflow**:
+    1. @Files access brand guidelines and past campaigns
+    2. @Salesforce get target customer personas
+    3. Use AVA Tasks for content creation pipeline:
+       - Step 1: Research topic
+       - Step 2: Create outline
+       - Step 3: Draft content
+       - Step 4: Optimize for SEO
+    4. Export to Word for review
+
+    **Value**: Data-informed content at scale
+  </Tab>
+
+  <Tab title="Campaign Analysis">
+    **Workflow**:
+    1. Upload campaign performance data
+    2. @Salesforce get lead conversion data
+    3. Ask AVA to analyze what's working
+    4. Generate recommendations
+    5. Create presentation for team review
+
+    **Value**: Data-driven marketing decisions
+  </Tab>
+
+  <Tab title="Event Preparation">
+    **Workflow**:
+    1. @Calendar review upcoming events
+    2. @Files access event materials from past years
+    3. Create updated materials using AVA
+    4. @Mail draft attendee communications
+    5. Coordinate via Teams integration
+
+    **Value**: Efficient event execution
+  </Tab>
+</Tabs>
+
+## By Industry
+
+### Financial Services
+
+<AccordionGroup>
+  <Accordion title="Client Portfolio Review">
+    **Scenario**: Wealth advisor preparing for client meeting
+
+    **With AVA**:
+    - Query client portfolio data from internal systems
+    - Access market research documents via Knowledge Search
+    - @Calendar review past meeting notes
+    - Generate personalized portfolio recommendations
+    - Create presentation deck automatically
+
+    **Compliance**: All data access logged, respects existing permissions
+  </Accordion>
+
+  <Accordion title="Regulatory Reporting">
+    **Scenario**: Quarterly compliance report due
+
+    **With AVA Tasks**:
+    - Multi-step workflow to gather data from required systems
+    - Automated formatting per regulatory requirements
+    - Source citation for all data points
+    - Export to required format (Excel/PDF)
+
+    **Benefit**: Faster, more accurate reporting
+  </Accordion>
+
+  <Accordion title="Risk Analysis">
+    **Scenario**: Analyze risk exposure across portfolio
+
+    **With AVA**:
+    - Pull data from multiple risk systems
+    - Query historical incident reports via Knowledge Search
+    - AI-powered pattern analysis
+    - Generate risk assessment report
+
+    **Value**: Comprehensive risk view
+  </Accordion>
+</AccordionGroup>
+
+### Healthcare
+
+<CardGroup cols={2}>
+  <Card title="Clinical Documentation" icon="file-medical">
+    **Scenario**: Review patient care guidelines
+
+    **Solution**: Knowledge Search corpus of clinical protocols; Quickly find relevant treatment guidelines
+
+    **Benefit**: Evidence-based care
+  </Card>
+
+  <Card title="Research Support" icon="flask">
+    **Scenario**: Literature review for research project
+
+    **Solution**: Corpus of research papers and journals; Semantic search across all publications
+
+    **Benefit**: Comprehensive literature review
+  </Card>
+
+  <Card title="Compliance Documentation" icon="clipboard-check">
+    **Scenario**: Prepare for accreditation audit
+
+    **Solution**: AVA Tasks for documentation gathering; @Files access all required documentation
+
+    **Benefit**: Organized audit preparation
+  </Card>
+
+  <Card title="Staff Scheduling" icon="calendar-days">
+    **Scenario**: Create next month's staff schedule
+
+    **Solution**: @Calendar check availability, @Mail coordinate with staff, use AVA to optimize schedule
+
+    **Benefit**: Efficient scheduling
+  </Card>
+</CardGroup>
+
+### Manufacturing
+
+<Tabs>
+  <Tab title="Quality Documentation">
+    **Scenario**: Find all QA procedures for specific product line
+
+    **Solution**:
+    - Knowledge Search across QA documentation
+    - Query: "Show all quality control procedures for Product X"
+    - Get instant results with source citations
+
+    **Benefit**: Fast access to critical procedures
+  </Tab>
+
+  <Tab title="Incident Investigation">
+    **Scenario**: Production issue needs root cause analysis
+
+    **Solution**:
+    - Access incident reports via Knowledge Search
+    - Search for similar past incidents
+    - Use AVA to analyze patterns
+    - Generate investigation report
+
+    **Benefit**: Learn from past issues
+  </Tab>
+
+  <Tab title="Supplier Management">
+    **Scenario**: Evaluate supplier performance
+
+    **Solution**:
+    - @Files access supplier contracts
+    - Query performance data
+    - Use AVA to analyze trends
+    - Create supplier scorecard
+
+    **Benefit**: Data-driven supplier decisions
+  </Tab>
+</Tabs>
+
+### Education
+
+<Steps>
+  <Step title="Curriculum Development">
+    - @Files access previous course materials
+    - Knowledge Search educational resources
+    - Use AVA Tasks to create new curriculum
+    - Generate course syllabus and materials
+  </Step>
+
+  <Step title="Student Support">
+    - Knowledge Search FAQ and support docs
+    - Quickly answer student questions
+    - Consistent information across support team
+    - Reduce time to resolve student issues
+  </Step>
+
+  <Step title="Administrative Tasks">
+    - @Calendar coordinate meetings and events
+    - @Mail automate routine communications
+    - Generate reports and documentation
+    - Streamline administrative workflows
+  </Step>
+</Steps>
+
+## Common Workflow Patterns
+
+### The "Research & Synthesis" Pattern
+
+Perfect for: Market research, competitive analysis, literature reviews
+
+**Steps**:
+1. Create AVA Task with research steps
+2. Add relevant documents to workspace
+3. Query connected data sources with @ mentions
+4. Use Knowledge Search for deep document analysis
+5. AVA synthesizes findings across all sources
+6. Export final research report
+
+**Example**: "Analyze our competitors' pricing strategies"
+
+### The "Data Gathering" Pattern
+
+Perfect for: Status reports, dashboards, executive summaries
+
+**Steps**:
+1. @Salesforce get sales data
+2. @Jira get project status
+3. @GitHub get deployment stats
+4. Ask AVA to combine and analyze
+5. Generate summary report
+6. Export to PowerPoint or Excel
+
+**Example**: "Create weekly executive status report"
+
+### The "Document Processing" Pattern
+
+Perfect for: Contract review, resume screening, invoice processing
+
+**Steps**:
+1. Upload documents to workspace (or use @Files)
+2. Create Task template with processing steps
+3. Apply template to each document
+4. Extract key information consistently
+5. Compile results
+
+**Example**: "Extract key terms from all vendor contracts"
+
+### The "Communication Drafting" Pattern
+
+Perfect for: Emails, announcements, reports, presentations
+
+**Steps**:
+1. Gather context from connected sources
+2. Review similar past communications via @Files or Knowledge Search
+3. Apply custom instructions for tone/style
+4. Draft with AVA
+5. Refine with back-and-forth conversation
+6. Export to appropriate format
+
+**Example**: "Draft customer email explaining new feature"
+
+### The "Meeting Preparation" Pattern
+
+Perfect for: Client meetings, reviews, presentations
+
+**Steps**:
+1. @Calendar identify upcoming meeting
+2. Access previous meeting recordings/notes
+3. Gather relevant data from connected sources
+4. Use AVA to create agenda and talking points
+5. Generate presentation in PowerPoint
+6. Add notes in workspace during meeting
+
+**Example**: "Prepare for quarterly business review with Acme Corp"
+
+## Success Metrics
+
+Organizations using AVA report:
+
+<CardGroup cols={3}>
+  <Card title="80% Time Savings" icon="clock">
+    On research and data gathering tasks
+  </Card>
+  <Card title="10x Faster" icon="gauge-high">
+    Document search and retrieval
+  </Card>
+  <Card title="5 Hours/Week" icon="calendar-week">
+    Average time saved per knowledge worker
+  </Card>
+  <Card title="90% Adoption" icon="users">
+    Within 30 days of deployment
+  </Card>
+  <Card title="Zero Training" icon="graduation-cap">
+    Intuitive interface, familiar patterns
+  </Card>
+  <Card title="100% Security" icon="shield">
+    Delegated permissions, data in tenant
+  </Card>
+</CardGroup>
+
+## Getting Started with Your Use Case
+
+<Steps>
+  <Step title="Identify Pain Points">
+    What repetitive tasks consume the most time for your team?
+  </Step>
+  <Step title="Start Simple">
+    Begin with AVA Chat and @ mentions for daily tasks
+  </Step>
+  <Step title="Create Knowledge Bases">
+    Set up Knowledge Search corpora for your document libraries
+  </Step>
+  <Step title="Build Task Templates">
+    Convert common workflows into reusable task templates
+  </Step>
+  <Step title="Share & Scale">
+    Share successful prompts and tasks with your team
+  </Step>
+</Steps>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Quick Start Guide"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Get started with AVA today
+  </Card>
+  <Card
+    title="AVA Chat Features"
+    icon="comments"
+    href="/features/ava-chat"
+  >
+    Learn about conversational AI
+  </Card>
+  <Card
+    title="Knowledge Search"
+    icon="magnifying-glass"
+    href="/features/knowledge-search"
+  >
+    Set up document search
+  </Card>
+  <Card
+    title="Contact Us"
+    icon="calendar"
+    href="https://datarm.ai/contact"
+  >
+    Discuss your use case with us
+  </Card>
+</CardGroup>

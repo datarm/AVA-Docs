@@ -1,0 +1,170 @@
+---
+title: "AVA 2.7.0"
+description: "Release notes for AVA 2.7.0"
+date: "2025-09-05"
+---
+
+# AVA 2.7.0
+
+**Release Date:** September 5, 2025
+
+## Overview
+
+AVA 2.7.0 introduces comprehensive GDPR automation features, enhanced third-party risk management, and significant improvements to the data catalog. This release strengthens privacy compliance capabilities and regulatory reporting.
+
+---
+
+## New Features
+
+<AccordionGroup>
+  <Accordion title="GDPR Automation Suite">
+    - **Data Subject Request Management**: Automated workflows for access, rectification, erasure, and portability requests
+    - **Consent Management**: Track and manage user consent across all systems
+    - **Right to be Forgotten**: Automated data deletion workflows with verification
+    - **Data Processing Records (Article 30)**: Maintain GDPR-compliant processing activity records
+    - **Privacy Impact Assessments**: Guided DPIA workflows with templates
+    - **Breach Notification**: 72-hour breach notification workflow automation
+  </Accordion>
+
+  <Accordion title="Third-Party Risk Management">
+    - **Vendor Risk Scoring**: Automated risk assessment for vendors and suppliers
+    - **Contract Management**: Store and track data processing agreements (DPAs)
+    - **Continuous Monitoring**: Ongoing vendor risk evaluation with alerts
+    - **Due Diligence Questionnaires**: Customizable questionnaire templates
+    - **Risk Register**: Centralized third-party risk inventory
+    - **Vendor Portal**: Self-service portal for vendor assessments
+  </Accordion>
+
+  <Accordion title="Enhanced Data Catalog">
+    - **Smart Recommendations**: AI-powered suggestions for data classification
+    - **Data Dictionary**: Centralized business glossary with term relationships
+    - **Advanced Search Filters**: 20+ new filter options for precise discovery
+    - **Catalog Analytics**: Usage insights and data asset popularity metrics
+    - **Collaborative Curation**: Team-based data stewardship with comments
+    - **API Documentation**: Auto-generated API documentation from metadata
+  </Accordion>
+
+  <Accordion title="Automated Compliance Reporting">
+    - **Pre-built Templates**: 40+ regulatory report templates (GDPR, CCPA, HIPAA, SOC 2)
+    - **Schedule and Distribute**: Automated report generation and distribution
+    - **Evidence Collection**: Automatic gathering of compliance evidence
+    - **Audit Trails**: Comprehensive logs for regulatory audits
+    - **Executive Dashboards**: C-level compliance status visualization
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Improvements
+
+<CardGroup cols={2}>
+  <Card title="Data Discovery" icon="magnifying-glass">
+    - 50% faster scanning for large databases
+    - Support for additional data sources: Oracle, SAP HANA
+    - Improved pattern recognition for PII detection
+    - Incremental scanning to reduce resource usage
+  </Card>
+
+  <Card title="Access Management" icon="key">
+    - Fine-grained permissions at the column level
+    - Temporary access grants with auto-expiration
+    - Access request workflow improvements
+    - Integration with ServiceNow for approvals
+  </Card>
+
+  <Card title="Notifications" icon="bell">
+    - Customizable notification templates
+    - Digest mode for reduced email volume
+    - Integration with Slack and Microsoft Teams
+    - Mobile push notifications (iOS and Android)
+  </Card>
+
+  <Card title="Audit & Compliance" icon="clipboard-check">
+    - Immutable audit logs with blockchain verification
+    - Enhanced search and filtering in audit viewer
+    - Compliance score calculation improvements
+    - Automated evidence package creation
+  </Card>
+</CardGroup>
+
+---
+
+## Bug Fixes
+
+<Check>Fixed issue where data classification rules would not apply to newly discovered assets</Check>
+<Check>Resolved performance degradation in dashboard loading for users with 1000+ assets</Check>
+<Check>Corrected calculation of retention policy expiration dates</Check>
+<Check>Fixed duplicate notifications being sent for the same event</Check>
+<Check>Addressed SSO timeout issues with Okta integration</Check>
+<Check>Resolved CSV import failures for files with BOM (Byte Order Mark)</Check>
+<Check>Fixed incorrect user attribution in audit logs for API operations</Check>
+<Check>Corrected display issues in risk heatmaps for certain screen resolutions</Check>
+
+---
+
+## API Changes
+
+<Info>
+  New API endpoints introduced. All existing endpoints remain backward compatible.
+</Info>
+
+### New Endpoints
+
+- `POST /api/v2/dsr/requests` - Create data subject requests
+- `GET /api/v2/vendors/{id}/risk-score` - Retrieve vendor risk assessment
+- `POST /api/v2/catalog/recommend` - Get AI-powered classification recommendations
+- `GET /api/v2/compliance/reports/{type}` - Generate compliance reports
+
+### Enhanced Endpoints
+
+- `GET /api/v2/assets` - New filters for consent status and GDPR classification
+- `POST /api/v2/policies/evaluate` - Now supports batch evaluation
+
+---
+
+## Security Enhancements
+
+<CardGroup cols={1}>
+  <Card title="Security Improvements" icon="shield">
+    - TLS 1.3 now required for all connections
+    - Enhanced API rate limiting with IP-based throttling
+    - Added support for Hardware Security Modules (HSM) for key storage
+    - Improved secrets management with HashiCorp Vault integration
+    - Security headers updated to align with OWASP recommendations
+  </Card>
+</CardGroup>
+
+---
+
+## Breaking Changes
+
+<Warning>
+  **PostgreSQL 12 End of Support**: PostgreSQL 12 is no longer supported. Upgrade to PostgreSQL 13 or higher before installing this version.
+</Warning>
+
+---
+
+## Migration Notes
+
+<AccordionGroup>
+  <Accordion title="Database Migration">
+    - Estimated migration time: 5-10 minutes for typical deployments
+    - New indexes will be created for performance optimization
+    - Backup your database before upgrading
+  </Accordion>
+
+  <Accordion title="Configuration Updates">
+    - Review GDPR settings in Admin Console after upgrade
+    - Configure notification channels for DSR workflows
+    - Update retention policies if using legacy format
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Documentation
+
+- [GDPR Automation Guide](/compliance/gdpr)
+- [Third-Party Risk Management](/guides/tprm)
+- [Data Catalog User Guide](/guides/data-catalog)
+- [API Reference](/api-reference)

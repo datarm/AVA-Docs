@@ -1,0 +1,126 @@
+---
+title: "AVA 2.9.0"
+description: "Release notes for AVA 2.9.0"
+date: "2025-11-15"
+---
+
+# AVA 2.9.0
+
+**Release Date:** November 15, 2025
+
+## Overview
+
+AVA 2.9.0 introduces advanced AI-powered data classification, enhanced risk scoring algorithms, and comprehensive DORA compliance features. This release focuses on automation, regulatory compliance, and enterprise-scale performance improvements.
+
+---
+
+## New Features
+
+<AccordionGroup>
+  <Accordion title="AI-Powered Data Classification Engine">
+    - **Automated Data Discovery**: Machine learning models automatically identify and classify sensitive data across structured and unstructured sources
+    - **Custom Classification Models**: Train organization-specific classifiers using your own data patterns
+    - **Confidence Scoring**: Each classification includes a confidence score for audit and review purposes
+    - **Real-time Classification**: Classify data as it enters your systems with sub-second latency
+    - **Multi-language Support**: Enhanced NLP capabilities for 40+ languages
+  </Accordion>
+
+  <Accordion title="DORA Compliance Framework">
+    - **ICT Risk Management**: Built-in templates and workflows aligned with EU Digital Operational Resilience Act
+    - **Third-Party Risk Assessment**: Automated vendor risk scoring for critical ICT service providers
+    - **Incident Reporting**: DORA-compliant incident classification and reporting workflows
+    - **Testing Framework**: Structured approach to operational resilience testing
+    - **Regulatory Dashboards**: Real-time compliance status monitoring
+  </Accordion>
+
+  <Accordion title="Advanced Risk Scoring Engine 3.0">
+    - **Multi-dimensional Risk Analysis**: Evaluate risk across 12+ dimensions including data sensitivity, access patterns, and threat intelligence
+    - **Predictive Risk Modeling**: AI-driven predictions of emerging risks based on historical patterns
+    - **Custom Risk Weights**: Configure risk calculation weights specific to your organization
+    - **Risk Trends**: Visualize risk evolution over time with interactive charts
+    - **Automated Risk Remediation**: Suggested actions based on risk severity
+  </Accordion>
+
+  <Accordion title="Knowledge Search with Vector Embeddings">
+    - **Semantic Search**: Find conceptually similar content even without exact keyword matches
+    - **Multi-modal Search**: Search across documents, images, and structured data simultaneously
+    - **Search Analytics**: Track search patterns to identify knowledge gaps
+    - **Relevance Tuning**: Customize search ranking based on organizational priorities
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Improvements
+
+<CardGroup cols={2}>
+  <Card title="Performance Enhancements" icon="bolt">
+    - 40% faster dashboard loading times
+    - Improved query optimization for large datasets (10M+ records)
+    - Reduced memory footprint by 25%
+    - Enhanced caching strategies for frequently accessed data
+  </Card>
+
+  <Card title="User Experience" icon="sparkles">
+    - Redesigned navigation with improved accessibility (WCAG 2.1 AA)
+    - Contextual help integrated throughout the application
+    - Customizable dashboard layouts with drag-and-drop
+    - Dark mode performance optimizations
+  </Card>
+
+  <Card title="API Improvements" icon="code">
+    - GraphQL API now supports field-level permissions
+    - Improved rate limiting with burst capacity
+    - Enhanced webhook delivery with automatic retries
+    - New batch operations for bulk data processing
+  </Card>
+
+  <Card title="Security" icon="shield-check">
+    - Support for FIDO2/WebAuthn passwordless authentication
+    - Enhanced audit logging with tamper detection
+    - Improved encryption for data at rest (AES-256-GCM)
+    - Security headers aligned with OWASP best practices
+  </Card>
+</CardGroup>
+
+---
+
+## Bug Fixes
+
+<Check>Fixed issue where data lineage graphs would not render for circular dependencies</Check>
+<Check>Resolved memory leak in real-time dashboard updates for long-running sessions</Check>
+<Check>Corrected timezone handling in scheduled report generation</Check>
+<Check>Fixed race condition in concurrent policy evaluations</Check>
+<Check>Addressed CSV export formatting issues with special characters</Check>
+<Check>Resolved SSO session timeout inconsistencies with Azure AD</Check>
+<Check>Fixed notification delivery delays for high-priority alerts</Check>
+
+---
+
+## Breaking Changes
+
+<Warning>
+  **API Version Update**: The legacy v1 API endpoints are now deprecated and will be removed in AVA 3.0 (Q2 2025). Migrate to v2 API endpoints before March 2025.
+</Warning>
+
+<Warning>
+  **Risk Score Calculation**: The risk scoring algorithm has been updated. Historical risk scores remain unchanged, but new calculations may differ from previous versions. Review custom risk policies if you have specific thresholds configured.
+</Warning>
+
+---
+
+## Migration Guide
+
+<Info>
+  For detailed migration instructions, see our [Migration Guide](/guides/migration/2-9-0) or contact support at avasupport@datarm.ai
+</Info>
+
+---
+
+## What's Next
+
+Looking ahead to AVA 2.10.0 (December 2025):
+- AI-powered policy recommendations
+- Enhanced data quality scoring
+- Advanced workflow automation
+- Integration with Microsoft Purview

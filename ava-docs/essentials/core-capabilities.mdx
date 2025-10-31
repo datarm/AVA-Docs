@@ -1,0 +1,719 @@
+---
+title: 'Core Capabilities'
+description: 'Powerful features available across all of AVA—AI that works, not just talks'
+---
+
+# Core Capabilities: AI That Works™
+
+AVA isn't just another AI chatbot—it's your AI super assistant that **completes real work** across your Microsoft 365 environment. These core capabilities are available everywhere in AVA, whether you're in Chat, Tasks, or Knowledge Search.
+
+<Info>
+  **The Power of Microsoft Graph API**: AVA leverages Microsoft Graph API to take action on your behalf—scheduling meetings, creating tasks, sharing files, and much more. The possibilities are nearly endless.
+</Info>
+
+## Real-Time Web Search with @Web
+
+Access current information from the web in real-time—perfect for research, news, and up-to-date data.
+
+### How @Web Works
+
+<AccordionGroup>
+  <Accordion title="Real-Time Information">
+    **Get current data AVA's training doesn't include**
+
+    **Examples:**
+    - "**@Web** what are the latest developments in AI?"
+    - "**@Web** find recent articles about GPT-5"
+    - "**@Web** current stock price of Microsoft"
+    - "**@Web** today's weather forecast for Seattle"
+
+    **What AVA does:**
+    - Searches the web in real-time
+    - Finds current, relevant information
+    - Summarizes results with source citations
+    - Provides links to original sources
+  </Accordion>
+
+  <Accordion title="Research & News">
+    **Stay informed with latest information**
+
+    **Use cases:**
+    - Market research and competitor analysis
+    - News monitoring and current events
+    - Technical documentation and tutorials
+    - Product information and reviews
+    - Academic research and papers
+
+    **Example:**
+    "**@Web** find the latest research papers on quantum computing from 2025"
+  </Accordion>
+
+  <Accordion title="Combine with Other Sources">
+    **Mix web data with your enterprise data**
+
+    **Example:**
+    1. "**@Web** find latest industry trends in SaaS"
+    2. "**@Salesforce** show our pipeline for this quarter"
+    3. "Compare our positioning to industry trends"
+
+    AVA combines web research with your business data for powerful insights.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Use **@Web** when you need information beyond AVA's training data or your organizational data—news, current events, real-time data, and recent developments.
+</Tip>
+
+## Work with Images
+
+Add visual context to your conversations or generate new images—AVA handles both.
+
+<Tabs>
+  <Tab title="Add Images">
+    **Upload images to provide visual context**
+
+    **What you can do:**
+    - Upload screenshots for troubleshooting
+    - Add diagrams for discussion
+    - Include photos for analysis
+    - Attach images from your computer
+
+    **How it works:**
+    1. Click the image/attachment icon in any chat or task
+    2. Select an image from your computer
+    3. The image is added to the conversation
+    4. AVA can analyze, describe, or reference the image
+
+    **Use cases:**
+    - **Design feedback**: "Review this mockup and suggest improvements"
+    - **Error troubleshooting**: "What's wrong in this error screenshot?"
+    - **Data visualization**: "Analyze the trends in this chart"
+    - **Document review**: "Extract text from this image"
+
+    **Supported formats:**
+    - JPG, PNG, GIF, WebP
+    - Max size: 10MB per image
+    - Multiple images per conversation
+  </Tab>
+
+  <Tab title="Generate Images">
+    **Create images from text descriptions**
+
+    **Available models:**
+    - **GPT-image-1**: Latest model with improved quality and detail
+    - **DALL-E 3**: High-quality generation with natural/vivid styles
+
+    **How it works:**
+    1. Ask AVA to generate an image
+    2. Provide a detailed description
+    3. Choose style preferences (natural vs vivid)
+    4. AVA creates the image using your selected model
+
+    **Examples:**
+    ```
+    "Generate an image of a modern office workspace with natural lighting"
+
+    "Create a diagram showing a cloud architecture with Azure services"
+
+    "Design a logo concept for a tech startup focused on AI"
+    ```
+
+    **Use cases:**
+    - **Presentation graphics**: Generate custom visuals for slides
+    - **Concept visualization**: See ideas before building
+    - **Marketing materials**: Create unique images for content
+    - **Documentation**: Illustrate technical concepts
+
+    **Tips for better results:**
+    - Be specific and detailed in descriptions
+    - Mention style, lighting, colors, composition
+    - Specify "photorealistic" or "illustration" style
+    - Iterate and refine based on results
+  </Tab>
+</Tabs>
+
+## Microsoft 365 Actions via Graph API
+
+AVA doesn't just read your data—it takes action on your behalf using Microsoft Graph API.
+
+### Schedule Meetings & Manage Calendar
+
+<AccordionGroup>
+  <Accordion title="Schedule New Meetings">
+    **Ask AVA to schedule meetings for you**
+
+    **Examples:**
+    - "Schedule a 30-minute meeting with Sarah tomorrow at 2pm to discuss Q4 planning"
+    - "Find a time when John, Lisa, and I are all free this week and book an hour"
+    - "Create a recurring weekly standup every Monday at 9am"
+
+    **What AVA does:**
+    - Checks attendee availability
+    - Finds optimal meeting times
+    - Sends calendar invitations
+    - Adds meeting details and agenda
+    - Sets up Teams meeting link
+
+    **Advanced:**
+    - "Schedule a meeting with the Sales team next week—find the best time when most people are available"
+    - "Book a room for our quarterly review next Friday afternoon"
+  </Accordion>
+
+  <Accordion title="Update & Manage Events">
+    **Modify existing calendar events**
+
+    **Examples:**
+    - "Move my 2pm meeting to 3pm"
+    - "Cancel tomorrow's standup"
+    - "Add Mike to the Q4 planning meeting"
+    - "Change the Teams link for Friday's meeting"
+
+    **What AVA does:**
+    - Finds the specified event
+    - Makes requested changes
+    - Notifies attendees of updates
+    - Reschedules or cancels as needed
+  </Accordion>
+
+  <Accordion title="Check Availability">
+    **Find free time for meetings**
+
+    **Examples:**
+    - "When am I free tomorrow afternoon?"
+    - "Show me everyone's availability for a meeting this week"
+    - "Find a 2-hour block when the team is all available"
+
+    **What AVA does:**
+    - Checks calendars (yours and others if shared)
+    - Identifies available time slots
+    - Suggests optimal times
+    - Considers time zones and working hours
+  </Accordion>
+</AccordionGroup>
+
+### Create & Manage Tasks
+
+<AccordionGroup>
+  <Accordion title="Create Microsoft To Do Tasks">
+    **Turn action items into tracked tasks**
+
+    **Examples:**
+    - "Create a task to review the contract by Friday"
+    - "Add 'Prepare Q4 presentation' to my todo list"
+    - "Make a task list from the action items in today's meeting"
+
+    **What AVA does:**
+    - Creates tasks in Microsoft To Do
+    - Sets due dates and reminders
+    - Adds task details and notes
+    - Organizes into lists
+    - Assigns priorities
+  </Accordion>
+
+  <Accordion title="Assign Tasks to Others">
+    **Delegate tasks through AVA**
+
+    **Examples:**
+    - "Assign a task to John to review the proposal by Wednesday"
+    - "Create a task for the team to complete the survey"
+
+    **What AVA does:**
+    - Creates task with assignee
+    - Sets deadlines
+    - Sends notifications
+    - Tracks assignment
+  </Accordion>
+
+  <Accordion title="Manage Existing Tasks">
+    **Update task status and details**
+
+    **Examples:**
+    - "Mark my 'Review contract' task as complete"
+    - "Move the presentation deadline to next Tuesday"
+    - "Show me all my overdue tasks"
+
+    **What AVA does:**
+    - Updates task status
+    - Modifies due dates
+    - Changes priorities
+    - Provides task overviews
+  </Accordion>
+</AccordionGroup>
+
+### Share & Collaborate on Files
+
+<AccordionGroup>
+  <Accordion title="Share Files Directly">
+    **Share OneDrive/SharePoint files with others**
+
+    **Examples:**
+    - "Share the Q4 Budget spreadsheet with Sarah"
+    - "Give the Sales team read access to the proposal document"
+    - "Share this presentation with editing permissions to John"
+
+    **What AVA does:**
+    - Finds the specified file
+    - Sets appropriate permissions
+    - Sends share notification
+    - Provides share link
+  </Accordion>
+
+  <Accordion title="Manage Permissions">
+    **Update file sharing and access**
+
+    **Examples:**
+    - "Remove John's access to the contract"
+    - "Change Sarah's permission to view-only on the budget"
+    - "Make this document accessible to everyone in the company"
+
+    **What AVA does:**
+    - Updates sharing permissions
+    - Revokes access when needed
+    - Modifies permission levels
+    - Manages organizational access
+  </Accordion>
+
+  <Accordion title="Create Share Links">
+    **Generate shareable links**
+
+    **Examples:**
+    - "Create a share link for this presentation"
+    - "Generate a view-only link to the report that expires in 7 days"
+
+    **What AVA does:**
+    - Creates share link
+    - Sets expiration dates
+    - Configures access levels
+    - Provides link for distribution
+  </Accordion>
+</AccordionGroup>
+
+### Send Emails & Communications
+
+<AccordionGroup>
+  <Accordion title="Draft & Send Emails">
+    **Compose and send emails**
+
+    **Examples:**
+    - "Draft a follow-up email to the client about our proposal"
+    - "Send an email to the team with today's meeting notes"
+    - "Compose a response to Sarah's question about the timeline"
+
+    **What AVA does:**
+    - Drafts email content
+    - Uses conversation context
+    - Formats professionally
+    - Can send on your behalf (with confirmation)
+  </Accordion>
+
+  <Accordion title="Reply & Forward">
+    **Respond to existing emails**
+
+    **Examples:**
+    - "Reply to John's email about the budget with approval"
+    - "Forward Sarah's message to the finance team"
+
+    **What AVA does:**
+    - Locates original email
+    - Crafts appropriate response
+    - Maintains email thread
+    - Handles forwarding with context
+  </Accordion>
+</AccordionGroup>
+
+## Copy to Workspace Notes
+
+Capture insights from any AVA conversation and build comprehensive documents.
+
+### How It Works
+
+<Steps>
+  <Step title="Generate Content">
+    Have a conversation with AVA in Chat, run a Task, or perform a Knowledge Search
+  </Step>
+  <Step title="Copy Response">
+    Click the "Copy to Notes" button on any AVA response you want to save
+  </Step>
+  <Step title="Build Document">
+    Content is added to your Workspace Notes where you can organize and format it
+  </Step>
+  <Step title="Export">
+    Export your compiled notes to PowerPoint, Word, or copy to clipboard
+  </Step>
+</Steps>
+
+### Use Cases
+
+<Tabs>
+  <Tab title="Research Compilation">
+    **Gather insights from multiple conversations**
+
+    1. Ask AVA questions across different topics
+    2. Copy useful responses to Notes
+    3. Organize by sections with headings
+    4. Build comprehensive research document
+    5. Export to Word for final report
+
+    **Example:**
+    Research about competitors → Copy findings to Notes → Add insights from sales data → Organize into sections → Export report
+  </Tab>
+
+  <Tab title="Meeting Preparation">
+    **Compile meeting materials**
+
+    1. Query @Salesforce for account status
+    2. Copy account summary to Notes
+    3. Ask for recent email threads
+    4. Copy key discussion points to Notes
+    5. Add your talking points
+    6. Export to PowerPoint for presentation
+
+    **Example:**
+    Account history → Recent communications → Deal status → All compiled in Notes → Professional presentation
+  </Tab>
+
+  <Tab title="Content Creation">
+    **Build documents iteratively**
+
+    1. Start with outline in Notes
+    2. Ask AVA to draft each section
+    3. Copy good content from chat to Notes
+    4. Refine and edit in Notes
+    5. Continue building until complete
+    6. Export to final format
+
+    **Example:**
+    Blog post outline → Section by section drafting → Copy best responses → Refine → Complete article
+  </Tab>
+
+  <Tab title="Knowledge Capture">
+    **Save insights across sessions**
+
+    1. Have conversations over days/weeks
+    2. Copy valuable insights to Notes
+    3. Build knowledge base
+    4. Organize by topic
+    5. Reference later or share with team
+
+    **Example:**
+    Daily learnings → Copy key insights → Organize weekly → Build knowledge repository
+  </Tab>
+</Tabs>
+
+### Notes Features
+
+- **Rich text formatting**: Headers, bullets, bold, italic, links
+- **Organization**: Structure content with sections
+- **Persistence**: Notes saved across sessions
+- **Export options**: PowerPoint, Word, clipboard
+- **Search**: Find content in your notes
+- **Share**: Share notes with teammates
+
+## Share Conversations
+
+Collaborate with teammates by sharing your AVA conversations—complete with context and history.
+
+### Why Share Conversations?
+
+<CardGroup cols={2}>
+  <Card title="Speed Up Work" icon="bolt">
+    Share ongoing analysis instead of explaining from scratch
+  </Card>
+  <Card title="Collaborate Better" icon="users">
+    Get input on complex problems with full context
+  </Card>
+  <Card title="Knowledge Transfer" icon="brain">
+    Share research findings with complete background
+  </Card>
+  <Card title="Team Alignment" icon="handshake">
+    Everyone sees the same information and reasoning
+  </Card>
+</CardGroup>
+
+### How to Share
+
+<Steps>
+  <Step title="Start Conversation">
+    Have a conversation in AVA Chat, run a Task, or complete a Knowledge Search
+  </Step>
+  <Step title="Click Share">
+    Click the "Share" button in the conversation header
+  </Step>
+  <Step title="Choose Recipients">
+    - Select individual users
+    - Choose Microsoft 365 groups
+    - Set access permissions (view/edit)
+  </Step>
+  <Step title="Share">
+    Recipients receive notification and can access the full conversation
+  </Step>
+</Steps>
+
+### Sharing Options
+
+<Tabs>
+  <Tab title="View Access">
+    **Recipients can see but not modify**
+
+    - View entire conversation history
+    - See all context and data sources
+    - Cannot add messages or change content
+    - Perfect for sharing insights or reports
+  </Tab>
+
+  <Tab title="Collaborate Access">
+    **Recipients can continue the conversation**
+
+    - View full conversation
+    - Add their own messages
+    - Continue the analysis
+    - Build on existing work
+    - Perfect for team problem-solving
+  </Tab>
+</Tabs>
+
+### Use Cases
+
+<AccordionGroup>
+  <Accordion title="Get Quick Feedback">
+    **Share analysis for immediate input**
+
+    **Scenario**: You've analyzed Q4 sales data and want your manager's opinion
+
+    **Action**: Share the conversation with your manager → They see all analysis → Provide feedback → You continue based on input
+  </Accordion>
+
+  <Accordion title="Onboard Team Members">
+    **Bring colleagues up to speed**
+
+    **Scenario**: New teammate joining a project
+
+    **Action**: Share your research conversations → They get full context → No need to re-explain → They're productive immediately
+  </Accordion>
+
+  <Accordion title="Collaborate on Complex Problems">
+    **Team problem-solving**
+
+    **Scenario**: Troubleshooting a technical issue
+
+    **Action**: Share your troubleshooting conversation → Team members add their insights → Collective intelligence → Faster solution
+  </Accordion>
+
+  <Accordion title="Decision Documentation">
+    **Preserve decision-making process**
+
+    **Scenario**: Made important strategic decision using AVA
+
+    **Action**: Share the conversation → Stakeholders see full reasoning → Transparent decision process → Create institutional knowledge
+  </Accordion>
+</AccordionGroup>
+
+## PowerPoint Generation
+
+Transform your AVA conversations and notes into professional presentations.
+
+### Current Capability
+
+**Export from Notes to PowerPoint**
+
+1. Create content in Workspace Notes
+2. Use headings (H1) for slide titles
+3. Use bullets for slide content
+4. Click "Export to PowerPoint"
+5. AVA generates formatted presentation
+
+**Features:**
+- Automatic slide layout selection
+- Formatted bullets and text
+- Proper heading hierarchy
+- Professional design
+- Editable in PowerPoint after export
+
+### Version 3 (Coming Soon)
+
+<Note>
+  **Enhanced PowerPoint Generation** is coming in AVA Version 3 with powerful new capabilities!
+</Note>
+
+**What's New in Version 3:**
+
+<CardGroup cols={2}>
+  <Card title="From Any Conversation" icon="comments">
+    Generate presentations directly from Chat conversations—not just Notes
+  </Card>
+  <Card title="Intelligent Layouts" icon="sparkles">
+    AI selects optimal slide layouts based on content type
+  </Card>
+  <Card title="Image Integration" icon="image">
+    Automatically includes relevant images and charts
+  </Card>
+  <Card title="Brand Templates" icon="palette">
+    Apply your organization's PowerPoint templates
+  </Card>
+  <Card title="Smart Formatting" icon="wand-magic-sparkles">
+    Advanced text formatting and visual hierarchy
+  </Card>
+  <Card title="One-Click Generation" icon="bolt">
+    "Turn this conversation into a presentation" - done!
+  </Card>
+</CardGroup>
+
+**Version 3 Example:**
+```
+You: I just finished analyzing Q4 sales with @Salesforce data.
+     Turn this entire conversation into a presentation.
+
+AVA: I've created a 12-slide presentation:
+     - Executive summary slide
+     - Sales performance overview with charts
+     - Top deals breakdown
+     - Regional analysis
+     - Recommendations
+     All formatted with your company template!
+```
+
+## Export Capabilities
+
+Generate Office documents from any AVA conversation, task, or knowledge search.
+
+<CardGroup cols={3}>
+  <Card title="PowerPoint" icon="file-powerpoint">
+    **Presentations from conversations**
+    - Export Notes to slides
+    - V3: Direct from chat
+    - Professional formatting
+    - Editable in PowerPoint
+  </Card>
+
+  <Card title="Word" icon="file-word">
+    **Formatted documents**
+    - Conversation transcripts
+    - Research reports
+    - Meeting summaries
+    - Proper heading structure
+  </Card>
+
+  <Card title="Excel" icon="file-excel">
+    **Data and tables**
+    - Export data tables
+    - Analysis results
+    - Formatted spreadsheets
+    - Formulas preserved
+  </Card>
+
+  <Card title="PDF" icon="file-pdf">
+    **Shareable documents**
+    - Export to PDF
+    - Perfect for distribution
+    - Print-ready format
+  </Card>
+
+  <Card title="Copy to Clipboard" icon="clipboard">
+    **Quick sharing**
+    - Copy any content
+    - Paste anywhere
+    - Formatted or plain text
+  </Card>
+
+  <Card title="Direct to OneDrive" icon="cloud">
+    **Save to cloud**
+    - Export directly to OneDrive
+    - Automatic file naming
+    - Organized storage
+  </Card>
+</CardGroup>
+
+### Export Workflows
+
+<Tabs>
+  <Tab title="Research Report">
+    1. Conduct research across multiple sources (@Salesforce, @Files, @Web)
+    2. Copy key findings to Notes
+    3. Organize with headings and bullets
+    4. Export to Word document
+    5. Final edits in Word
+    6. Save to SharePoint
+  </Tab>
+
+  <Tab title="Executive Presentation">
+    1. Analyze data in Chat
+    2. Generate insights and recommendations
+    3. Copy to Notes
+    4. Structure with slide titles
+    5. Export to PowerPoint
+    6. Present to leadership
+  </Tab>
+
+  <Tab title="Data Analysis">
+    1. Query data sources
+    2. Ask AVA for analysis
+    3. Generate data tables
+    4. Export to Excel
+    5. Further analysis or charting
+    6. Share with team
+  </Tab>
+
+  <Tab title="Quick Share">
+    1. Get answer or insight from AVA
+    2. Copy to clipboard
+    3. Paste into email, Slack, Teams
+    4. Instant sharing
+  </Tab>
+</Tabs>
+
+## The Power of Microsoft Graph API
+
+All these capabilities are possible because AVA integrates deeply with Microsoft Graph API—the unified API for Microsoft 365.
+
+### What is Microsoft Graph API?
+
+Microsoft Graph API provides a single endpoint to access data and intelligence across Microsoft 365, including:
+
+- **Calendar & Events**: Create, update, manage meetings
+- **Mail & Messages**: Read, send, organize email
+- **Files & Documents**: Access, share, collaborate
+- **Tasks & Planner**: Create, assign, track work
+- **Teams & Channels**: Messages, meetings, collaboration
+- **Users & Groups**: Directory, profiles, org structure
+- **Security & Compliance**: Policies, alerts, audit
+
+### Why This Matters
+
+<AccordionGroup>
+  <Accordion title="Delegated Permissions">
+    AVA acts on your behalf using **your** permissions. It can only do what you can do—no elevated access, no backdoors.
+  </Accordion>
+
+  <Accordion title="Unified Experience">
+    One conversation can span multiple Microsoft services seamlessly. Check calendar, send email, share file—all without switching contexts.
+  </Accordion>
+
+  <Accordion title="Enterprise Security">
+    All actions logged and audited. Respects your organization's security policies. Complies with data governance rules.
+  </Accordion>
+
+  <Accordion title="Endless Possibilities">
+    As Microsoft adds capabilities to Graph API, AVA automatically gains new powers. The platform grows without AVA updates.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Try AVA Chat" icon="rocket" href="/features/ava-chat">
+    Experience these capabilities in conversations
+  </Card>
+  <Card title="Explore Tasks" icon="list-check" href="/features/ava-tasks">
+    Use core capabilities in multi-step workflows
+  </Card>
+  <Card title="Use the Workspace" icon="table-columns" href="/features/workspace">
+    Master Notes, Search, and File Viewer
+  </Card>
+  <Card title="Get Started" icon="play" href="/quickstart">
+    Start using AVA today
+  </Card>
+</CardGroup>
+
+---
+
+**AI That Works™** - AVA is more than a chatbot. It's your AI super assistant, taking action across your entire Microsoft 365 environment to help you get real work done.

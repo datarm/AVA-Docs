@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "azure": {
+      "command": "npx",
+      "args": ["-y", "@azure/mcp", "server", "start", "--transport", "stdio"]
+    },
+    "atlassian": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["mcp-remote@0.1.13", "https://mcp.atlassian.com/v1/sse"],
+      "env": {}
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-22c35c0f-2c99-452b-a291-a3a772859df2"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "env": {}
+    }
+}
+}

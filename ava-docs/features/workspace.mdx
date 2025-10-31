@@ -1,0 +1,772 @@
+---
+title: 'Workspace'
+description: 'Integrated panel for search, notes, and file viewing—your AI-powered second screen'
+---
+
+## Overview
+
+The Workspace is AVA's right-side panel—think of it as your AI-powered second screen. It provides three essential tools: Search (find and add files), Notes (capture and create content), and File Viewer (view and edit documents)—all without leaving your conversation.
+
+<CardGroup cols={3}>
+  <Card title="Search Tab" icon="magnifying-glass">
+    Find files, meetings, and documents to add to conversations
+  </Card>
+  <Card title="Notes Tab" icon="pencil">
+    Rich text editor for capturing ideas and creating content
+  </Card>
+  <Card title="File Viewer Tab" icon="file">
+    View and edit SharePoint/OneDrive documents
+  </Card>
+</CardGroup>
+
+## Search Tab
+
+Your gateway to adding context to AVA conversations.
+
+### Three Search Sources
+
+<Tabs>
+  <Tab title="Microsoft Files">
+    **Search your OneDrive and SharePoint**
+
+    **What you can find**:
+    - Personal files (OneDrive)
+    - Shared documents (SharePoint sites)
+    - Team files (Microsoft 365 Groups)
+
+    **Features**:
+    - Full-text search across file contents
+    - Filter by file type (Word, Excel, PowerPoint, PDF, etc.)
+    - Filter by modified date
+    - Filter by location (specific sites or folders)
+    - Preview before adding to conversation
+
+    **How to use**:
+    1. Type search term in search box
+    2. Apply filters if needed
+    3. Click file to preview
+    4. Click "Add to Conversation" to include in chat context
+
+    **Example**:
+    Search for "Q4 budget" → Filter to Excel files → Preview the file → Add to conversation → Ask AVA: "Summarize the key numbers in this budget"
+  </Tab>
+
+  <Tab title="Meetings">
+    **Access recorded Microsoft Teams meetings**
+
+    **What you can find**:
+    - Your recorded meetings
+    - Meetings you attended that were recorded
+    - Meetings shared with you
+
+    **Features**:
+    - Filter by date range
+    - Filter by attendees
+    - See meeting duration and participant count
+    - Transcript preview
+    - Direct link to Teams recording
+
+    **How to use**:
+    1. Select date range (Last 7 days, Last 30 days, Custom)
+    2. Search by meeting title or attendees
+    3. Click meeting to preview transcript
+    4. Click "Add to Conversation" to include transcript
+
+    **Example**:
+    Find yesterday's product roadmap meeting → Add to conversation → Ask AVA: "Summarize the key decisions and action items from this meeting"
+
+    **Use Cases**:
+    - Meeting summaries
+    - Extract action items
+    - Find specific discussions
+    - Compare decisions across meetings
+    - Create follow-up materials
+  </Tab>
+
+  <Tab title="My Computer">
+    **Upload files from your local device**
+
+    **What you can add**:
+    - Documents from your computer
+    - Screenshots
+    - Downloaded files
+    - Files from external sources
+
+    **Features**:
+    - Drag and drop upload
+    - Browse to select files
+    - Multiple file upload
+    - Files stored securely in Azure Blob Storage
+
+    **Supported file types**:
+    - Documents: PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx)
+    - Text: TXT, CSV, MD, JSON
+    - Images: JPG, PNG, GIF
+    - Other: Log files, code files
+
+    **How to use**:
+    1. Click "My Computer" tab
+    2. Drag files into upload area OR click "Browse"
+    3. Select files to upload
+    4. Wait for upload to complete
+    5. Files automatically added to current conversation
+
+    **Example**:
+    Upload contract PDF from email → Ask AVA: "Review this contract and extract key terms"
+
+    **Privacy Note**: Uploaded files are stored in your tenant's Azure Blob Storage and deleted after 90 days of inactivity
+  </Tab>
+</Tabs>
+
+### Search Tips
+
+<AccordionGroup>
+  <Accordion title="Use Specific Search Terms">
+    Better search terms = better results
+
+    ❌ Vague: "document"
+    ✅ Specific: "Q4 sales forecast 2024"
+
+    ❌ Generic: "meeting"
+    ✅ Specific: "standup meeting November 2024"
+  </Accordion>
+
+  <Accordion title="Leverage Filters">
+    Narrow results quickly:
+
+    **File type filter**:
+    - Use when you know format: "budget" + Excel filter
+    - Eliminates irrelevant file types
+
+    **Date filter**:
+    - "Recent" vs "Modified in last 30 days" vs "Custom range"
+    - Useful for finding latest versions
+
+    **Location filter**:
+    - Specific SharePoint site
+    - Specific folder path
+    - Your OneDrive only
+  </Accordion>
+
+  <Accordion title="Preview Before Adding">
+    Always preview files first:
+    - Verify it's the right document
+    - Check file size (large files slow conversation)
+    - Ensure it's the latest version
+    - Confirm you have access
+
+    Click filename to open preview pane
+  </Accordion>
+
+  <Accordion title="Add Multiple Files">
+    You can add multiple files to provide complete context:
+
+    **Example workflow**:
+    1. Add current year budget (Excel)
+    2. Add last year budget for comparison (Excel)
+    3. Add budget guidance document (Word)
+    4. Ask: "Compare budgets and check compliance with guidelines"
+
+    **Limit**: Up to 20 files per conversation (for performance)
+  </Accordion>
+</AccordionGroup>
+
+## Notes Tab
+
+Rich text editor for capturing ideas, taking notes, and creating content collaboratively with AVA.
+
+### Features
+
+<CardGroup cols={2}>
+  <Card title="Rich Text Formatting" icon="text">
+    - Bold, italic, underline
+    - Headings (H1, H2, H3)
+    - Bullet and numbered lists
+    - Blockquotes
+    - Code blocks
+    - Links
+  </Card>
+
+  <Card title="Collaborative Creation" icon="users">
+    - Work with AVA to draft content
+    - Copy chat responses to notes
+    - Refine content iteratively
+    - Keep notes across sessions
+  </Card>
+
+  <Card title="Export Options" icon="download">
+    - **Copy to Clipboard**: Paste anywhere
+    - **Export to PowerPoint**: Auto-generate presentation
+    - **Save to OneDrive**: Store for later
+  </Card>
+
+  <Card title="Organization" icon="folder">
+    - Notes persist across sessions
+    - Search your notes
+    - Archive old notes
+    - Share notes with team
+  </Card>
+</CardGroup>
+
+### Common Use Cases
+
+<Tabs>
+  <Tab title="Meeting Notes">
+    **Workflow**:
+    1. Start AVA conversation during or before meeting
+    2. Open Notes tab
+    3. Take notes in real-time
+    4. Use formatting for structure (headings, bullets)
+    5. Ask AVA to summarize key points
+    6. Copy AVA's summary to notes
+    7. After meeting: Export to Word or PowerPoint
+
+    **Example**:
+    ```
+    # Product Roadmap Meeting - Nov 15, 2024
+
+    ## Attendees
+    - Sarah (PM)
+    - John (Eng)
+    - Lisa (Design)
+
+    ## Key Decisions
+    - Move Feature X to Q1 2025
+    - Prioritize mobile app improvements
+    - Defer API v3 to Q2
+
+    ## Action Items
+    [ ] Sarah: Update roadmap deck by EOW
+    [ ] John: Size Feature X implementation
+    [ ] Lisa: Share mobile mockups next week
+
+    [AVA's meeting summary and insights copied here]
+    ```
+  </Tab>
+
+  <Tab title="Content Drafting">
+    **Workflow**:
+    1. Start with outline in notes
+    2. Ask AVA to draft each section
+    3. Copy good content from chat to notes
+    4. Refine and edit in notes
+    5. Ask AVA for feedback
+    6. Iterate until satisfied
+    7. Export to final format
+
+    **Example - Blog Post**:
+    ```
+    # Blog Post: 5 Tips for Remote Work Productivity
+
+    ## Outline
+    1. Set dedicated workspace
+    2. Maintain routine
+    3. Take breaks
+    4. Over-communicate
+    5. Use right tools
+
+    ## Draft (working with AVA)
+
+    [Introduction - AVA drafted]
+    Working remotely has become the new normal...
+
+    ## Tip 1: Set Up a Dedicated Workspace
+    [AVA expanded this section with details]
+
+    [Continue building content section by section]
+    ```
+
+    **Export**: When done, export to Word for final polish
+  </Tab>
+
+  <Tab title="Brainstorming">
+    **Workflow**:
+    1. Start with seed idea in notes
+    2. Chat with AVA to explore concepts
+    3. Copy interesting ideas to notes
+    4. Organize and structure thoughts
+    5. Use AVA to elaborate on promising ideas
+    6. Build comprehensive notes document
+
+    **Example - Product Feature Ideas**:
+    ```
+    # New Feature Brainstorm
+
+    ## Problem Statement
+    Users need faster way to find documents
+
+    ## Ideas from AVA Discussion
+    - Smart search with AI suggestions
+    - Recent files quick access panel
+    - Tag-based organization
+    - Voice search capability
+
+    ## Promising: Smart Search
+    [AVA's detailed exploration of this idea]
+    - NLP-powered query understanding
+    - Learn from user behavior
+    - Predictive suggestions
+    - Integration with existing search
+
+    ## Next Steps
+    - Validate with user research
+    - Technical feasibility assessment
+    - Competitive analysis
+    ```
+  </Tab>
+
+  <Tab title="Task Planning">
+    **Workflow**:
+    1. Outline project or task in notes
+    2. Break down into steps
+    3. Use AVA to think through details
+    4. Document plan in notes
+    5. Create checklist format
+    6. Track progress
+
+    **Example**:
+    ```
+    # Q1 Marketing Campaign Planning
+
+    ## Objectives
+    - Increase brand awareness 25%
+    - Generate 500 qualified leads
+    - Launch in 3 target markets
+
+    ## Timeline
+    - Week 1-2: Research and strategy
+    - Week 3-4: Creative development
+    - Week 5-6: Asset production
+    - Week 7-8: Launch and promotion
+
+    ## Tasks
+    [ ] Market research (Sarah)
+    [ ] Define target personas (Team)
+    [ ] Create messaging framework (Lisa)
+    [ ] Design assets (Design team)
+    [ ] Set up tracking (John)
+    [ ] Launch social campaign (Marketing)
+
+    ## Budget
+    [AVA's budget breakdown based on past campaigns]
+
+    ## Success Metrics
+    [AVA's suggested KPIs]
+    ```
+  </Tab>
+</Tabs>
+
+### PowerPoint Export
+
+Special feature: Generate presentations directly from notes.
+
+**How it works**:
+1. Write or paste content in notes
+2. Use headings to structure (H1 = slide titles)
+3. Use bullets for slide content
+4. Click "Export to PowerPoint"
+5. AVA generates presentation:
+   - H1 headings become slide titles
+   - Content under each H1 becomes slide body
+   - Bullets automatically formatted
+   - Appropriate slide layouts applied
+
+**Example Notes**:
+```markdown
+# Q4 Sales Results
+
+- Revenue: $5.2M (↑ 23% YoY)
+- New customers: 47
+- Expansion: $890K
+
+# Top Wins
+
+- Acme Corp: $500K ARR
+- TechStart: $250K ARR
+- GlobalCo: $180K ARR
+
+# Q1 Focus
+
+- Expand enterprise segment
+- Launch new product tier
+- Increase partner channel
+```
+
+**Result**: 3-slide PowerPoint with formatted content
+
+**Customization**:
+- Edit slides in PowerPoint after export
+- Change themes and layouts
+- Add images and charts
+- Refine content
+
+## File Viewer Tab
+
+View and edit documents from SharePoint and OneDrive without leaving AVA.
+
+### Features
+
+<Tabs>
+  <Tab title="View Mode">
+    **Read documents without editing**
+
+    **Features**:
+    - Full document preview
+    - All file types supported (Word, Excel, PowerPoint, PDF)
+    - Page navigation
+    - Search within document
+    - Zoom controls
+    - Print option
+
+    **Use Cases**:
+    - Reference documents while chatting
+    - Review contracts during analysis
+    - Check data in spreadsheets
+    - View presentations
+
+    **Example**:
+    Open Q4 budget Excel → View data → Ask AVA in chat: "Analyze the marketing spend in this budget"
+  </Tab>
+
+  <Tab title="Edit Mode">
+    **Make changes using Microsoft Office Online**
+
+    **Features**:
+    - Full Office Online editing capabilities
+    - Auto-save to SharePoint/OneDrive
+    - Track changes support
+    - Comments and collaboration
+    - Version history
+
+    **Supported for editing**:
+    - Word documents (.docx)
+    - Excel spreadsheets (.xlsx)
+    - PowerPoint presentations (.pptx)
+
+    **Not editable** (view only):
+    - PDF files
+    - Legacy Office formats (.doc, .xls, .ppt)
+    - Image files
+    - Text files
+
+    **How to edit**:
+    1. Open file in viewer
+    2. Click "Edit" button (top right)
+    3. Make changes using Office editor
+    4. Changes save automatically
+    5. Close editor to return to view mode
+
+    **Example**:
+    Open contract Word doc → Switch to Edit mode → Make revisions → Save → Ask AVA: "Check if my changes address the concerns we discussed"
+  </Tab>
+
+  <Tab title="Multi-Tab Support">
+    **Work with multiple documents simultaneously**
+
+    **Features**:
+    - Open multiple files in separate tabs
+    - Switch between files easily
+    - Each file independent (can edit one, view another)
+    - Tab management (close, reorder)
+
+    **Use Cases**:
+    - Compare documents side-by-side (mentally)
+    - Reference one doc while editing another
+    - Review multiple contracts
+    - Cross-check data across spreadsheets
+
+    **Example**:
+    Open 3 tabs:
+    - Tab 1: Contract template (view)
+    - Tab 2: New contract draft (edit)
+    - Tab 3: Vendor's proposal (view)
+
+    Work across all three to draft contract
+  </Tab>
+</Tabs>
+
+### File Viewer Benefits
+
+<AccordionGroup>
+  <Accordion title="Context Without Switching">
+    **Problem**: Constantly switching between AVA and SharePoint breaks flow
+
+    **Solution**: Keep reference documents open in File Viewer while chatting
+
+    **Example**:
+    - Chat: "Review this contract for payment terms"
+    - Viewer: Contract open for reference
+    - Chat: "The payment schedule on page 5 seems unusual..."
+    - No need to leave AVA
+  </Accordion>
+
+  <Accordion title="Edit Without Leaving">
+    **Problem**: Need to make quick edits but don't want to lose chat context
+
+    **Solution**: Edit directly in File Viewer, changes save automatically
+
+    **Example**:
+    - Discussing document with AVA
+    - AVA suggests improvements
+    - Switch to Edit mode
+    - Make changes
+    - Continue discussion about revised version
+  </Accordion>
+
+  <Accordion title="Direct SharePoint Integration">
+    **Benefit**: Files open directly from SharePoint/OneDrive
+
+    **Features**:
+    - Always viewing latest version
+    - Changes sync immediately
+    - Respects SharePoint permissions
+    - Maintains version history
+    - Supports co-authoring
+
+    **Security**: Uses your delegated permissions—can only open files you have access to
+  </Accordion>
+
+  <Accordion title="Workspace Persistence">
+    **Benefit**: Open files remain available across sessions
+
+    **Features**:
+    - Files stay open when you close AVA
+    - Return later and files are still there
+    - Quick access to frequently referenced docs
+    - Can close individual tabs when done
+
+    **Note**: Files aren't downloaded—always pulling from SharePoint
+  </Accordion>
+</AccordionGroup>
+
+## Workspace Tips & Tricks
+
+<AccordionGroup>
+  <Accordion title="Use Search Tab to Build Context">
+    Before asking complex questions:
+    1. Add relevant files via Search tab
+    2. Add meeting transcripts if applicable
+    3. Upload any external documents
+    4. Then ask your question with full context
+
+    **AVA has better context** = **Better answers**
+  </Accordion>
+
+  <Accordion title="Notes as Your Scratchpad">
+    Use Notes tab throughout your workflow:
+    - Capture ideas during brainstorming
+    - Copy useful responses from chat
+    - Structure thoughts before asking complex questions
+    - Build documents iteratively
+    - Create presentations from collected insights
+  </Accordion>
+
+  <Accordion title="File Viewer for Verification">
+    When AVA references a document:
+    - Open it in File Viewer
+    - Verify AVA's interpretation
+    - Check specific sections
+    - Make edits if needed
+    - Continue informed conversation
+  </Accordion>
+
+  <Accordion title="Combine All Three Tabs">
+    **Example workflow**:
+    1. **Search**: Add last month's sales report
+    2. **File Viewer**: Open current month's data
+    3. **Chat**: "Compare these two reports"
+    4. **Notes**: Capture key findings
+    5. **Notes**: Export summary to PowerPoint
+
+    **Using all workspace features together** = **Maximum productivity**
+  </Accordion>
+
+  <Accordion title="Keyboard Shortcuts">
+    Speed up your workflow:
+
+    **Navigation**:
+    - `Ctrl+1`: Switch to Search tab
+    - `Ctrl+2`: Switch to Notes tab
+    - `Ctrl+3`: Switch to File Viewer tab
+
+    **Notes**:
+    - `Ctrl+B`: Bold
+    - `Ctrl+I`: Italic
+    - `Ctrl+K`: Insert link
+
+    **General**:
+    - `Ctrl+F`: Find in document (File Viewer)
+    - `Ctrl+S`: Save (Notes/File Editor)
+  </Accordion>
+</AccordionGroup>
+
+## Common Workflows
+
+### Research & Analysis
+
+<Steps>
+  <Step title="Gather Materials">
+    **Search Tab**: Find all relevant documents
+    - Market research reports
+    - Competitor analyses
+    - Internal strategy docs
+  </Step>
+
+  <Step title="Review & Reference">
+    **File Viewer**: Open key documents for reference
+    - Keep 2-3 most important docs open in tabs
+    - Can quickly check specific information
+  </Step>
+
+  <Step title="Analyze with AVA">
+    **Chat**: Ask analytical questions
+    - "Compare these companies' approaches"
+    - "What trends do you see across reports?"
+    - "Identify gaps in our strategy"
+  </Step>
+
+  <Step title="Capture Insights">
+    **Notes**: Document findings
+    - Copy key insights from chat
+    - Structure into clear sections
+    - Add your own observations
+  </Step>
+
+  <Step title="Create Deliverable">
+    **Notes → Export**: Generate presentation or report
+    - Export notes to PowerPoint
+    - Or copy to Word for detailed report
+  </Step>
+</Steps>
+
+### Document Creation
+
+<Steps>
+  <Step title="Find Templates">
+    **Search Tab**: Locate template or past examples
+    - Search for similar past documents
+    - Find company templates
+  </Step>
+
+  <Step title="Open for Reference">
+    **File Viewer**: Keep template/example open
+    - View in one workspace tab
+    - Reference while creating new content
+  </Step>
+
+  <Step title="Draft in Notes">
+    **Notes**: Create new document
+    - Start with outline
+    - Use AVA to draft sections
+    - Build content iteratively
+  </Step>
+
+  <Step title="Refine & Edit">
+    **Chat + Notes**: Improve content
+    - Ask AVA for feedback
+    - Request revisions
+    - Copy improved versions to notes
+  </Step>
+
+  <Step title="Finalize">
+    **Export**: Generate final document
+    - Export to Word or PowerPoint
+    - Make final edits in Office
+    - Save to SharePoint
+  </Step>
+</Steps>
+
+### Meeting Preparation
+
+<Steps>
+  <Step title="Find Past Meetings">
+    **Search Tab → Meetings**: Locate related past meetings
+    - Previous meetings with same attendees
+    - Meetings on same topic
+  </Step>
+
+  <Step title="Gather Documents">
+    **Search Tab → Microsoft Files**: Find relevant materials
+    - Project documents
+    - Data and reports
+    - Previous presentations
+  </Step>
+
+  <Step title="Review Context">
+    **File Viewer + Chat**: Review and analyze
+    - Open key files
+    - Ask AVA to summarize
+    - Identify key points
+  </Step>
+
+  <Step title="Create Agenda/Materials">
+    **Notes**: Prepare for meeting
+    - Draft agenda
+    - Create talking points
+    - Prepare questions
+    - Export to PowerPoint if presenting
+  </Step>
+</Steps>
+
+## Workspace FAQs
+
+<Tabs>
+  <Tab title="Storage & Limits">
+    **Q: How many files can I have open?**
+    A: Up to 20 files in File Viewer tabs simultaneously
+
+    **Q: Are uploaded files stored permanently?**
+    A: Files uploaded via "My Computer" are deleted after 90 days of inactivity
+
+    **Q: How much can I write in Notes?**
+    A: No practical limit; notes support very long documents
+
+    **Q: Do notes sync across devices?**
+    A: Yes, notes are stored in your AVA account and available on any device
+  </Tab>
+
+  <Tab title="Permissions">
+    **Q: Can others see my workspace?**
+    A: No, your workspace is private unless you explicitly share
+
+    **Q: Can I open any SharePoint file?**
+    A: Only files you have permission to access in SharePoint
+
+    **Q: Can I edit shared files?**
+    A: Yes, if you have edit permissions in SharePoint
+
+    **Q: What happens to files I upload?**
+    A: Stored in your tenant's Azure Blob Storage with your security context
+  </Tab>
+
+  <Tab title="Features">
+    **Q: Can I print from File Viewer?**
+    A: Yes, use browser print function (Ctrl+P)
+
+    **Q: Does Notes support images?**
+    A: Currently text only; export to Word/PowerPoint for images
+
+    **Q: Can I share my notes?**
+    A: Yes, via Share button or by exporting to OneDrive
+
+    **Q: Do File Viewer edits sync to SharePoint immediately?**
+    A: Yes, Office Online auto-saves every few seconds
+  </Tab>
+</Tabs>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Try Workspace" icon="play" href="/quickstart">
+    Get started and explore workspace features
+  </Card>
+  <Card title="Workspace Tips" icon="lightbulb" href="/guides/workspace-features">
+    Advanced techniques and workflows
+  </Card>
+  <Card title="Notes Best Practices" icon="pencil" href="/guides/notes-productivity">
+    Maximize productivity with Notes
+  </Card>
+  <Card title="File Management" icon="folder" href="/guides/file-management">
+    Organize and work with files effectively
+  </Card>
+</CardGroup>

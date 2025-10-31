@@ -1,0 +1,532 @@
+---
+title: 'What is AVA?'
+description: 'Understanding AVA: Your enterprise AI assistant integrated with Microsoft 365 and business systems'
+---
+
+## Overview
+
+### Your AI Super Assistant
+
+AVA (AI Virtual Assistant) is an enterprise AI productivity platform that runs securely within your Azure tenant. Unlike external SaaS AI tools that just answer questions, **AVA takes action**—it's AI that works, not just talks.
+
+Through Microsoft Graph API integration, AVA schedules your meetings, creates your tasks, shares your documents, sends your emails, and generates your presentations. It integrates seamlessly with your Microsoft 365 environment and business systems, using your existing Microsoft Entra identity to be your AI super assistant.
+
+Think of AVA as your personal AI assistant that not only knows your calendar and can access your emails, but can also **modify your calendar**, **send those emails**, **share those documents**, and **create those tasks**—all while respecting your permissions and keeping your data secure within your Azure tenant.
+
+## The AVA Difference
+
+AVA solves a critical challenge: **How do you give your organization the power of AI while maintaining enterprise security and leveraging your existing Microsoft 365 investment?**
+
+<AccordionGroup>
+  <Accordion title="Runs Inside Your Azure Tenant">
+    AVA is deployed as an Azure Enterprise Application within your own Azure environment. This means:
+    - All data processing happens in your tenant
+    - No data is sent to external SaaS providers
+    - You maintain complete control over your information
+    - Compliance requirements are easier to meet
+  </Accordion>
+  <Accordion title="Uses Your Identity & Permissions">
+    AVA leverages Microsoft Entra ID (formerly Azure AD) for authentication:
+    - Users sign in with their work accounts
+    - AVA operates with delegated user permissions
+    - It can only access what the user can access
+    - No elevated privileges or broad access required
+    - Perfect for zero-trust environments
+  </Accordion>
+  <Accordion title="No Agent Creation Needed">
+    Unlike other AI platforms that require creating separate agents for each integration:
+    - AVA intelligently orchestrates all connected data sources
+    - Single conversation can span multiple systems
+    - Context is maintained across data sources
+    - Natural language interface—just ask what you need
+  </Accordion>
+  <Accordion title="Enterprise-Grade Microsoft Integration">
+    Built specifically for Microsoft 365 enterprises:
+    - Native integration with Outlook, Teams, SharePoint, OneDrive
+    - Works with your existing security policies
+    - Supports your organizational structure
+    - Familiar Microsoft-style authentication and UX
+  </Accordion>
+</AccordionGroup>
+
+## Three Core Capabilities
+
+### 1. AVA Chat
+
+Your conversational AI interface for everything you need at work.
+
+**What you can do:**
+- Ask about your schedule: "What meetings do I have today?"
+- Query your email: "Show me emails from Sarah about the project"
+- Access files: "Find my Q4 budget spreadsheet"
+- Pull Salesforce data: "What opportunities are closing this month?"
+- Check Jira: "Show me my open issues"
+- Query GitHub: "What pull requests are waiting for my review?"
+
+**How it works:**
+Use the `@` mention system to reference any connected data source. AVA understands context and can combine information from multiple sources in a single response.
+
+**Example conversation:**
+```
+You: @Calendar what's on my schedule today?
+AVA: You have 3 meetings: Team standup at 9am, Client call at 11am...
+
+You: @Salesforce check status of opportunities discussed in that client call
+AVA: Looking at your calendar, the 11am meeting is with Acme Corp.
+     In Salesforce, you have 2 open opportunities with Acme Corp...
+
+You: Draft an email to follow up
+AVA: [Generates email draft using context from both systems]
+```
+
+[Learn more about AVA Chat →](/features/ava-chat)
+
+### 2. AVA Tasks
+
+Multi-step workflow automation with intelligent orchestration.
+
+**What you can do:**
+- Create multi-step processes with individual instructions
+- Add documents from your OneDrive or SharePoint for context
+- Use the SuperPrompt toggle for enhanced AI guidance
+- Save successful workflows as templates
+- Share task templates with your team
+
+**Use cases:**
+- Document analysis workflows
+- Research and synthesis projects
+- Content creation pipelines
+- Data transformation tasks
+- Report generation
+
+**Example task:**
+```
+Task: Quarterly Business Review Preparation
+
+Step 1: Review financial data
+  - Pull Q4 financials from [uploaded Excel file]
+  - Summarize key metrics
+
+Step 2: Analyze pipeline
+  - @Salesforce get all opportunities closing next quarter
+  - Identify top 10 by value
+
+Step 3: Create presentation
+  - Generate PowerPoint with findings
+  - Export to workspace
+```
+
+[Learn more about AVA Tasks →](/features/ava-tasks)
+
+### 3. Knowledge Search
+
+RAG-powered search across your SharePoint documents and knowledge bases.
+
+**What you can do:**
+- Search multiple document libraries simultaneously
+- Query specific "corpora" (collections of related documents)
+- Create custom corpora from SharePoint sites
+- Configure automatic syncing
+- Extract specific fields from documents
+
+**Perfect for:**
+- Contract management (search all contracts)
+- HR policy questions (query employee handbooks)
+- Technical documentation (find specific procedures)
+- Customer service (search support documentation)
+- Legal research (query legal documents)
+
+**How it works:**
+Instead of keyword search, Knowledge Search uses semantic understanding to find relevant information across all your documents, even if they don't contain your exact search terms.
+
+**Example:**
+```
+Using: @Contracts Demo corpus
+
+You: Find all contracts with early termination clauses
+
+AVA: I found 12 contracts with early termination provisions:
+     1. Acme Corp - 30 day notice required...
+     2. TechStart LLC - 60 day notice with fee...
+     [Provides summaries with source citations]
+```
+
+[Learn more about Knowledge Search →](/features/knowledge-search)
+
+## The Workspace
+
+AVA's right-side panel is like having a second screen for your AI work—similar to artifacts in other AI tools, but integrated with your Microsoft 365 environment.
+
+### Three Workspace Tabs:
+
+<Tabs>
+  <Tab title="Search">
+    **Find and add content to your conversation**
+    - Microsoft: Search your OneDrive and SharePoint files
+    - Meetings: Access recorded Teams meetings with transcripts
+    - My Computer: Upload files from your local device
+
+    **Use it to:**
+    - Add documents for AVA to analyze
+    - Include meeting transcripts for summaries
+    - Reference files in your conversation
+  </Tab>
+  <Tab title="Notes">
+    **Rich text editor for capturing and creating**
+    - Full formatting toolbar
+    - Create structured documents
+    - Export to PowerPoint
+    - Copy to clipboard
+
+    **Use it to:**
+    - Take notes during conversations
+    - Draft documents collaboratively with AVA
+    - Organize ideas from multiple chats
+    - Generate presentations from your notes
+  </Tab>
+  <Tab title="File Viewer">
+    **View and edit files from SharePoint/OneDrive**
+    - Toggle between View and Edit modes
+    - Microsoft Office integration
+    - Direct access to your files
+
+    **Use it to:**
+    - Review documents while chatting about them
+    - Make edits without leaving AVA
+    - Reference multiple files simultaneously
+  </Tab>
+</Tabs>
+
+[Learn more about Workspace →](/features/workspace)
+
+## Connected Data Sources (MCP Integration)
+
+AVA uses the Model Context Protocol (MCP) to integrate with your business systems. Once connected, you can access data using simple `@` mentions.
+
+### Currently Supported:
+
+<CardGroup cols={2}>
+  <Card title="Microsoft 365 Apps" icon="microsoft">
+    - Outlook (Mail & Calendar)
+    - OneDrive (Files & Folders)
+    - SharePoint (Sites & Lists)
+    - Teams (Messages & Meetings)
+    - To Do (Tasks & Lists)
+  </Card>
+  <Card title="Salesforce" icon="salesforce">
+    - Opportunities
+    - Leads
+    - Cases
+    - Accounts
+    - Contacts
+    - Custom Objects
+  </Card>
+  <Card title="Jira" icon="jira">
+    - Issues
+    - Projects
+    - Boards
+    - Sprints
+    - Comments
+  </Card>
+  <Card title="GitHub" icon="github">
+    - Repositories
+    - Pull Requests
+    - Issues
+    - Code Search
+    - Commit History
+  </Card>
+  <Card title="NetSuite" icon="database">
+    - Business Records
+    - Transactions
+    - Custom Records
+  </Card>
+  <Card title="Microsoft Security" icon="shield-halved">
+    - Defender Alerts
+    - Security Incidents
+    - Threat Intelligence
+  </Card>
+</CardGroup>
+
+## Global Features Available Everywhere
+
+### Prompt Library
+
+Create and share custom prompts across your organization:
+
+- **Create**: Build prompts with instructions and connected data references
+- **Filter**: By connected data sources, file types, or teams
+- **Share**: With individuals, teams, or Microsoft 365 groups
+- **Organize**: Personal prompts vs team prompts
+
+**Example prompt:**
+```
+Name: "Weekly Pipeline Review"
+Connected Data: @Salesforce
+File Types: Excel
+
+Prompt: "Review all opportunities closing this week.
+        Create a summary table with: Company, Value,
+        Close Date, and Risk Level. Export to Excel."
+```
+
+### Model Selection
+
+Choose the right AI model for your task:
+
+- **Azure OpenAI**: GPT-4, GPT-4 Turbo, GPT-3.5
+- **AWS Bedrock**: Claude Sonnet, Claude Opus
+- **Google Vertex**: Gemini Pro, PaLM
+
+Each model has different strengths—select based on:
+- Complexity of the task
+- Speed requirements
+- Cost considerations
+- Context window needs
+
+### Custom Instructions
+
+Personalize how AVA works for you:
+
+```
+Example custom instructions:
+
+"I'm a sales manager at a SaaS company. When analyzing
+opportunities, always include ARR, sales cycle length,
+and competitive threats. Format financial data in tables.
+My working hours are 8am-5pm Pacific Time."
+```
+
+AVA will remember these preferences across all conversations.
+
+### Export Capabilities
+
+Generate Office documents from your work:
+
+<CardGroup cols={4}>
+  <Card title="PowerPoint" icon="file-powerpoint">
+    From chat conversations or notes
+  </Card>
+  <Card title="Word" icon="file-word">
+    Create formatted documents
+  </Card>
+  <Card title="Excel" icon="file-excel">
+    Generate spreadsheets with data
+  </Card>
+  <Card title="Text Files" icon="file-lines">
+    Plain text exports
+  </Card>
+</CardGroup>
+
+## AI That Works: Microsoft Graph API Integration
+
+AVA leverages Microsoft Graph API to be your AI super assistant—taking real action across your Microsoft 365 environment.
+
+### What AVA Can Do For You
+
+<Tabs>
+  <Tab title="Calendar & Meetings">
+    **Schedule and manage your time**
+
+    - Schedule meetings with attendees
+    - Find optimal meeting times
+    - Create Teams meeting links
+    - Update or cancel events
+    - Check availability
+    - Set reminders
+
+    **Example**: "Schedule a 30-minute meeting with Sarah and John tomorrow afternoon to discuss Q4 planning"
+  </Tab>
+
+  <Tab title="Tasks & To Dos">
+    **Create and track work**
+
+    - Create tasks in Microsoft To Do
+    - Set due dates and reminders
+    - Assign tasks to team members
+    - Update task status
+    - Track completion
+    - Organize into lists
+
+    **Example**: "Create a task for John to review the contract by Friday"
+  </Tab>
+
+  <Tab title="Files & Sharing">
+    **Collaborate on documents**
+
+    - Share files from OneDrive/SharePoint
+    - Set permissions (view/edit)
+    - Create share links
+    - Manage access levels
+    - Revoke access when needed
+    - Track file sharing
+
+    **Example**: "Share the Q4 budget with the Finance team with edit access"
+  </Tab>
+
+  <Tab title="Email & Communication">
+    **Compose and send messages**
+
+    - Draft emails with context
+    - Send emails on your behalf
+    - Reply to messages
+    - Forward with context
+    - Include attachments
+    - Format professionally
+
+    **Example**: "Draft a follow-up email to the client about yesterday's meeting"
+  </Tab>
+
+  <Tab title="Images & Visuals">
+    **Add and generate images**
+
+    - Upload images for context
+    - Generate images with DALL-E 3
+    - Create visuals for presentations
+    - Analyze screenshots
+    - Illustrate concepts
+
+    **Example**: "Generate an image of a modern office workspace for my presentation"
+  </Tab>
+</Tabs>
+
+<Info>
+  **The possibilities are nearly endless**: As Microsoft expands Graph API capabilities, AVA automatically gains new powers. No updates required—it just works.
+</Info>
+
+[Explore all core capabilities →](/essentials/core-capabilities)
+
+## How AVA Maintains Security
+
+### Identity-Based Access
+
+- Uses Microsoft Entra ID authentication
+- Operates with **delegated user permissions**
+- No service accounts with elevated access
+- Each user sees only what they're authorized to see
+
+### Data Residency
+
+- All processing happens in your Azure tenant
+- Data never leaves your environment
+- You control data location and retention
+- Meets compliance requirements (GDPR, HIPAA, etc.)
+
+### Audit & Compliance
+
+- All actions are logged
+- Integration with Azure Monitor
+- Telemetry and usage tracking
+- Support for compliance frameworks
+
+## Who Uses AVA?
+
+<Tabs>
+  <Tab title="Sales Teams">
+    - Check opportunity pipelines
+    - Update CRM records
+    - Draft customer emails
+    - Prepare presentations
+    - Schedule meetings
+  </Tab>
+  <Tab title="Support Teams">
+    - Search knowledge bases
+    - Find customer history
+    - Query case information
+    - Access documentation
+    - Create responses
+  </Tab>
+  <Tab title="Developers">
+    - Query GitHub repos
+    - Check Jira tickets
+    - Search code
+    - Review PRs
+    - Generate documentation
+  </Tab>
+  <Tab title="Executives">
+    - Review meeting summaries
+    - Check calendar conflicts
+    - Query business metrics
+    - Draft communications
+    - Access files quickly
+  </Tab>
+  <Tab title="Legal/Compliance">
+    - Search contract libraries
+    - Query policy documents
+    - Find specific clauses
+    - Generate reports
+    - Track document versions
+  </Tab>
+  <Tab title="HR Teams">
+    - Search HR policies
+    - Find employee documentation
+    - Query benefits information
+    - Draft communications
+    - Access org charts
+  </Tab>
+</Tabs>
+
+## Key Differentiators
+
+| Feature | Traditional AI Tools | AVA |
+|---------|---------------------|-----|
+| **Deployment** | External SaaS | Your Azure tenant |
+| **Authentication** | Separate login | Microsoft Entra ID |
+| **Permissions** | API keys/tokens | Delegated user permissions |
+| **Data Access** | Data sent externally | Data stays in tenant |
+| **Agent Creation** | Manual setup required | Automatic orchestration |
+| **Microsoft 365** | Basic via APIs | Native integration |
+| **Security Model** | Trust the vendor | Zero-trust compatible |
+| **Customization** | Limited to vendor options | Full control in your tenant |
+
+## Getting Started
+
+Ready to experience AI that works the way your organization does?
+
+<Steps>
+  <Step title="Sign In">
+    Use your Microsoft work account—same credentials you use every day
+  </Step>
+  <Step title="Explore the Interface">
+    Three panels: Session History, Chat Area, Workspace
+  </Step>
+  <Step title="Try @ Mentions">
+    Start typing @ to see your connected data sources
+  </Step>
+  <Step title="Create a Task">
+    Build your first multi-step workflow
+  </Step>
+  <Step title="Search Your Docs">
+    Try Knowledge Search on a SharePoint site
+  </Step>
+</Steps>
+
+<CardGroup cols={2}>
+  <Card
+    title="Quick Start Guide"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Get up and running in 5 minutes
+  </Card>
+  <Card
+    title="Contact Us"
+    icon="calendar"
+    href="https://datarm.ai/contact"
+  >
+    Learn more about AVA
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="How It Works" icon="gears" href="/essentials/how-it-works">
+    Technical architecture and design
+  </Card>
+  <Card title="Key Features" icon="star" href="/essentials/key-features">
+    Complete feature overview
+  </Card>
+  <Card title="Use Cases" icon="briefcase" href="/essentials/use-cases">
+    Real-world examples
+  </Card>
+</CardGroup>

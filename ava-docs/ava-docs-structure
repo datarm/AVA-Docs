@@ -1,0 +1,85 @@
+ava-docs/
+├── mint.json                      # Mintlify config
+├── introduction.mdx               # Landing page
+├── quickstart.mdx                 # 5-min quickstart
+│
+├── essentials/                    # Core concepts
+│   ├── what-is-ava.mdx
+│   ├── how-it-works.mdx
+│   ├── key-features.mdx
+│   └── use-cases.mdx
+│
+├── getting-started/               # Onboarding path
+│   ├── installation.mdx
+│   ├── authentication.mdx
+│   ├── first-query.mdx
+│   ├── connecting-data-sources.mdx
+│   └── user-permissions.mdx
+│
+├── guides/                        # Feature guides
+│   ├── data-governance/
+│   │   ├── overview.mdx
+│   │   ├── access-controls.mdx
+│   │   ├── compliance-tracking.mdx
+│   │   └── audit-logs.mdx
+│   ├── risk-management/
+│   │   ├── overview.mdx
+│   │   ├── risk-scoring.mdx
+│   │   ├── alert-configuration.mdx
+│   │   └── reporting.mdx
+│   ├── integrations/
+│   │   ├── salesforce.mdx
+│   │   ├── snowflake.mdx
+│   │   ├── databricks.mdx
+│   │   └── custom-connectors.mdx
+│   └── ai-capabilities/
+│       ├── intelligent-search.mdx
+│       ├── automated-classification.mdx
+│       └── anomaly-detection.mdx
+│
+├── api-reference/                 # API docs
+│   ├── introduction.mdx
+│   ├── authentication.mdx
+│   ├── rate-limits.mdx
+│   ├── endpoints/
+│   │   ├── data-sources.mdx
+│   │   ├── policies.mdx
+│   │   ├── users.mdx
+│   │   ├── reports.mdx
+│   │   └── webhooks.mdx
+│   └── webhooks.mdx
+│
+├── sdk/                           # SDK documentation
+│   ├── overview.mdx
+│   ├── python.mdx
+│   ├── javascript.mdx
+│   ├── java.mdx
+│   └── examples.mdx
+│
+├── deployment/                    # Enterprise deployment
+│   ├── architecture.mdx
+│   ├── self-hosted.mdx
+│   ├── cloud-deployment.mdx
+│   ├── security.mdx
+│   ├── sso-setup.mdx
+│   └── scalability.mdx
+│
+├── administration/                # Admin guides
+│   ├── user-management.mdx
+│   ├── org-settings.mdx
+│   ├── billing.mdx
+│   ├── monitoring.mdx
+│   └── troubleshooting.mdx
+│
+├── compliance/                    # Compliance docs
+│   ├── gdpr.mdx
+│   ├── ccpa.mdx
+│   ├── soc2.mdx
+│   └── hipaa.mdx
+│
+├── changelog.mdx                  # Product updates
+│
+└── support/                       # Support resources
+    ├── faq.mdx
+    ├── contact.mdx
+    └── status.mdx

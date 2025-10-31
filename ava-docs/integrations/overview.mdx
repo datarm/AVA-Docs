@@ -1,0 +1,130 @@
+---
+title: 'Integrations Overview'
+description: 'Connecting AVA to your enterprise applications'
+---
+
+# Integrations Overview
+
+AVA uses the Model Context Protocol (MCP) to connect with your enterprise applications. Each integration runs as a dedicated Container App in your Azure tenant, using your existing SSO configuration.
+
+<Info>
+  **Note**: Some integration guides are still under development. Check back soon for detailed setup instructions.
+</Info>
+
+## Available Integrations
+
+<Frame>
+  <img src="/images/integrations/connected-data-sources.png" alt="Connected Data panel showing GitHub, Jira, Salesforce, Microsoft 365, and other integrations" />
+</Frame>
+
+<div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '2rem', margin: '2rem 0', textAlign: 'center'}}>
+  <div>
+    <a href="/integrations/microsoft-365">
+      <img src="/logos/brands/microsoft-365.svg" alt="Microsoft 365" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Microsoft 365</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/salesforce">
+      <img src="/logos/brands/salesforce.svg" alt="Salesforce" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Salesforce</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/jira">
+      <img src="/logos/brands/jira.svg" alt="Jira" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>Jira</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/github">
+      <img src="/logos/brands/github.png" alt="GitHub" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>GitHub</div>
+    </a>
+  </div>
+  <div>
+    <a href="/integrations/netsuite">
+      <img src="/logos/brands/netsuite.png" alt="NetSuite" style={{width: '100px', height: '100px', objectFit: 'contain', margin: '0 auto'}} />
+      <div style={{marginTop: '0.5rem', fontWeight: 'bold'}}>NetSuite</div>
+    </a>
+  </div>
+</div>
+
+<CardGroup cols={2}>
+  <Card title="Troubleshooting" icon="wrench" href="/integrations/troubleshooting">
+    Common connection issues and solutions
+  </Card>
+  <Card title="Request Integration" icon="plus" href="mailto:avasupport@datarm.ai">
+    Need another integration? Email [avasupport@datarm.ai](mailto:avasupport@datarm.ai)
+  </Card>
+</CardGroup>
+
+## How MCP Integrations Work
+
+<Steps>
+  <Step title="MCP Server Deployment">
+    Each integration runs as a Container App in your Azure tenant
+  </Step>
+  <Step title="SSO Configuration">
+    Uses your existing SSO setup for each application (Salesforce OAuth, Jira OAuth, etc.)
+  </Step>
+  <Step title="Delegated Permissions">
+    Operates with user permissions—no elevated access
+  </Step>
+  <Step title="@ Mention Access">
+    Users access data via simple @ mentions in conversations
+  </Step>
+</Steps>
+
+## Beyond Standard Integrations
+
+<Note>
+  **Any Enterprise Application, One AI Assistant**: AVA can connect to virtually any application already configured in your Microsoft Entra ID with OAuth or SAML SSO.
+</Note>
+
+### Leverage Your Existing SSO Infrastructure
+
+Your organization has likely already set up dozens of enterprise applications in Microsoft Entra ID with single sign-on. AVA can extend to these applications through MCP, turning your existing SSO ecosystem into a connected AI platform.
+
+**Examples of Additional Integrations:**
+
+<CardGroup cols={3}>
+  <Card title="HR Platforms" icon="users">
+    Workday, BambooHR, ADP, SAP SuccessFactors
+  </Card>
+  <Card title="Project Tools" icon="list-check">
+    Monday.com, Asana, ClickUp, Smartsheet
+  </Card>
+  <Card title="Support Systems" icon="headset">
+    Zendesk, Freshdesk, ServiceNow, Intercom
+  </Card>
+  <Card title="Marketing" icon="bullhorn">
+    HubSpot, Marketo, Mailchimp, Pardot
+  </Card>
+  <Card title="Finance" icon="dollar-sign">
+    QuickBooks, Xero, Bill.com, Concur
+  </Card>
+  <Card title="Custom Apps" icon="code">
+    Your internal tools with OAuth/SAML
+  </Card>
+</CardGroup>
+
+**Simple Requirements:**
+- ✅ Registered as Enterprise Application in Entra ID
+- ✅ OAuth 2.0 or SAML 2.0 authentication
+- ✅ SSO already working for your users
+- ✅ API access available
+
+<Tip>
+  As you add Enterprise Applications to your Entra ID, AVA's integration possibilities grow—creating a unified AI assistant across your entire technology stack.
+</Tip>
+
+[Learn more about MCP extensibility →](/essentials/how-it-works#extend-ava-to-any-enterprise-application)
+
+## Technical Details
+
+Learn more about MCP server architecture in our [Deployment Architecture](/deployment/architecture#mcp-server-layer) documentation.
+
+---
+
+*Last Updated: January 2025*

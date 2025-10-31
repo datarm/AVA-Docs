@@ -1,0 +1,45 @@
+---
+title: AVA 2.4.0
+description: Release notes for AVA version 2.4.0
+---
+
+# Release Notes for AVA Update 2.4.0
+
+Welcome to AVA 2.4.0! 🎉 This release makes AVA faster, smarter, and more reliable than ever. Here's what's new:
+
+---
+
+### **Key Updates**
+
+- **Support for New AI Models:** Reasoning models such as OpenAI's o1 and o3-mini and extremely large context models like GPT-4.1 are available in AVA Chat.
+- **Default to New Chat Experience:** All logins start in a new chat. This also applies when deleting the current session.
+- **Enhanced Task Flexibility:** You can now select any previous step in an AVA Task (not just the immediate prior step) as input, boosting workflow efficiency.
+- **Expanded Corpus Management:** Corpus owners can now manage files added by any user, creating more flexible organization-wide control.
+- **Improved Meeting Visibility:** The AVA Workspace now only shows meetings in your organization for which you have transcript access, eliminating unwanted clutter.
+- **Real-Time Status for Knowledge Search Files:** Instantly see the progress of file embedding in Knowledge Search, keeping you informed every step of the way.
+- **Rearchitected File Processing:** File handling has been redesigned to better support complex workflows, ensuring smooth performance and laying the groundwork for future capabilities.
+- **Performance Overhaul:**
+  - AVA's frontend has been refactored for faster performance across the app.
+  - Chats and Tasks have been changed to handle even larger data loads with ease.
+  - Task execution now draws on this enhanced memory store, making AVA more responsive and eliminating issues with lag or crashes in Tasks.
+
+---
+
+### **Bug Fixes and Improvements**
+
+- Disabled chatboxes no longer submit messages on Enter, keeping workflows clean and intentional.
+- Refreshed the chat file context accordion for improved clarity and usability.
+- Client secrets are now protected from exposure in the browser to further enhance security.
+- Resolved issues where user settings could fail to fetch, maintaining a smooth configuration experience.
+- Improved retry logic for file prompt fetching, reducing errors and interruptions.
+- @ mentions now persist reliably across sessions and logins for seamless communication.
+- Addressed rare crashes during data comparison in tasks, improving reliability.
+- Fixed issues that could cause tasks to fail when using super prompts.
+- Enhanced Knowledge Search windows with clearer loading states and improved empty state messaging.
+- Long file names are now truncated in toast notifications, creating a cleaner display.
+- Success toasts for deleting Knowledge Search files have been restored.
+- Users without recent meetings can now reliably access and review their older meetings.
+
+---
+
+These updates reinforce AVA's position as a reliable and innovative tool for your business needs. Thank you for your continued feedback and support—stay tuned for even more exciting developments! 🚀
